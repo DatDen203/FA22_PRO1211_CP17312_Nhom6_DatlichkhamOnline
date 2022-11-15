@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="khungIcon">#f1f7ff</color>
+    <color name="green">#1fa0bd</color>
+    <color name="text">#5b7b92</color>
+    <color name="text2">#29a9c0</color>
+    <color name="text3">#4F728B</color>
+    <color name="xanh_nhat">#D9F4FF</color>
+    <color name="xanh_dam">#0165FF</color>
+    <color name="xam">#AFB6C3</color>
 </resources>
