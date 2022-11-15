@@ -3,6 +3,8 @@ package com.example.cp17312_nhom6_duan1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +12,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.cp17312_nhom6_duan1.dao.AccountDAO;
+import com.example.cp17312_nhom6_duan1.dto.AccountDTO;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -23,6 +27,7 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -37,12 +42,15 @@ public class SignUpActivity extends AppCompatActivity {
     EditText edtPhoneNumber;
 
     FirebaseAuth mAuth;
+    AccountDAO accountDAO;
+    ArrayList<AccountDTO> listAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
+        accountDAO = new AccountDAO(this);
+        listAccount = accountDAO.getAll();
         edtUsername = (TextInputEditText) findViewById(R.id.edt_username);
         edtPassword = (TextInputEditText) findViewById(R.id.edt_password);
         edtFullname = (TextInputEditText) findViewById(R.id.edt_fullname);
@@ -77,14 +85,10 @@ public class SignUpActivity extends AppCompatActivity {
                 String password = edtPassword.getText().toString().trim();
                 String fullName = edtFullname.getText().toString().trim();
                 String phoneNumber = edtPhoneNumber.getText().toString().trim();
-                if (username.isEmpty() || password.isEmpty() || fullName.isEmpty() || phoneNumber.isEmpty()) {
-                    tilUsername.setError("Vui lòng nhập đủ thông tin");
-                    tilPassword.setError("Vui lòng nhập đủ thông tin");
-                    tilFullname.setError("Vui lòng nhập đủ thông tin");
-                    tilPhoneNumber.setError("Vui lòng nhập đủ thông tin");
-                } else {
-                    onClickVerifyPhoneNumber(phoneNumber);
-                }
+               if(checkErrorSignUp()==true){
+                   onClickVerifyPhoneNumber(phoneNumber);
+               }
+
             }
         });
     }
@@ -148,5 +152,75 @@ public class SignUpActivity extends AppCompatActivity {
         intent.putExtra("phone_number", strPhoneNumber);
         intent.putExtra("verification_id", verificationId);
         startActivity(intent);
+    }
+    // check lỗi
+    public boolean checkErrorSignUp() {
+        if (tilFullname.getEditText().getText().toString().trim().isEmpty() ||
+                tilUsername.getEditText().getText().toString().trim().isEmpty() ||
+                tilPassword.getEditText().getText().toString().trim().isEmpty() ||
+                tilPhoneNumber.getEditText().getText().toString().trim().isEmpty()|| checkUserName()==false) {
+            if (tilFullname.getEditText().getText().toString().trim().isEmpty()) {
+                tilFullname.setError("FullName can't isEmpty");
+                ErrorAnimaton2(tilFullname, 0);
+            } else {
+                tilFullname.setError("");
+            }
+            if (tilUsername.getEditText().getText().toString().trim().isEmpty()) {
+                tilUsername.setError("UserName can't isEmpty");
+                ErrorAnimaton2(tilUsername, 50);
+            } else if(checkUserName()==false){
+                tilUsername.setError("This account has already existed");
+                ErrorAnimaton2(tilUsername, 50);
+            }
+            else {
+                tilUsername.setError("");
+            }
+            if (tilPassword.getEditText().getText().toString().trim().isEmpty()) {
+                tilPassword.setError("Password can't isEmpty");
+                ErrorAnimaton2(tilPassword, 60);
+            } else if (tilPassword.getEditText().getText().toString().trim().length() < 8) {
+                tilPassword.setError("Password must be at least 8 characters");
+                ErrorAnimaton2(tilPassword, 60);
+            } else {
+                tilPassword.setError("");
+            }
+            if (tilPhoneNumber.getEditText().getText().toString().trim().isEmpty()) {
+                tilPhoneNumber.setError("PhoneNumber can't isEmpty");
+                ErrorAnimaton2(tilPhoneNumber, 70);
+            } else if (tilPhoneNumber.getEditText().getText().toString().trim().matches("^[0-9]{10}$")) {
+                tilPhoneNumber.setError("Incorrect phone number");
+                ErrorAnimaton2(tilPhoneNumber, 70);
+            } else {
+                tilPhoneNumber.setError("");
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public boolean checkUserName(){
+        boolean a = false;
+        for(int i=0;i<listAccount.size();i++){
+            if(listAccount.get(i).getUserName().equals(tilUsername.getEditText().getText().toString().trim())){
+                a= true;
+                break;
+            }else{
+                a= false;
+            }
+        }
+        return a;
+    }
+    public void ErrorAnimaton(View view){
+        AnimatorSet animatorSet = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.annimation_arror);
+        animatorSet.setTarget(view);
+        animatorSet.start();
+
+    }
+    public void ErrorAnimaton2(View view,long delay ){
+        AnimatorSet animatorSet = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.annimation_arror);
+        animatorSet.setTarget(view);
+        animatorSet.setStartDelay(delay);
+        animatorSet.start();
+
     }
 }

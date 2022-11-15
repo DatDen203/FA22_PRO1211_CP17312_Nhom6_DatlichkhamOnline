@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group>
+        <item android:title="Manager">
+            <menu>
+                <item
+                    android:id="@+id/m_managerDoctor"
+                    android:title="Manager Doctor"
+                    android:icon="@drawable/medical_team"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/m_managerFile"
+                    android:title="Manager File"
+                    android:icon="@drawable/icon_file"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/m_managerTimeWork"
+                    android:title="Manager Time Work"
+                    android:icon="@drawable/icon_time_work"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/m_managerCategory"
+                    android:title="Manager Category"
+                    android:icon="@drawable/categorization"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/m_managerService"
+                    android:title="Manager Service"
+                    android:icon="@drawable/icon_service"
+                    app:showAsAction="always" />
+            </menu>
+        </item>
+    </group>
+
+    <group>
+        <item android:title="Account">
+            <menu>
+                <item android:id="@+id/m_AccountDoctor"
+                    app:showAsAction="always"
+                    android:icon="@drawable/icon_doctor"
+                    android:title="Manager Account Doctor"/>
+                <item android:id="@+id/m_AccountUser"
+                    app:showAsAction="always"
+                    android:icon="@drawable/ac_m"
+                    android:title="Manager Account User"/>
+                <item android:id="@+id/m_logOut"
+                    android:icon="@drawable/ic_logout"
+                    app:showAsAction="always"
+                    android:title="LogOut"/>
+            </menu>
+        </item>
+    </group>
+</menu>
