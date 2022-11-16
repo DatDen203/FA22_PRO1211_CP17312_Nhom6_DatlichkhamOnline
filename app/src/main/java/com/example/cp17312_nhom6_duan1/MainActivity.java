@@ -7,6 +7,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cp17312_nhom6_duan1.adapter.BannerAdapter;
 import com.example.cp17312_nhom6_duan1.dto.Banner;
@@ -25,10 +28,9 @@ import java.util.List;
 import me.relex.circleindicator.CircleIndicator;
 
 public class MainActivity extends AppCompatActivity {
-
     DrawerLayout drawerLayout;
     TextView tvHiName;
-    ImageView imgOpenNav;
+    ImageView imgOpenNav,imgAvt;
     CircleIndicator circleIndicator;
     ViewPager viewPager;
     BannerAdapter bannerAdapter;
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         circleIndicator = findViewById(R.id.circle_indicator);
         drawerLayout = findViewById(R.id.drawerLayout);
         imgOpenNav = findViewById(R.id.img_open_nav);
-
+        
 //        tvHiName.setText("Hi " + getIntent().getStringExtra("fullname") + " !");
         list = getListPhoto();
         bannerAdapter = new BannerAdapter(this, list);
@@ -105,7 +107,24 @@ public class MainActivity extends AppCompatActivity {
         });
         View headerView = navView.getHeaderView(0);
         tvHiName = headerView.findViewById(R.id.tv_hi_name);
-        tvHiName.setText("Hi " + getIntent().getStringExtra("fullname") + " !");
+        imgAvt = headerView.findViewById(R.id.imgAvt);
+        SharedPreferences preferences = getSharedPreferences("getIdUser",MODE_PRIVATE);
+        String imgUser = preferences.getString("imgUser","");
+        String tvFullName = preferences.getString("fullname","");
+        tvHiName.setText("Hi " +tvFullName+ " !");
+        if(!imgUser.isEmpty()){
+            Uri uri = Uri.parse(imgUser);
+            imgAvt.setImageURI(uri);
+        }
+
+        imgAvt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(),UpdateUserActivity.class);
+                startActivity(intent);
+            }
+        });
+        
 
 //        findViewById(R.id.item_doctor).setOnClickListener(new View.OnClickListener() {
 //            @Override

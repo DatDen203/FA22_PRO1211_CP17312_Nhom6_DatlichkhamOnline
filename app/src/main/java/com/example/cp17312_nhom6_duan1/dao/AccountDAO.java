@@ -31,7 +31,20 @@ public class AccountDAO {
         contentValues.put("fullName", account.getFullName());
         contentValues.put("phone", account.getPhoneNumber());
         contentValues.put("role", account.getRole());
+        contentValues.put("img",account.getImg());
         return sqLiteDatabase.insert("tbAccount", null, contentValues);
+    }
+    public int updateAccount(AccountDTO account){
+        sqLiteDatabase = dbHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("userName", account.getUserName());
+        contentValues.put("passWord", account.getPassWord());
+        contentValues.put("fullName", account.getFullName());
+        contentValues.put("phone", account.getPhoneNumber());
+        contentValues.put("role", account.getRole());
+        contentValues.put("img",account.getImg());
+        String[] check = new String[]{account.getId()+""};
+        return sqLiteDatabase.update("tbAccount",contentValues,"id = ?",check);
     }
 
     public boolean checkLogin(String userName, String passWord) {
@@ -44,6 +57,7 @@ public class AccountDAO {
             editor.putInt("idUser", cs.getInt(0));
             editor.putString("fullname", cs.getString(4));
             editor.putString("role", cs.getString(5));
+            editor.putString("imgUser",cs.getString(6));
             editor.commit();
             return true;
         } else {
