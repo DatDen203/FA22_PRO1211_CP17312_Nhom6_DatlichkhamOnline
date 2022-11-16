@@ -17,6 +17,9 @@ public class TimeWorkDAO {
         myDbHelper = new MyDbHelper(context);
         db = myDbHelper.getWritableDatabase();
     }
+    public void open(){
+        db = myDbHelper.getWritableDatabase();
+    }
     public long insertRow(DTO_TimeWork obj){
         ContentValues contentValues = new ContentValues();
         contentValues.put("session", obj.getSession());
