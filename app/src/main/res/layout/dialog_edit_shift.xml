@@ -44,5 +44,6 @@
         android:layout_marginTop="20dp"
         android:background="#08FF00"
         android:text="Save"
+        android:id="@+id/btn_save_shift"
         android:textColor="#ffffff"/>
 </LinearLayout>

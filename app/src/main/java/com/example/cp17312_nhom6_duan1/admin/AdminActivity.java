@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.widget.FrameLayout;
 
 import com.example.cp17312_nhom6_duan1.R;
 import com.example.cp17312_nhom6_duan1.doctor.DoctorActivity;
+import com.example.cp17312_nhom6_duan1.fragment.FragmetTimeWork;
 import com.google.android.material.navigation.NavigationView;
 
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -75,6 +78,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 navigationAdmin.getMenu().findItem(R.id.m_AccountUser).setChecked(false);
                 break;
             case R.id.m_managerTimeWork:
+                replaceFragmet(new FragmetTimeWork());
                 navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerCategory).setChecked(false);
@@ -140,5 +144,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public void replaceFragmet(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fragment_content, fragment).commit();
     }
 }
