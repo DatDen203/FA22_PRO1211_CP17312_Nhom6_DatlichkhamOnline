@@ -35,7 +35,6 @@ import java.util.ArrayList;
 
 public class FragmentTimeWorkDetail extends Fragment {
     Context context;
-    private TextView tvAddTimeWorkDetail;
     private TimeWorkDAO daoTimeWork;
     private TimeWorkDetailDAO daoTimeWorkDetail;
     private TimeWorkDetailAdapter timeWorkDetailAdapter;
@@ -75,7 +74,7 @@ public class FragmentTimeWorkDetail extends Fragment {
         rcvListTimeWorkDetail.setLayoutManager(manager);
         rcvListTimeWorkDetail.setAdapter(timeWorkDetailAdapter);
 
-        tvAddTimeWorkDetail.setOnClickListener(new View.OnClickListener() {
+        fabAddTimeWorkDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Dialog dialog = new Dialog(context);
