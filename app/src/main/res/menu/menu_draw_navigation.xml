@@ -29,6 +29,11 @@
                     android:title="Manager Service"
                     android:icon="@drawable/icon_service"
                     app:showAsAction="always" />
+                <item
+                    android:id="@+id/m_managerRoom"
+                    android:title="Manager Room"
+                    android:icon="@drawable/open_door"
+                    app:showAsAction="always" />
             </menu>
         </item>
     </group>
