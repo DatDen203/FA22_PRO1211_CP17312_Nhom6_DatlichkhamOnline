@@ -18,7 +18,7 @@ import com.example.cp17312_nhom6_duan1.doctor.DoctorActivity;
 import com.example.cp17312_nhom6_duan1.fragment.FragmetTimeWork;
 import com.google.android.material.navigation.NavigationView;
 
-public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
     private Toolbar toolBar;
     private FrameLayout fragmentContent;
@@ -32,21 +32,19 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         toolBar = findViewById(R.id.toolBar);
         fragmentContent = findViewById(R.id.fragment_content);
         navigationAdmin = findViewById(R.id.nv_view);
-        toolBar.setNavigationOnClickListener(view->{
+        toolBar.setNavigationOnClickListener(view -> {
             drawerLayout.openDrawer(GravityCompat.START);
         });
         navigationAdmin.setNavigationItemSelectedListener(this);
         navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(true);
 
-
-
     }
 
     @Override
     public void onBackPressed() {
-        if(drawerLayout.isOpen()){
+        if (drawerLayout.isOpen()) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }else{
+        } else {
             super.onBackPressed();
         }
     }
@@ -54,7 +52,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        switch (id){
+        switch (id) {
             case R.id.m_managerDoctor:
                 Intent intent = new Intent(this, DoctorActivity.class);
                 startActivity(intent);
@@ -145,7 +143,8 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-    public void replaceFragmet(Fragment fragment){
+
+    public void replaceFragmet(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment_content, fragment).commit();
     }

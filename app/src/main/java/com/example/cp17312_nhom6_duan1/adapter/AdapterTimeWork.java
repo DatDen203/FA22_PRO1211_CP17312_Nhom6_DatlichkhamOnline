@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class AdapterTimeWork extends RecyclerView.Adapter<AdapterTimeWork.ViewHoderItemTimeWork> {
     TimeWorkDAO timeWorkDAO;
     ArrayList<DTO_TimeWork> listTimeWork;
-    Context context ;
+    Context context;
 
     public AdapterTimeWork(TimeWorkDAO timeWorkDAO, ArrayList<DTO_TimeWork> listTimeWork) {
         this.timeWorkDAO = timeWorkDAO;
@@ -38,7 +38,7 @@ public class AdapterTimeWork extends RecyclerView.Adapter<AdapterTimeWork.ViewHo
     @Override
     public ViewHoderItemTimeWork onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view =layoutInflater.inflate(R.layout.item_time_work, parent, false);
+        View view = layoutInflater.inflate(R.layout.item_time_work, parent, false);
         context = parent.getContext();
         timeWorkDAO = new TimeWorkDAO(context);
         return new ViewHoderItemTimeWork(view);
@@ -47,7 +47,7 @@ public class AdapterTimeWork extends RecyclerView.Adapter<AdapterTimeWork.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHoderItemTimeWork holder, int position) {
         final int index = position;
-        listTimeWork= timeWorkDAO.getAll();
+        listTimeWork = timeWorkDAO.getAll();
         DTO_TimeWork obj = listTimeWork.get(index);
         holder.tvTimeWork.setText(obj.getSession());
         holder.tvUpdateTimeWork.setOnClickListener(new View.OnClickListener() {
@@ -60,14 +60,14 @@ public class AdapterTimeWork extends RecyclerView.Adapter<AdapterTimeWork.ViewHo
 
     @Override
     public int getItemCount() {
-        return listTimeWork==null?0: listTimeWork.size();
+        return listTimeWork == null ? 0 : listTimeWork.size();
     }
+
     private TextInputLayout tilUsername;
     private AppCompatButton btnSaveShift;
 
 
-
-    public void dialogAddTimeWork(DTO_TimeWork obj, int index){
+    public void dialogAddTimeWork(DTO_TimeWork obj, int index) {
         Dialog dialog = new Dialog(context, com.airbnb.lottie.R.style.Theme_AppCompat_Light_Dialog_Alert);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_edit_shift);
@@ -77,19 +77,19 @@ public class AdapterTimeWork extends RecyclerView.Adapter<AdapterTimeWork.ViewHo
         btnSaveShift.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(tilUsername.getEditText().getText().toString().trim().isEmpty()){
+                if (tilUsername.getEditText().getText().toString().trim().isEmpty()) {
                     tilUsername.setError("Vui lòng không để trống mục này");
-                }else{
+                } else {
                     tilUsername.setError("");
                     obj.setSession(tilUsername.getEditText().getText().toString().trim());
                     long res = timeWorkDAO.updateRow(obj);
-                    if(res>0){
-                       listTimeWork.set(index, obj);
-                       notifyItemChanged(index);
-                        Toast.makeText(context, "Thêm ca làm việc thành công" , Toast.LENGTH_SHORT).show();
+                    if (res > 0) {
+                        listTimeWork.set(index, obj);
+                        notifyItemChanged(index);
+                        Toast.makeText(context, "Thêm ca làm việc thành công", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
-                    }else{
-                        Toast.makeText(context, "Thêm ca làm việc thất bại" , Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "Thêm ca làm việc thất bại", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
