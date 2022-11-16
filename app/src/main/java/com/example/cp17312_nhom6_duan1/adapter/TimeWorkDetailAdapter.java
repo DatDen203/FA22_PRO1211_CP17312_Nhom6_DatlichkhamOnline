@@ -1,9 +1,13 @@
 package com.example.cp17312_nhom6_duan1.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,10 +44,45 @@ public class TimeWorkDetailAdapter extends RecyclerView.Adapter<TimeWorkDetailVi
         holder.tvTimeWorkDetail.setText(dtoTimeWorkDetail.getTime());
 //        DTO_TimeWorkDetail dtoTimeWork = daoTimeWork.getDtoTimeWork(dtoTimeWorkDetail.getTimework_id());
 //        holder.tvTimeWork.setText(dtoTimeWork.getSession());
+        holder.tvUpdateTimeWorkDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return listTimeWorkDetail.size();
+    }
+    public void updateRow(Context context,DTO_TimeWorkDetail obj,int index){
+        Dialog dialog = new Dialog(context, androidx.appcompat.R.style.Theme_AppCompat_Light_Dialog_Alert);
+        dialog.setContentView(R.layout.dialog_edit_time_work_detail);
+
+        EditText edTimeWorkdetail = dialog.findViewById(R.id.edTimeWorkDetail);
+        Button btnSave = dialog.findViewById(R.id.btnSaveTimeWorkDetail);
+        TimeWorkDetailDAO timeWorkDetailDAO = new TimeWorkDetailDAO(context);
+        timeWorkDetailDAO.open();
+        ArrayList<DTO_TimeWorkDetail> list1 = timeWorkDetailDAO.selectAll();
+
+        edTimeWorkdetail.setText(obj.getTime());
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String timeDetail = edTimeWorkdetail.getText().toString();
+                int res = daoTimeWorkDetail.updateRow(obj);
+                if (res>0){
+                    listTimeWorkDetail.set(index,obj);
+                    notifyDataSetChanged();
+                    Toast.makeText(context,"Sửa Thành Công",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(context,"Không Sửa Được",Toast.LENGTH_SHORT).show();
+                }
+                dialog.show();
+            }
+        });
+        dialog.show();
     }
 }
