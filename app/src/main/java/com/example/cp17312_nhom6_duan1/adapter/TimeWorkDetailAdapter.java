@@ -32,7 +32,7 @@ public class TimeWorkDetailAdapter extends RecyclerView.Adapter<TimeWorkDetailVi
     @NonNull
     @Override
     public TimeWorkDetailViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_timework_detail,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_timework_detail, parent, false);
         return new TimeWorkDetailViewHolder(view);
     }
 
@@ -56,7 +56,8 @@ public class TimeWorkDetailAdapter extends RecyclerView.Adapter<TimeWorkDetailVi
     public int getItemCount() {
         return listTimeWorkDetail.size();
     }
-    public void updateRow(Context context,DTO_TimeWorkDetail obj,int index){
+
+    public void updateRow(Context context, DTO_TimeWorkDetail obj, int index) {
         Dialog dialog = new Dialog(context, androidx.appcompat.R.style.Theme_AppCompat_Light_Dialog_Alert);
         dialog.setContentView(R.layout.dialog_edit_time_work_detail);
 
@@ -73,12 +74,12 @@ public class TimeWorkDetailAdapter extends RecyclerView.Adapter<TimeWorkDetailVi
             public void onClick(View view) {
                 String timeDetail = edTimeWorkdetail.getText().toString();
                 int res = daoTimeWorkDetail.updateRow(obj);
-                if (res>0){
-                    listTimeWorkDetail.set(index,obj);
+                if (res > 0) {
+                    listTimeWorkDetail.set(index, obj);
                     notifyDataSetChanged();
-                    Toast.makeText(context,"Sửa Thành Công",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(context,"Không Sửa Được",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Sửa Thành Công", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Không Sửa Được", Toast.LENGTH_SHORT).show();
                 }
                 dialog.show();
             }
