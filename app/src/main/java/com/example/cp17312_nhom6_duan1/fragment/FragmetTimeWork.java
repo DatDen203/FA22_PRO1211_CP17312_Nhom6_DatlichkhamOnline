@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -70,23 +71,26 @@ public class FragmetTimeWork extends Fragment {
         rcvListTimeWork.setAdapter(adapterTimeWork);
     }
 
-    private TextInputLayout inputAddTimeWork;
-    private MaterialButton btnAddTimeWork;
+    private TextInputLayout tilUsername;
+    private AppCompatButton btnAddTimeWork;
+
+
+
     public void dialogAddTimeWork(){
         Dialog dialog = new Dialog(context, com.airbnb.lottie.R.style.Theme_AppCompat_Light_Dialog_Alert);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_add_time_work);
-        inputAddTimeWork = dialog.findViewById(R.id.input_add_time_work);
+        dialog.setContentView(R.layout.dialog_add_shift);
+        tilUsername = dialog.findViewById(R.id.til_username);
         btnAddTimeWork = dialog.findViewById(R.id.btn_add_time_work);
         btnAddTimeWork.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(inputAddTimeWork.getEditText().getText().toString().trim().isEmpty()){
-                    inputAddTimeWork.setError("Vui lòng không để trống mục này");
+                if(tilUsername.getEditText().getText().toString().trim().isEmpty()){
+                    tilUsername.setError("Vui lòng không để trống mục này");
                 }else{
-                    inputAddTimeWork.setError("");
+                    tilUsername.setError("");
                     DTO_TimeWork obj = new DTO_TimeWork();
-                    obj.setSession(inputAddTimeWork.getEditText().getText().toString().trim());
+                    obj.setSession(tilUsername.getEditText().getText().toString().trim());
                     long res = timeWorkDAO.insertRow(obj);
                     if(res>0){
                         listTimeWork.clear();
