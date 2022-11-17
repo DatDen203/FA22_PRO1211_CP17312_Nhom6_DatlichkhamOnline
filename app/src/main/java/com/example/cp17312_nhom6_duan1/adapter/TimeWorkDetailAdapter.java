@@ -45,10 +45,11 @@ public class TimeWorkDetailAdapter extends RecyclerView.Adapter<TimeWorkDetailVi
         holder.tvTimeWorkDetail.setText(dtoTimeWorkDetail.getTime());
 //        DTO_TimeWorkDetail dtoTimeWork = daoTimeWork.getDtoTimeWork(dtoTimeWorkDetail.getTimework_id());
 //        holder.tvTimeWork.setText(dtoTimeWork.getSession());
+        final int index = position;
         holder.tvUpdateTimeWorkDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                updateRow(context,dtoTimeWorkDetail,index);
             }
         });
     }
