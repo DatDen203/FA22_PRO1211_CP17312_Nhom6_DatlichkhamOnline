@@ -58,7 +58,9 @@ public class AccountDAO {
             editor.putString("fullname", cs.getString(4));
             editor.putString("role", cs.getString(5));
             editor.putString("imgUser",cs.getString(6));
+
             editor.commit();
+
             return true;
         } else {
             return false;
