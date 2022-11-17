@@ -15,6 +15,14 @@ import android.widget.FrameLayout;
 
 import com.example.cp17312_nhom6_duan1.R;
 import com.example.cp17312_nhom6_duan1.doctor.DoctorActivity;
+import com.example.cp17312_nhom6_duan1.fragment.Fragment_ManagerAccountDoctor;
+import com.example.cp17312_nhom6_duan1.fragment.Fragment_ManagerAccountUser;
+import com.example.cp17312_nhom6_duan1.fragment.Fragment_ManagerCategory;
+import com.example.cp17312_nhom6_duan1.fragment.Fragment_ManagerDoctor;
+import com.example.cp17312_nhom6_duan1.fragment.Fragment_ManagerFile;
+import com.example.cp17312_nhom6_duan1.fragment.Fragment_ManagerRoom;
+import com.example.cp17312_nhom6_duan1.fragment.Fragment_ManagerService;
+import com.example.cp17312_nhom6_duan1.fragment.Fragment_ViewPagerTimeWork;
 import com.example.cp17312_nhom6_duan1.fragment.FragmetTimeWork;
 import com.google.android.material.navigation.NavigationView;
 
@@ -36,6 +44,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             drawerLayout.openDrawer(GravityCompat.START);
         });
         navigationAdmin.setNavigationItemSelectedListener(this);
+        replaceFragmet(new Fragment_ManagerDoctor());
         navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(true);
 
 
@@ -56,8 +65,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         int id = item.getItemId();
         switch (id){
             case R.id.m_managerDoctor:
-                Intent intent = new Intent(this, DoctorActivity.class);
-                startActivity(intent);
+                replaceFragmet(new Fragment_ManagerDoctor());
                 navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(true);
                 navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerCategory).setChecked(false);
@@ -68,6 +76,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 navigationAdmin.getMenu().findItem(R.id.m_AccountUser).setChecked(false);
                 break;
             case R.id.m_managerFile:
+                replaceFragmet(new Fragment_ManagerFile());
                 navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(true);
                 navigationAdmin.getMenu().findItem(R.id.m_managerCategory).setChecked(false);
@@ -78,7 +87,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 navigationAdmin.getMenu().findItem(R.id.m_AccountUser).setChecked(false);
                 break;
             case R.id.m_managerTimeWork:
-                replaceFragmet(new FragmetTimeWork());
+                replaceFragmet(new Fragment_ViewPagerTimeWork());
                 navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerCategory).setChecked(false);
@@ -89,6 +98,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 navigationAdmin.getMenu().findItem(R.id.m_AccountUser).setChecked(false);
                 break;
             case R.id.m_managerCategory:
+                replaceFragmet(new Fragment_ManagerCategory());
                 navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerCategory).setChecked(true);
@@ -99,6 +109,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 navigationAdmin.getMenu().findItem(R.id.m_AccountUser).setChecked(false);
                 break;
             case R.id.m_managerService:
+                replaceFragmet(new Fragment_ManagerService());
                 navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerCategory).setChecked(false);
@@ -109,6 +120,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 navigationAdmin.getMenu().findItem(R.id.m_AccountUser).setChecked(false);
                 break;
             case R.id.m_managerRoom:
+                replaceFragmet(new Fragment_ManagerRoom());
                 navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerCategory).setChecked(false);
@@ -119,6 +131,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 navigationAdmin.getMenu().findItem(R.id.m_AccountUser).setChecked(false);
                 break;
             case R.id.m_AccountDoctor:
+                replaceFragmet(new Fragment_ManagerAccountDoctor());
                 navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerCategory).setChecked(false);
@@ -129,6 +142,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 navigationAdmin.getMenu().findItem(R.id.m_AccountUser).setChecked(false);
                 break;
             case R.id.m_AccountUser:
+                replaceFragmet( new Fragment_ManagerAccountUser());
                 navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerCategory).setChecked(false);
