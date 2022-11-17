@@ -31,8 +31,6 @@ public class SignInActivity extends AppCompatActivity {
     MaterialButton btnSignIn;
     AccountDAO accountDAO;
     MaterialCheckBox chkRememberPass;
-
-    SharedPreferences sharedPreferences;
     ArrayList<AccountDTO> listAcc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +46,7 @@ public class SignInActivity extends AppCompatActivity {
         accountDAO = new AccountDAO(this);
         listAcc = accountDAO.getAll();
 
-        sharedPreferences = getSharedPreferences("getIdUser", MODE_PRIVATE);
+
 
         findViewById(R.id.tv_register).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,9 +60,7 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String userName = edtUsername.getText().toString().trim();
                 String passWord = edtPassword.getText().toString().trim();
-//                String checkRole = sharedPreferences.getString("role", "");
                 boolean checkLogin = accountDAO.checkLogin(userName, passWord);
-                String fullname = sharedPreferences.getString("fullname", "");
                 if (userName.isEmpty() || passWord.isEmpty()) {
                     tilUsername.setError("Vui lòng không để trống");
                     tilPassword.setError("Vui lòng không để trống");
@@ -74,6 +70,9 @@ public class SignInActivity extends AppCompatActivity {
                     tilUsername.setError("");
                     tilPassword.setError("");
                     if (checkLogin== true) {
+                        SharedPreferences sharedPreferences = getSharedPreferences("getIdUser", MODE_PRIVATE);
+                        String checkRole = sharedPreferences.getString("role", "");
+                        String fullname = sharedPreferences.getString("fullname", "");
                         tilUsername.setError("");
                         tilPassword.setError("");
                         String checkRole = sharedPreferences.getString("role", "");
@@ -100,6 +99,7 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
     }
+
     public void ErrorAnimaton(View view){
         AnimatorSet animatorSet = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.annimation_arror);
         animatorSet.setTarget(view);
