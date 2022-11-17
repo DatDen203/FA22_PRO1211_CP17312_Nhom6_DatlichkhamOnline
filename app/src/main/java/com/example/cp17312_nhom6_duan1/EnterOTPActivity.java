@@ -171,9 +171,8 @@ public class EnterOTPActivity extends AppCompatActivity {
     }
 
     private void goToMainActivity(String fullname) {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("fullname", fullname);
-
+        Intent intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
+        finish();
     }
 }
