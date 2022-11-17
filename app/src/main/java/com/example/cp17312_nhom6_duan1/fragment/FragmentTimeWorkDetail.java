@@ -30,6 +30,7 @@ import com.example.cp17312_nhom6_duan1.dao.TimeWorkDetailDAO;
 import com.example.cp17312_nhom6_duan1.dto.DTO_TimeWork;
 import com.example.cp17312_nhom6_duan1.dto.DTO_TimeWorkDetail;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
@@ -94,7 +95,7 @@ public class FragmentTimeWorkDetail extends Fragment {
 //                SpinnerTimeWorkAdapter spinnerTimeWorkAdapter = new SpinnerTimeWorkAdapter(listTimeWork,ManagerTimeWorkDetailActivity.this);
 //                spTimeWork.setAdapter(spinnerTimeWorkAdapter);
 
-                EditText edTimeWorkDetail = dialog.findViewById(R.id.edTimeWorkDetail);
+                TextInputLayout edTimeWorkDetail = dialog.findViewById(R.id.edTimeWorkDetail);
 
                 Button btnSaveTimeWorkDetail = dialog.findViewById(R.id.btnSaveTimeWorkDetail);
                 //Bắt sự kiện cho nút save room
@@ -102,7 +103,7 @@ public class FragmentTimeWorkDetail extends Fragment {
                     @Override
                     public void onClick(View view) {
                         DTO_TimeWorkDetail dtoTimeWorkDetail = new DTO_TimeWorkDetail();
-                        dtoTimeWorkDetail.setTime(edTimeWorkDetail.getText().toString());
+                        dtoTimeWorkDetail.setTime(edTimeWorkDetail.getEditText().getText().toString());
 //                        DTO_TimeWork dtoTimeWork = (DTO_TimeWork) spTimeWork.getSelectedItem();
 //                        dtoTimeWorkDetail.setTimework_id(dtoTimeWork.getId());
 
