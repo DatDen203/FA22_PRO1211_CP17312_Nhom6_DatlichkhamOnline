@@ -62,6 +62,7 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String userName = edtUsername.getText().toString().trim();
                 String passWord = edtPassword.getText().toString().trim();
+//                String checkRole = sharedPreferences.getString("role", "");
                 boolean checkLogin = accountDAO.checkLogin(userName, passWord);
                 String fullname = sharedPreferences.getString("fullname", "");
                 if (userName.isEmpty() || passWord.isEmpty()) {
@@ -73,10 +74,9 @@ public class SignInActivity extends AppCompatActivity {
                     tilUsername.setError("");
                     tilPassword.setError("");
                     if (checkLogin== true) {
-
-                        String checkRole = sharedPreferences.getString("role", "");
                         tilUsername.setError("");
                         tilPassword.setError("");
+                        String checkRole = sharedPreferences.getString("role", "");
                         if (checkRole.equalsIgnoreCase("Admin")) {
                             Toast.makeText(SignInActivity.this, "Man admin", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(SignInActivity.this, AdminActivity.class);
