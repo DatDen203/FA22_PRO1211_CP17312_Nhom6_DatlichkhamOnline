@@ -86,7 +86,6 @@ public class SignUpActivity extends AppCompatActivity {
                 String fullName = edtFullname.getText().toString().trim();
                 String phoneNumber = edtPhoneNumber.getText().toString().trim();
                 onClickVerifyPhoneNumber(phoneNumber);
-
             }
         });
     }
