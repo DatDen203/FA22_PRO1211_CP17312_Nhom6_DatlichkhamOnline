@@ -46,6 +46,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         navigationAdmin.setNavigationItemSelectedListener(this);
         replaceFragmet(new Fragment_ManagerDoctor());
         navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(true);
+        toolBar.setTitle("Manager Doctor");
 
     }
 
@@ -64,6 +65,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         switch (id) {
             case R.id.m_managerDoctor:
                 replaceFragmet(new Fragment_ManagerDoctor());
+                toolBar.setTitle("Manager Doctor");
                 navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(true);
                 navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerCategory).setChecked(false);
@@ -75,6 +77,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 break;
             case R.id.m_managerFile:
                 replaceFragmet(new Fragment_ManagerFile());
+                toolBar.setTitle("Manager File");
                 navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(true);
                 navigationAdmin.getMenu().findItem(R.id.m_managerCategory).setChecked(false);
@@ -85,6 +88,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 navigationAdmin.getMenu().findItem(R.id.m_AccountUser).setChecked(false);
                 break;
             case R.id.m_managerTimeWork:
+                toolBar.setTitle("Manager Time Work");
                 replaceFragmet(new Fragment_ViewPagerTimeWork());
                 navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(false);
@@ -97,6 +101,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 break;
             case R.id.m_managerCategory:
                 replaceFragmet(new Fragment_ManagerCategory());
+                toolBar.setTitle("Manager Category");
                 navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerCategory).setChecked(true);
@@ -108,6 +113,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 break;
             case R.id.m_managerService:
                 replaceFragmet(new Fragment_ManagerService());
+                toolBar.setTitle("Manager Service");
                 navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerCategory).setChecked(false);
@@ -119,6 +125,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 break;
             case R.id.m_managerRoom:
                 replaceFragmet(new Fragment_ManagerRoom());
+                toolBar.setTitle("Manager Rooms");
                 navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerCategory).setChecked(false);
@@ -130,6 +137,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 break;
             case R.id.m_AccountDoctor:
                 replaceFragmet(new Fragment_ManagerAccountDoctor());
+                toolBar.setTitle("Manager Account Doctor");
                 navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerCategory).setChecked(false);
@@ -141,6 +149,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 break;
             case R.id.m_AccountUser:
                 replaceFragmet( new Fragment_ManagerAccountUser());
+                toolBar.setTitle("Manager Account User");
                 navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerCategory).setChecked(false);

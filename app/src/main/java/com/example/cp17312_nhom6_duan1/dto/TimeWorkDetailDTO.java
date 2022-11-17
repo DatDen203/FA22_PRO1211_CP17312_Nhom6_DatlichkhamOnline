@@ -1,6 +1,6 @@
 package com.example.cp17312_nhom6_duan1.dto;
 
-public class DTO_TimeWorkDetail {
+public class TimeWorkDetailDTO {
     private int id;
     private int timework_id;
     private String time;
@@ -8,13 +8,13 @@ public class DTO_TimeWorkDetail {
     public static final String nameTable = "tbTimeWorkDetail";
     public static final String colTimework_id = "timework_id";
     public static final String colTime = "time";
-    public DTO_TimeWorkDetail(int id, int timework_id, String time) {
+    public TimeWorkDetailDTO(int id, int timework_id, String time) {
         this.id = id;
         this.timework_id = timework_id;
         this.time = time;
     }
 
-    public DTO_TimeWorkDetail() {
+    public TimeWorkDetailDTO() {
     }
 
     public int getId() {

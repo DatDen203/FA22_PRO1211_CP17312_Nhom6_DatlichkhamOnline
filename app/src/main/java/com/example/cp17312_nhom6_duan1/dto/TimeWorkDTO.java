@@ -1,13 +1,15 @@
 package com.example.cp17312_nhom6_duan1.dto;
 
-public class DTO_TimeWork {
+public class TimeWorkDTO {
     private int id;
     private String session;
 
-    public DTO_TimeWork() {
+    public TimeWorkDTO() {
     }
 
-    public DTO_TimeWork(int id, String session) {
+    public static final  String nameTable = "tbTimeWork";
+
+    public TimeWorkDTO(int id, String session) {
         this.id = id;
         this.session = session;
     }

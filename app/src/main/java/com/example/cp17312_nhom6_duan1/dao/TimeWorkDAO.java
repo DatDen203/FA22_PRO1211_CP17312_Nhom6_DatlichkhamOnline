@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.cp17312_nhom6_duan1.database.MyDbHelper;
-import com.example.cp17312_nhom6_duan1.dto.DTO_TimeWork;
+import com.example.cp17312_nhom6_duan1.dto.TimeWorkDTO;
 
 import java.util.ArrayList;
 
@@ -20,28 +20,28 @@ public class TimeWorkDAO {
     public void open(){
         db = myDbHelper.getWritableDatabase();
     }
-    public long insertRow(DTO_TimeWork obj){
+    public long insertRow(TimeWorkDTO obj){
         ContentValues contentValues = new ContentValues();
         contentValues.put("session", obj.getSession());
         return db.insert("tbTimeWork", null, contentValues);
 
     }
-    public int updateRow(DTO_TimeWork obj ){
+    public int updateRow(TimeWorkDTO obj ){
         ContentValues contentValues = new ContentValues();
         contentValues.put("session", obj.getSession());
         return db.update("tbTimeWork", contentValues, "id=?", new String[]{obj.getId()+""});
     }
-    public int deleteRow(DTO_TimeWork obj){
+    public int deleteRow(TimeWorkDTO obj){
         return db.delete("tbTimeWork", "id=?", new String[]{obj.getId()+""});
     }
-    public ArrayList<DTO_TimeWork> getAll(){
-        ArrayList<DTO_TimeWork> list = new ArrayList<>();
+    public ArrayList<TimeWorkDTO> getAll(){
+        ArrayList<TimeWorkDTO> list = new ArrayList<>();
         String select = "select * from tbTimeWork";
         Cursor cursor = db.rawQuery(select, null);
         if(cursor!=null){
             cursor.moveToFirst();
             while (!cursor.isAfterLast()){
-                DTO_TimeWork obj = new DTO_TimeWork();
+                TimeWorkDTO obj = new TimeWorkDTO();
                 obj.setId(cursor.getInt(0));
                 obj.setSession(cursor.getString(1));
                 list.add(obj);
@@ -50,5 +50,16 @@ public class TimeWorkDAO {
             cursor.close();
         }
         return list;
+    }
+    public TimeWorkDTO getDtoTimeWork(int idTimeWork){
+        TimeWorkDTO _timeWorkDTO =new TimeWorkDTO();
+        String where = "id = ?";
+        String[] whereArgs = {idTimeWork+""};
+        Cursor cs = db.query(TimeWorkDTO.nameTable,null,where,whereArgs,null,null,null);
+        if(cs.moveToFirst()){
+            _timeWorkDTO.setId(cs.getInt(0));
+            _timeWorkDTO.setSession(cs.getString(1));
+        }
+        return _timeWorkDTO;
     }
 }
