@@ -120,7 +120,7 @@ public class TimeWorkDetailAdapter extends RecyclerView.Adapter<TimeWorkDetailVi
 
                int res = timeWorkDetailDAO.updateRow(timeWorkDetailDTO);
                if(res>0){
-                   listTimeWork.set(index,timeWorkDTO);
+                   listTimeWorkDetail.set(index,timeWorkDetailDTO);
                    notifyDataSetChanged();
                    Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
                    dialog.dismiss();
