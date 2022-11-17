@@ -69,9 +69,8 @@ public class SignInActivity extends AppCompatActivity {
                 } else {
                     tilUsername.setError("");
                     tilPassword.setError("");
-                    if (checkLogin== true) {
+                    if (checkLogin == true) {
                         SharedPreferences sharedPreferences = getSharedPreferences("getIdUser", MODE_PRIVATE);
-                        String checkRole = sharedPreferences.getString("role", "");
                         String fullname = sharedPreferences.getString("fullname", "");
                         tilUsername.setError("");
                         tilPassword.setError("");
