@@ -22,7 +22,6 @@ public class RoomsDAO {
         ContentValues val = new ContentValues();
         val.put(RoomsDTO.colName,roomsDTO.getName());
         val.put(RoomsDTO.colLocaton,roomsDTO.getLocation());
-
         long res = db.insert(RoomsDTO.nameTable,null,val);
         return res;
     }

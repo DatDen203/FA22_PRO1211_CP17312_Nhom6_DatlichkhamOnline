@@ -7,7 +7,7 @@ public class RoomsDTO {
 
     public static final String nameTable = "tbRooms";
     public static final String colName = "name";
-    public static final String colLocaton = "localocation";
+    public static final String colLocaton = "location";
 
     public RoomsDTO(int id, String name, String location) {
         this.id = id;

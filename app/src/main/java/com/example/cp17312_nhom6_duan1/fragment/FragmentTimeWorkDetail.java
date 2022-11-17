@@ -18,17 +18,17 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cp17312_nhom6_duan1.R;
+import com.example.cp17312_nhom6_duan1.adapter.SpinnerTimeWorkAdapter;
 import com.example.cp17312_nhom6_duan1.adapter.TimeWorkDetailAdapter;
 import com.example.cp17312_nhom6_duan1.dao.TimeWorkDAO;
 import com.example.cp17312_nhom6_duan1.dao.TimeWorkDetailDAO;
-import com.example.cp17312_nhom6_duan1.dto.DTO_TimeWork;
-import com.example.cp17312_nhom6_duan1.dto.DTO_TimeWorkDetail;
+import com.example.cp17312_nhom6_duan1.dto.TimeWorkDTO;
+import com.example.cp17312_nhom6_duan1.dto.TimeWorkDetailDTO;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -39,7 +39,7 @@ public class FragmentTimeWorkDetail extends Fragment {
     private TimeWorkDAO daoTimeWork;
     private TimeWorkDetailDAO daoTimeWorkDetail;
     private TimeWorkDetailAdapter timeWorkDetailAdapter;
-    private ArrayList<DTO_TimeWorkDetail> listDtoTimeWorkDetail;
+    private ArrayList<TimeWorkDetailDTO> listDtoTimeWorkDetail;
     private RecyclerView rcvListTimeWorkDetail;
     private FloatingActionButton fabAddTimeWorkDetail;
     @Override
@@ -89,23 +89,29 @@ public class FragmentTimeWorkDetail extends Fragment {
                     window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
                     window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 }
-//                Spinner spTimeWork = dialog.findViewById(R.id.spTimeWork);
 
-                ArrayList<DTO_TimeWork> listTimeWork = daoTimeWork.getAll();
-//                SpinnerTimeWorkAdapter spinnerTimeWorkAdapter = new SpinnerTimeWorkAdapter(listTimeWork,ManagerTimeWorkDetailActivity.this);
-//                spTimeWork.setAdapter(spinnerTimeWorkAdapter);
+                Spinner spTimeWork = dialog.findViewById(R.id.spTimeWork);
+                ArrayList<TimeWorkDTO> listTimeWork = daoTimeWork.getAll();
+                SpinnerTimeWorkAdapter timeWorkAdapter = new SpinnerTimeWorkAdapter(listTimeWork,context);
+                spTimeWork.setAdapter(timeWorkAdapter);
 
+                ImageView imgCancel = dialog.findViewById(R.id.img_cancel);
+                imgCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
                 TextInputLayout edTimeWorkDetail = dialog.findViewById(R.id.edTimeWorkDetail);
-
                 Button btnSaveTimeWorkDetail = dialog.findViewById(R.id.btnSaveTimeWorkDetail);
                 //Bắt sự kiện cho nút save room
                 btnSaveTimeWorkDetail.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        DTO_TimeWorkDetail dtoTimeWorkDetail = new DTO_TimeWorkDetail();
+                        TimeWorkDetailDTO dtoTimeWorkDetail = new TimeWorkDetailDTO();
                         dtoTimeWorkDetail.setTime(edTimeWorkDetail.getEditText().getText().toString());
-//                        DTO_TimeWork dtoTimeWork = (DTO_TimeWork) spTimeWork.getSelectedItem();
-//                        dtoTimeWorkDetail.setTimework_id(dtoTimeWork.getId());
+                        TimeWorkDTO timeWorkDTO = (TimeWorkDTO) spTimeWork.getSelectedItem();
+                        dtoTimeWorkDetail.setTimework_id(timeWorkDTO.getId());
 
                         long res = daoTimeWorkDetail.insertRow(dtoTimeWorkDetail);
                         if(res>0){
@@ -113,6 +119,7 @@ public class FragmentTimeWorkDetail extends Fragment {
                             listDtoTimeWorkDetail.addAll(daoTimeWorkDetail.selectAll());
                             timeWorkDetailAdapter.notifyDataSetChanged();
                             Toast.makeText(context, "Thêm giờ làm thành công", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
                         }
                         else{
                             Toast.makeText(context, "Thêm giờ làm không thành công", Toast.LENGTH_SHORT).show();
