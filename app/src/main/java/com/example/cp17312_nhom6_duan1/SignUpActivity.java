@@ -85,9 +85,7 @@ public class SignUpActivity extends AppCompatActivity {
                 String password = edtPassword.getText().toString().trim();
                 String fullName = edtFullname.getText().toString().trim();
                 String phoneNumber = edtPhoneNumber.getText().toString().trim();
-               if(checkErrorSignUp()==true){
-                   onClickVerifyPhoneNumber(phoneNumber);
-               }
+                onClickVerifyPhoneNumber(phoneNumber);
 
             }
         });
@@ -168,7 +166,8 @@ public class SignUpActivity extends AppCompatActivity {
             if (tilUsername.getEditText().getText().toString().trim().isEmpty()) {
                 tilUsername.setError("UserName can't isEmpty");
                 ErrorAnimaton2(tilUsername, 50);
-            } else if(checkUserName()==false){
+            }
+            else if(checkUserName()==false){
                 tilUsername.setError("This account has already existed");
                 ErrorAnimaton2(tilUsername, 50);
             }
@@ -187,7 +186,7 @@ public class SignUpActivity extends AppCompatActivity {
             if (tilPhoneNumber.getEditText().getText().toString().trim().isEmpty()) {
                 tilPhoneNumber.setError("PhoneNumber can't isEmpty");
                 ErrorAnimaton2(tilPhoneNumber, 70);
-            } else if (tilPhoneNumber.getEditText().getText().toString().trim().matches("^[0-9]{10}$")) {
+            } else if (!tilPhoneNumber.getEditText().getText().toString().trim().matches("^[0-9]{10}$")) {
                 tilPhoneNumber.setError("Incorrect phone number");
                 ErrorAnimaton2(tilPhoneNumber, 70);
             } else {
