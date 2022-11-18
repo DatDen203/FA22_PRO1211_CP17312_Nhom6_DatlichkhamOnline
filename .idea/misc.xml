@@ -3,6 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/dialog_add_categories.xml" value="0.3625" />
+        <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/dialog_add_time_work.xml" value="0.3625" />
+        <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/dialog_add_timework.xml" value="0.25" />
+        <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/dialog_add_timework_detail.xml" value="0.3625" />
+        <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/dialog_edit_categories.xml" value="0.3625" />
+        <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/fragment__manager_category.xml" value="0.3625" />
+        <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/fragment__manager_doctor.xml" value="0.3625" />
+        <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/fragment__manager_room.xml" value="0.3625" />
+        <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/item_category.xml" value="0.3614583333333333" />
+        <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/item_cateories.xml" value="0.3625" />
+        <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/item_service.xml" value="0.3625" />
+        <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/item_sp_timework.xml" value="0.3625" />
+        <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/item_time_work.xml" value="0.3625" />
+        <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/item_timework_detail.xml" value="0.3625" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/drawable/ic_logout.xml" value="0.1305" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/drawable/shape_fab.xml" value="0.1305" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_admin.xml" value="0.22" />

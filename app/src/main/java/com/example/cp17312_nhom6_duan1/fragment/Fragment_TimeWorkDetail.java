@@ -34,7 +34,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
-public class FragmentTimeWorkDetail extends Fragment {
+public class Fragment_TimeWorkDetail extends Fragment {
     Context context;
     private TimeWorkDAO daoTimeWork;
     private TimeWorkDetailDAO daoTimeWorkDetail;

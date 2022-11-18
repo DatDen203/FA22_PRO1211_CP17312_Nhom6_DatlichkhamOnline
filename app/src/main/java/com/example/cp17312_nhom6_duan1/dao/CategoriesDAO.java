@@ -1,0 +1,54 @@
+package com.example.cp17312_nhom6_duan1.dao;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.example.cp17312_nhom6_duan1.database.MyDbHelper;
+import com.example.cp17312_nhom6_duan1.dto.CategoriesDTO;
+
+import java.util.ArrayList;
+
+public class CategoriesDAO {
+    SQLiteDatabase db;
+    MyDbHelper dbHelper;
+
+    public CategoriesDAO(Context context){
+        dbHelper = new MyDbHelper(context);
+        db = dbHelper.getWritableDatabase();
+    }
+    public long insertRow(CategoriesDTO categoriesDTO){
+        ContentValues val =new ContentValues();
+        val.put(CategoriesDTO.colNameCategories,categoriesDTO.getName());
+
+        long res = db.insert(CategoriesDTO.nameTable,null,val);
+        return res;
+    }
+    public int udateRow(CategoriesDTO categoriesDTO){
+        ContentValues val = new ContentValues();
+        val.put(CategoriesDTO.colNameCategories,categoriesDTO.getName());
+        String[] check = new String[]{categoriesDTO.getId()+""};
+
+        int res = db.update(CategoriesDTO.nameTable,val,"id = ?",check);
+        return res;
+    }
+    public ArrayList<CategoriesDTO> selectAll(){
+        ArrayList<CategoriesDTO> listDtoCategories = new ArrayList<>();
+        Cursor cs = db.query(CategoriesDTO.nameTable,null,null,null,null,null,null);
+        if(cs.moveToFirst()){
+            while(!cs.isAfterLast()){
+                CategoriesDTO categoriesDTO = new CategoriesDTO();
+                categoriesDTO.setId(cs.getInt(0));
+                categoriesDTO.setName(cs.getString(1));
+
+                listDtoCategories.add(categoriesDTO);
+                cs.moveToNext();
+            }
+        }
+        cs.close();
+        return listDtoCategories;
+    }
+
+}
+
