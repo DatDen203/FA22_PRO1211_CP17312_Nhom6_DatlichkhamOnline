@@ -71,7 +71,7 @@ public class AdapterTimeWork extends RecyclerView.Adapter<AdapterTimeWork.ViewHo
     public void dialogAddTimeWork(Context context, TimeWorkDTO dtoTimeWork, int index) {
         Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_update_timework);
+        dialog.setContentView(R.layout.dialog_edit_timework);
         Window window = dialog.getWindow();
         if (window == null) {
             return;

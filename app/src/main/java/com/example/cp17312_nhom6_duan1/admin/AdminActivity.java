@@ -8,13 +8,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.example.cp17312_nhom6_duan1.R;
-import com.example.cp17312_nhom6_duan1.doctor.DoctorActivity;
 import com.example.cp17312_nhom6_duan1.fragment.Fragment_ManagerAccountDoctor;
 import com.example.cp17312_nhom6_duan1.fragment.Fragment_ManagerAccountUser;
 import com.example.cp17312_nhom6_duan1.fragment.Fragment_ManagerCategory;
@@ -23,7 +21,6 @@ import com.example.cp17312_nhom6_duan1.fragment.Fragment_ManagerFile;
 import com.example.cp17312_nhom6_duan1.fragment.Fragment_ManagerRoom;
 import com.example.cp17312_nhom6_duan1.fragment.Fragment_ManagerService;
 import com.example.cp17312_nhom6_duan1.fragment.Fragment_ViewPagerTimeWork;
-import com.example.cp17312_nhom6_duan1.fragment.FragmetTimeWork;
 import com.google.android.material.navigation.NavigationView;
 
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
