@@ -111,7 +111,7 @@ public class UpdateUserActivity extends AppCompatActivity {
                 String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
                 requestPermissions(permissions, 1);
             } else {
-                Intent intentGrallary = new Intent(Intent.ACTION_PICK);
+                Intent intentGrallary = new Intent(Intent.ACTION_GET_CONTENT);
                 intentGrallary.setType("image/*");
                 startActivityForResult(intentGrallary, 1);
             }
