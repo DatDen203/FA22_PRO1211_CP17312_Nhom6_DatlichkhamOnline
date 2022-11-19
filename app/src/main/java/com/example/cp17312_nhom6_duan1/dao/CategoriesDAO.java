@@ -50,5 +50,17 @@ public class CategoriesDAO {
         return listDtoCategories;
     }
 
+    public CategoriesDTO getDtoCategories(int idCategories) {
+        CategoriesDTO categoriesDTO = new CategoriesDTO();
+        String where = "id = ?";
+        String[] whereArgs = {idCategories + ""};
+        Cursor cs = db.query("tbCategories", null, where, whereArgs, null, null, null);
+        if (cs.moveToFirst()) {
+            categoriesDTO.setId(cs.getInt(0));
+            categoriesDTO.setName(cs.getString(1));
+        }
+        return categoriesDTO;
+    }
+
 }
 

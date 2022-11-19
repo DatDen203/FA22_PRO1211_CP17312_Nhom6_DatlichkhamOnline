@@ -36,7 +36,8 @@ public class Fragment_ManagerCategory extends Fragment {
     private FloatingActionButton fab_add_category;
     private CategoriesDAO categoriesDAO;
     private CategoriesAdapter categoriesAdapter;
-    private  ArrayList<CategoriesDTO> listCategoriesDTO;
+    private ArrayList<CategoriesDTO> listCategoriesDTO;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,8 +53,8 @@ public class Fragment_ManagerCategory extends Fragment {
         categoriesDAO = new CategoriesDAO(getContext());
 
         listCategoriesDTO = categoriesDAO.selectAll();
-        categoriesAdapter = new CategoriesAdapter(listCategoriesDTO,getContext());
-        LinearLayoutManager manager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+        categoriesAdapter = new CategoriesAdapter(listCategoriesDTO, getContext());
+        LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         rcv_list_category.setLayoutManager(manager);
         rcv_list_category.setAdapter(categoriesAdapter);
 
@@ -88,14 +89,13 @@ public class Fragment_ManagerCategory extends Fragment {
                         categoriesDTO.setName(edNameCategories.getEditText().getText().toString());
 
                         long res = categoriesDAO.insertRow(categoriesDTO);
-                        if(res>0){
+                        if (res > 0) {
                             listCategoriesDTO.clear();
                             listCategoriesDTO.addAll(categoriesDAO.selectAll());
                             categoriesAdapter.notifyDataSetChanged();
                             Toast.makeText(getContext(), "Thêm loại khám thành công", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
-                        }
-                        else{
+                        } else {
                             Toast.makeText(getContext(), "Thêm loại khám không thành công", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -109,8 +109,8 @@ public class Fragment_ManagerCategory extends Fragment {
     public void onResume() {
         super.onResume();
         listCategoriesDTO = categoriesDAO.selectAll();
-        categoriesAdapter = new CategoriesAdapter(listCategoriesDTO,getContext());
-        LinearLayoutManager manager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+        categoriesAdapter = new CategoriesAdapter(listCategoriesDTO, getContext());
+        LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         rcv_list_category.setLayoutManager(manager);
         rcv_list_category.setAdapter(categoriesAdapter);
     }
