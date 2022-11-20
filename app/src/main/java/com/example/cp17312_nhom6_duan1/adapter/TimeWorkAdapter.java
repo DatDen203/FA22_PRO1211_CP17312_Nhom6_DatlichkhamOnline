@@ -25,12 +25,12 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
-public class AdapterTimeWork extends RecyclerView.Adapter<AdapterTimeWork.ViewHoderItemTimeWork> {
+public class TimeWorkAdapter extends RecyclerView.Adapter<TimeWorkAdapter.ViewHoderItemTimeWork> {
     TimeWorkDAO timeWorkDAO;
     ArrayList<TimeWorkDTO> listTimeWork;
     Context context;
 
-    public AdapterTimeWork(TimeWorkDAO timeWorkDAO, ArrayList<TimeWorkDTO> listTimeWork) {
+    public TimeWorkAdapter(TimeWorkDAO timeWorkDAO, ArrayList<TimeWorkDTO> listTimeWork) {
         this.timeWorkDAO = timeWorkDAO;
         this.listTimeWork = listTimeWork;
     }

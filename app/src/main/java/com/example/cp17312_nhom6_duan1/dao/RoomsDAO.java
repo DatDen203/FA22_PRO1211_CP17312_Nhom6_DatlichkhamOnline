@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.cp17312_nhom6_duan1.database.MyDbHelper;
 import com.example.cp17312_nhom6_duan1.dto.RoomsDTO;
 
+import java.sql.ClientInfoStatus;
 import java.util.ArrayList;
 
 public class RoomsDAO {
@@ -49,5 +50,17 @@ public class RoomsDAO {
             }
         }
         return listRooms;
+    }
+    public RoomsDTO getDtoRoomByIdRoom(int idRoom){
+        RoomsDTO roomsDTO = new RoomsDTO();
+        String where = "id = ?";
+        String[] whereArgs = {idRoom+""};
+        Cursor cs = db.query(RoomsDTO.nameTable,null,where,whereArgs,null,null,null);
+        if(cs.moveToFirst()){
+            roomsDTO.setId(cs.getInt(0));
+            roomsDTO.setName(cs.getString(1));
+            roomsDTO.setLocation(cs.getString(2));
+        }
+        return roomsDTO;
     }
 }

@@ -62,7 +62,7 @@ public class UpdateUserActivity extends AppCompatActivity {
                 checkPermission();
                 check = true;
             } else {
-                Intent intent = new Intent(Intent.ACTION_PICK);
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
                 startActivityForResult(intent, 1);
             }
@@ -111,7 +111,7 @@ public class UpdateUserActivity extends AppCompatActivity {
                 String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
                 requestPermissions(permissions, 1);
             } else {
-                Intent intentGrallary = new Intent(Intent.ACTION_GET_CONTENT);
+                Intent intentGrallary = new Intent(Intent.ACTION_PICK);
                 intentGrallary.setType("image/*");
                 startActivityForResult(intentGrallary, 1);
             }

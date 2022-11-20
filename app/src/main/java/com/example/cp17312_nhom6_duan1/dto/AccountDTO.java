@@ -9,6 +9,8 @@ public class AccountDTO {
     private String role;
     private String img;
 
+    public static final String nameTable ="tbAccount";
+
     public AccountDTO(int id, String userName, String passWord, String fullName, String phoneNumber, String role, String img) {
         this.id = id;
         this.userName = userName;
