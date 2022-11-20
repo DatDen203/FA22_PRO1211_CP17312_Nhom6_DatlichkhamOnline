@@ -6,6 +6,8 @@ public class ServicesDTO {
     private float servicesPrice;
     private int categoriesId;
 
+    public static final String nameTable = "tbServices";
+
     public ServicesDTO(int servicesId, String servicesName, float servicesPrice, int categoriesId) {
         this.servicesId = servicesId;
         this.servicesName = servicesName;

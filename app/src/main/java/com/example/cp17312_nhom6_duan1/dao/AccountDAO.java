@@ -108,4 +108,19 @@ public class AccountDAO {
         }
         return list;
     }
+    public AccountDTO getTopDtoAccount(){
+        AccountDTO accountDTO = new AccountDTO();
+        String orderBy = "id desc";
+        Cursor cs = sqLiteDatabase.query(AccountDTO.nameTable,null,null,null,null,null,orderBy);
+        if(cs.moveToFirst()){
+            accountDTO.setId(cs.getInt(0));
+            accountDTO.setUserName(cs.getString(1));
+            accountDTO.setPassWord(cs.getString(2));
+            accountDTO.setPhoneNumber(cs.getString(3));
+            accountDTO.setFullName(cs.getString(4));
+            accountDTO.setRole(cs.getString(5));
+            accountDTO.setImg(cs.getString(6));
+        }
+        return accountDTO;
+    }
 }

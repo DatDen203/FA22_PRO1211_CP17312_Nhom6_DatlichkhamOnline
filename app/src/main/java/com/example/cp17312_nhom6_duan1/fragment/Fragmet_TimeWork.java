@@ -20,7 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cp17312_nhom6_duan1.R;
-import com.example.cp17312_nhom6_duan1.adapter.AdapterTimeWork;
+import com.example.cp17312_nhom6_duan1.adapter.TimeWorkAdapter;
 import com.example.cp17312_nhom6_duan1.dao.TimeWorkDAO;
 import com.example.cp17312_nhom6_duan1.dto.TimeWorkDTO;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -34,7 +34,7 @@ public class Fragmet_TimeWork extends Fragment {
     ArrayList<TimeWorkDTO> listTimeWork;
     private RecyclerView rcvListTimeWork;
     private FloatingActionButton fabAddTimeWork;
-    AdapterTimeWork adapterTimeWork;
+    TimeWorkAdapter adapterTimeWork;
 
     @Nullable
     @Override
@@ -104,13 +104,13 @@ public class Fragmet_TimeWork extends Fragment {
     public void onResume() {
         super.onResume();
         listTimeWork = timeWorkDAO.getAll();
-        adapterTimeWork = new AdapterTimeWork(timeWorkDAO, listTimeWork);
+        adapterTimeWork = new TimeWorkAdapter(timeWorkDAO, listTimeWork);
         rcvListTimeWork.setAdapter(adapterTimeWork);
     }
 
     public void showData() {
         listTimeWork = timeWorkDAO.getAll();
-        adapterTimeWork = new AdapterTimeWork(timeWorkDAO, listTimeWork);
+        adapterTimeWork = new TimeWorkAdapter(timeWorkDAO, listTimeWork);
         rcvListTimeWork.setAdapter(adapterTimeWork);
     }
 }
