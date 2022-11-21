@@ -1,6 +1,7 @@
 package com.example.cp17312_nhom6_duan1.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cp17312_nhom6_duan1.R;
 import com.example.cp17312_nhom6_duan1.adapter.ViewHolder.DoctorViewHolder;
+import com.example.cp17312_nhom6_duan1.admin.UpdateDoctorActivity;
 import com.example.cp17312_nhom6_duan1.dao.AccountDAO;
 import com.example.cp17312_nhom6_duan1.dao.DoctorDAO;
 import com.example.cp17312_nhom6_duan1.dao.RoomsDAO;
@@ -61,6 +63,14 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorViewHolder> {
         holder.tvTimeWork.setText("Ca làm việc: "+timeWorkDTO.getSession());
 
         holder.tvDes.setText(doctorDTO.getDescription());
+        holder.btnUpdateDoctor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, UpdateDoctorActivity.class);
+                intent.putExtra("idDoctor",doctorDTO.getId());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
