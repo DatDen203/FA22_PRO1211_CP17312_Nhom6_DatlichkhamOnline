@@ -67,4 +67,20 @@ public class DoctorDAO {
         }
         return listDtoDoctor;
     }
+    public DoctorDTO getDtoDoctorByIdDoctor(int idDoctor){
+        DoctorDTO doctorDTO = new DoctorDTO();
+        String where = "id = ?";
+        String[] whereArgs = {idDoctor+""};
+        Cursor cs = db.query(DoctorDTO.nameTable,null,where,whereArgs,null,null,null);
+        if(cs.moveToFirst()){
+            doctorDTO.setId(cs.getInt(0));
+            doctorDTO.setUser_id(cs.getInt(1));
+            doctorDTO.setBirthday(cs.getString(2));
+            doctorDTO.setService_id(cs.getInt(3));
+            doctorDTO.setRoom_id(cs.getInt(4));
+            doctorDTO.setDescription(cs.getString(5));
+            doctorDTO.setTimework_id(cs.getInt(6));
+        }
+        return doctorDTO;
+    }
 }
