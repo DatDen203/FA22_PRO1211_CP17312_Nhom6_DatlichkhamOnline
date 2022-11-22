@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/m_lich_kham"
+        android:title="Lịch khám"
+        android:icon="@drawable/date"/>
+    <item android:id="@+id/m_notify"
+        android:title="Thông báo"
+        android:icon="@drawable/notify2"/>
+    <item android:id="@+id/m_inforDoctor"
+        android:title="Tài khoản"
+        android:icon="@drawable/user"/>
+
+</menu>

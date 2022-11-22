@@ -1,5 +1,9 @@
 package com.example.cp17312_nhom6_duan1;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.AnimatorInflater;
@@ -31,14 +35,18 @@ public class SignInActivity extends AppCompatActivity {
     MaterialButton btnSignIn;
     AccountDAO accountDAO;
     MaterialCheckBox chkRememberPass;
-
-    SharedPreferences sharedPreferences;
     ArrayList<AccountDTO> listAcc;
+    SharedPreferences sharedPreferences;
+    ActivityResultLauncher activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            save();
+        }
+    });
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-
         edtUsername = (TextInputEditText) findViewById(R.id.edt_username);
         edtPassword = (TextInputEditText) findViewById(R.id.edt_password);
         tilUsername = (TextInputLayout) findViewById(R.id.til_username);
@@ -47,24 +55,19 @@ public class SignInActivity extends AppCompatActivity {
         chkRememberPass = (MaterialCheckBox) findViewById(R.id.chk_remember_pass);
         accountDAO = new AccountDAO(this);
         listAcc = accountDAO.getAll();
-
-        sharedPreferences = getSharedPreferences("getIdUser", MODE_PRIVATE);
-
+        sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
         findViewById(R.id.tv_register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
             }
         });
-
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String userName = edtUsername.getText().toString().trim();
                 String passWord = edtPassword.getText().toString().trim();
-//                String checkRole = sharedPreferences.getString("role", "");
                 boolean checkLogin = accountDAO.checkLogin(userName, passWord);
-                String fullname = sharedPreferences.getString("fullname", "");
                 if (userName.isEmpty() || passWord.isEmpty()) {
                     tilUsername.setError("Vui lòng không để trống");
                     tilPassword.setError("Vui lòng không để trống");
@@ -73,7 +76,10 @@ public class SignInActivity extends AppCompatActivity {
                 } else {
                     tilUsername.setError("");
                     tilPassword.setError("");
-                    if (checkLogin== true) {
+                    if (checkLogin == true) {
+                        SharedPreferences sharedPreferences = getSharedPreferences("getIdUser", MODE_PRIVATE);
+                        String fullname = sharedPreferences.getString("fullname", "");
+                        save();
                         tilUsername.setError("");
                         tilPassword.setError("");
                         String checkRole = sharedPreferences.getString("role", "");
@@ -100,6 +106,34 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        read();
+    }
+
+    public void save() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.putString("username", tilUsername.getEditText().getText().toString());
+        String a = tilPassword.getEditText().getText().toString();
+        editor.putString("password", a);
+        editor.putBoolean("check", chkRememberPass.isChecked());
+        editor.commit();
+    }
+
+    public void read() {
+        String user = sharedPreferences.getString("user", "");
+        String pass = sharedPreferences.getString("pass", "");
+        boolean a = sharedPreferences.getBoolean("check", false);
+        tilUsername.getEditText().setText(user);
+        if (a == true) {
+            tilPassword.getEditText().setText(pass);
+            chkRememberPass.setChecked(true);
+        }
+    }
+
     public void ErrorAnimaton(View view){
         AnimatorSet animatorSet = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.annimation_arror);
         animatorSet.setTarget(view);
