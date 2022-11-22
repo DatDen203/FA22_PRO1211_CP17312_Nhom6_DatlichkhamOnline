@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.cp17312_nhom6_duan1.database.MyDbHelper;
+import com.example.cp17312_nhom6_duan1.dto.AllDTO;
 import com.example.cp17312_nhom6_duan1.dto.DoctorDTO;
 
 import java.util.ArrayList;
@@ -82,5 +83,52 @@ public class DoctorDAO {
             doctorDTO.setTimework_id(cs.getInt(6));
         }
         return doctorDTO;
+    }
+    public ArrayList<AllDTO> CalendarDoctor(int idDoctor){
+        ArrayList<AllDTO> list = new ArrayList<>();
+        String select ="select tbAccount.fullName, tbFile.birthday, tbOrderDoctor.start_date, tbOrderDoctor.start_time from  tbFile join tbOrderDoctor  on tbOrderDoctor.file_id = tbFile.id join tbDoctor on tbOrderDoctor.doctor_id = tbDoctor.id join tbAccount on tbFile.user_id =  tbAccount.id where tbOrderDoctor.doctor_id = "+idDoctor +" and tbAccount.role='User' order by tbOrderDoctor.start_date , tbOrderDoctor.start_time ASC";
+        Cursor cursor = db.rawQuery(select, null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast()){
+                AllDTO obj = new AllDTO();
+                obj.setFullameUser(cursor.getString(0));
+                obj.setBirthdayUser(cursor.getString(1));
+                obj.setStartDate(cursor.getString(2));
+                obj.setStartTime(cursor.getString(3));
+                list.add(obj);
+                cursor.moveToNext();
+            }
+        }
+        return  list;
+    }
+    public ArrayList<AllDTO> CalendarDoctorByDateNow(int idDoctor){
+        ArrayList<AllDTO> list = new ArrayList<>();
+        String select ="select tbAccount.fullName, tbFile.birthday, tbOrderDoctor.start_date, tbOrderDoctor.start_time from  tbFile join tbOrderDoctor  on tbOrderDoctor.file_id = tbFile.id join tbDoctor on tbOrderDoctor.doctor_id = tbDoctor.id join tbAccount on tbFile.user_id =  tbAccount.id where tbOrderDoctor.doctor_id = "+idDoctor +" and tbAccount.role='User' and tbOrderDoctor.start_date = date('now') order by tbOrderDoctor.start_date , tbOrderDoctor.start_time ASC";
+        Cursor cursor = db.rawQuery(select, null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast()){
+                AllDTO obj = new AllDTO();
+                obj.setFullameUser(cursor.getString(0));
+                obj.setBirthdayUser(cursor.getString(1));
+                obj.setStartDate(cursor.getString(2));
+                obj.setStartTime(cursor.getString(3));
+                list.add(obj);
+                cursor.moveToNext();
+            }
+        }
+        return  list;
+    }
+
+    public int getIdDoctorByIdUser(int idUser){
+        int id=0;
+        String select ="select tbDoctor.id from tbDoctor join tbAccount on tbDoctor.user_id = tbAccount.id where tbDoctor.user_id = "+idUser;
+        Cursor cursor = db.rawQuery(select, null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+            id = cursor.getInt(0);
+        }
+        return id;
     }
 }
