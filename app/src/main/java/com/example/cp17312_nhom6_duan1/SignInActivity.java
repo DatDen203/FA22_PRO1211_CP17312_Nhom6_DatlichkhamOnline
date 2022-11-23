@@ -82,6 +82,7 @@ public class SignInActivity extends AppCompatActivity {
                         save();
                         tilUsername.setError("");
                         tilPassword.setError("");
+                        tilPassword.getEditText().setText("");
                         String checkRole = sharedPreferences.getString("role", "");
                         if (checkRole.equalsIgnoreCase("Admin")) {
                             Toast.makeText(SignInActivity.this, "Man admin", Toast.LENGTH_SHORT).show();

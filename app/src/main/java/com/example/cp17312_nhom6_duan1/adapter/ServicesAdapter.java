@@ -59,19 +59,19 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.Servic
         CategoriesDTO categoriesDTO = categoriesDAO.getDtoCategories(servicesDTO.getCategoriesId());
         holder.tvCategories.setText(categoriesDTO.getName());
 
-        holder.tvDeletService.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (servicesDAO.deleteServices(servicesDTO.getServicesId()) > 0) {
-                    list.clear();
-                    list.addAll(servicesDAO.selectAll());
-                    Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
-                    notifyDataSetChanged();
-                } else {
-                    Toast.makeText(context, "Xóa thất bại", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+//        holder.tvDeletService.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (servicesDAO.deleteServices(servicesDTO.getServicesId()) > 0) {
+//                    list.clear();
+//                    list.addAll(servicesDAO.selectAll());
+//                    Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
+//                    notifyDataSetChanged();
+//                } else {
+//                    Toast.makeText(context, "Xóa thất bại", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
 
         holder.tvUpdateService.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,16 +145,15 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.Servic
         TextView tvNameService;
         TextView tvDeletService;
         TextView tvCategories;
-        TextView tvUpdateService;
+        ImageView tvUpdateService;
 
         public ServicesViewHolder(@NonNull View itemView) {
             super(itemView);
 
             imgService = (ImageView) itemView.findViewById(R.id.imgService);
             tvNameService = (TextView) itemView.findViewById(R.id.tvNameService);
-            tvDeletService = (TextView) itemView.findViewById(R.id.tvDeletService);
             tvCategories = (TextView) itemView.findViewById(R.id.tvCategories);
-            tvUpdateService = (TextView) itemView.findViewById(R.id.tvUpdateService);
+            tvUpdateService =  itemView.findViewById(R.id.tvUpdateService);
         }
     }
 }

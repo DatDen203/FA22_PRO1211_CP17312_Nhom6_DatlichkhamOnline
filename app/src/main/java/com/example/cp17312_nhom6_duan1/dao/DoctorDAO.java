@@ -131,4 +131,40 @@ public class DoctorDAO {
         }
         return id;
     }
+    public ArrayList<AllDTO> getDocotrByService(int service){
+        ArrayList<AllDTO> list = new ArrayList<>();
+        String select = "select  tbAccount.fullName, tbDoctor.birthday,tbServices.name, tbAccount.role from tbDoctor join tbAccount on  tbDoctor.user_id =tbAccount.id join tbServices on tbDoctor.service_id =tbServices.id   where  tbAccount.role='Doctor' and tbServices.id = "+service;
+        Cursor cursor = db.rawQuery(select, null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast()){
+                AllDTO obj = new AllDTO();
+                obj.setFullameUser(cursor.getString(0));
+                obj.setBirthday(cursor.getString(1));
+                obj.setServicesName(cursor.getString(2));
+                list.add(obj);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        return list;
+    }
+    public ArrayList<AllDTO> getDocotrByServiceAll(){
+        ArrayList<AllDTO> list = new ArrayList<>();
+        String select = "select  tbAccount.fullName, tbDoctor.birthday,tbServices.name, tbAccount.role from tbDoctor join tbAccount on  tbDoctor.user_id =tbAccount.id join tbServices on tbDoctor.service_id =tbServices.id   where  tbAccount.role='Doctor'";
+        Cursor cursor = db.rawQuery(select, null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast()){
+                AllDTO obj = new AllDTO();
+                obj.setFullameUser(cursor.getString(0));
+                obj.setBirthday(cursor.getString(1));
+                obj.setServicesName(cursor.getString(2));
+                list.add(obj);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        return list;
+    }
 }

@@ -15,11 +15,14 @@ import android.os.Looper;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cp17312_nhom6_duan1.adapter.BannerAdapter;
+import com.example.cp17312_nhom6_duan1.dao.ServicesDAO;
 import com.example.cp17312_nhom6_duan1.dto.Banner;
+import com.example.cp17312_nhom6_duan1.dto.ServicesDTO;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -28,6 +31,11 @@ import java.util.List;
 import me.relex.circleindicator.CircleIndicator;
 
 public class MainActivity extends AppCompatActivity {
+    private RelativeLayout itemService1;
+    private RelativeLayout itemDoctor;
+    private RelativeLayout itemService2;
+    private RelativeLayout itemService3;
+    private RelativeLayout itemService4;
     DrawerLayout drawerLayout;
     TextView tvHiName;
     ImageView imgOpenNav,imgAvt;
@@ -35,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
     BannerAdapter bannerAdapter;
     List<Banner> list;
+    ServicesDAO servicesDAO;
+    ArrayList<ServicesDTO> listService;
     Handler handler = new Handler(Looper.getMainLooper());
     Runnable runnable = new Runnable() {
         @Override
@@ -52,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+            servicesDAO = new ServicesDAO(getBaseContext());
 //        tvHiName = findViewById(R.id.tv_hi_name);
         viewPager = findViewById(R.id.view_pager);
         circleIndicator = findViewById(R.id.circle_indicator);
@@ -124,14 +134,43 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        
+        listService = servicesDAO.selectAll();
+        itemService1 = findViewById(R.id.item_service1);
+        itemDoctor = findViewById(R.id.item_doctor);
+        itemService2 = findViewById(R.id.item_service2);
+        itemService3 = findViewById(R.id.item_service3);
+        itemService4 = findViewById(R.id.item_service4);
+        itemService1.setOnClickListener(view->{
+            Intent intent = new Intent(this, DoctorByServiceActivity.class);
+            intent.putExtra("serviceid",listService.get(0).getServicesId());
+            intent.putExtra("serviceName", listService.get(0).getServicesName());
+            startActivity(intent);
+        });
+        itemService2.setOnClickListener(view->{
+            Intent intent = new Intent(this, DoctorByServiceActivity.class);
+            intent.putExtra("serviceid",listService.get(1).getServicesId());
+            intent.putExtra("serviceName", listService.get(1).getServicesName());
+            startActivity(intent);
+        });
+        itemService3.setOnClickListener(view->{
+            Intent intent = new Intent(this, DoctorByServiceActivity.class);
+            intent.putExtra("serviceid",listService.get(2).getServicesId());
+            intent.putExtra("serviceName", listService.get(3).getServicesName());
+            startActivity(intent);
+        });
+        itemService4.setOnClickListener(view->{
+            Intent intent = new Intent(this, DoctorByServiceActivity.class);
+            intent.putExtra("serviceid",listService.get(3).getServicesId());
+            intent.putExtra("serviceName", listService.get(3).getServicesName());
+            startActivity(intent);
+        });
+        itemDoctor.setOnClickListener(view->{
+            Intent intent = new Intent(this, DoctorByServiceActivity.class);
+            intent.putExtra("serviceid",-1);
+            intent.putExtra("serviceName","Doctor All");
+            startActivity(intent);
+        });
 
-//        findViewById(R.id.item_doctor).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(MainActivity.this, DoctorActivity.class));
-//            }
-//        });
     }
 
     private List<Banner> getListPhoto() {
