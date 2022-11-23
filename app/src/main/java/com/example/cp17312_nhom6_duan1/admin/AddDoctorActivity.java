@@ -3,6 +3,7 @@ package com.example.cp17312_nhom6_duan1.admin;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -26,7 +27,9 @@ import com.example.cp17312_nhom6_duan1.dto.TimeWorkDTO;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class AddDoctorActivity extends AppCompatActivity {
     private Spinner spRooms, spServices, spTimeWork;
@@ -76,7 +79,7 @@ public class AddDoctorActivity extends AppCompatActivity {
                 AccountDTO accountDTO1 = accountDAO.getTopDtoAccount();
                 DoctorDTO doctorDTO = new DoctorDTO();
                 doctorDTO.setUser_id(accountDTO1.getId());
-                doctorDTO.setBirthday(edBirthdayDoctor.getEditText().getText().toString());
+                doctorDTO.setBirthday(formatDate(edBirthdayDoctor.getEditText().getText().toString()));
 
                 ServicesDTO servicesDTO = (ServicesDTO) spServices.getSelectedItem();
                 doctorDTO.setService_id(servicesDTO.getServicesId());
@@ -110,5 +113,19 @@ public class AddDoctorActivity extends AppCompatActivity {
         edPassWordDoctor = findViewById(R.id.edPassWordDoctor);
         edDes = findViewById(R.id.edDes);
         edBirthdayDoctor = findViewById(R.id.edBirthdayDoctor);
+    }
+    public String formatDate(String a) {
+        String newDate ="";
+        Date objdate2 = new Date(System.currentTimeMillis());
+        DateFormat dateFormat2 = new DateFormat();
+        String dates2 =a;
+        SimpleDateFormat Format2 = new SimpleDateFormat("dd/mm/yyyy");
+        try {
+            Date obj = Format2.parse(dates2);
+            newDate = (String) dateFormat2.format("yyyy/mm/dd", obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return newDate;
     }
 }

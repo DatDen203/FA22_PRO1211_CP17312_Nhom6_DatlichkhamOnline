@@ -66,8 +66,8 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:src="@drawable/doctor1"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/doctor1" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
