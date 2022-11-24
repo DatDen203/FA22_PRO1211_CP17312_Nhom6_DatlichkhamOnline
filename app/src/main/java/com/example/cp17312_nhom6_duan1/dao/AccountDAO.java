@@ -123,4 +123,48 @@ public class AccountDAO {
         }
         return accountDTO;
     }
+    public ArrayList<AccountDTO> getAccountDoctor(){
+        ArrayList<AccountDTO> list = new ArrayList<>();
+        String select ="select * from tbAccount where role ='Doctor'";
+        Cursor cursor = sqLiteDatabase.rawQuery(select, null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast()){
+                AccountDTO obj = new AccountDTO();
+                obj.setId(cursor.getInt(0));
+                obj.setUserName(cursor.getString(1));
+                obj.setPassWord(cursor.getString(2));
+                obj.setPhoneNumber(cursor.getString(3));
+                obj.setFullName(cursor.getString(4));
+                obj.setRole(cursor.getString(5));
+                obj.setImg(cursor.getString(6));
+                list.add(obj);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        return list;
+    }
+    public ArrayList<AccountDTO> getAccountUser(){
+        ArrayList<AccountDTO> list = new ArrayList<>();
+        String select ="select * from tbAccount where role ='User'";
+        Cursor cursor = sqLiteDatabase.rawQuery(select, null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast()){
+                AccountDTO obj = new AccountDTO();
+                obj.setId(cursor.getInt(0));
+                obj.setUserName(cursor.getString(1));
+                obj.setPassWord(cursor.getString(2));
+                obj.setPhoneNumber(cursor.getString(3));
+                obj.setFullName(cursor.getString(4));
+                obj.setRole(cursor.getString(5));
+                obj.setImg(cursor.getString(6));
+                list.add(obj);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        return list;
+    }
 }
