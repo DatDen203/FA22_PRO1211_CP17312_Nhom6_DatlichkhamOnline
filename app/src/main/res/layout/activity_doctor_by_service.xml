@@ -15,7 +15,7 @@
         android:background="@drawable/shape_border_bot"
         android:text="Service name"
         android:textColor="@color/black"
-        android:textSize="28dp"
+        android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         android:layout_height="35dp"
         android:src="@drawable/ic_back"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="25dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
 
@@ -34,7 +34,6 @@
         android:id="@+id/rcv_listDoctorByService"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:foregroundGravity="center"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
