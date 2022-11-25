@@ -10,8 +10,8 @@ import com.example.cp17312_nhom6_duan1.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ViewHoderAccount extends RecyclerView.ViewHolder {
-    public CircleImageView imgDoctor;
+public class ViewHoderAccount_User extends RecyclerView.ViewHolder {
+    public CircleImageView imgUser;
     public TextView tvFullName;
     public TextView tvUserName;
     public TextView tvPassWord;
@@ -19,9 +19,9 @@ public class ViewHoderAccount extends RecyclerView.ViewHolder {
 
 
 
-    public ViewHoderAccount(@NonNull View itemView) {
+    public ViewHoderAccount_User(@NonNull View itemView) {
         super(itemView);
-        imgDoctor = itemView.findViewById(R.id.imgDoctor);
+        imgUser = itemView.findViewById(R.id.imgManagerUser);
         tvFullName = itemView.findViewById(R.id.tvFullName);
         tvUserName = itemView.findViewById(R.id.tvUserName);
         tvPassWord = itemView.findViewById(R.id.tvPassWord);

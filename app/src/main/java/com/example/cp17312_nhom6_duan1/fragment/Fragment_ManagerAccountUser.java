@@ -12,7 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cp17312_nhom6_duan1.R;
-import com.example.cp17312_nhom6_duan1.adapter.AdapterAccount;
+import com.example.cp17312_nhom6_duan1.adapter.AdapterManagerAccount_Doctor;
+import com.example.cp17312_nhom6_duan1.adapter.AdapterManagerAccount_User;
 import com.example.cp17312_nhom6_duan1.dao.AccountDAO;
 import com.example.cp17312_nhom6_duan1.dto.AccountDTO;
 
@@ -20,10 +21,10 @@ import java.util.ArrayList;
 
 
 public class Fragment_ManagerAccountUser extends Fragment {
-    private RecyclerView rcvManagerAccountDoctor;
+    private RecyclerView rcvManagerAccountUser;
     AccountDAO accountDAO;
     ArrayList<AccountDTO> listAccount;
-    AdapterAccount adapterAccount;
+    AdapterManagerAccount_User adapterAccount;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,10 +35,10 @@ public class Fragment_ManagerAccountUser extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        rcvManagerAccountDoctor = view.findViewById(R.id.rcv_managerAccountDoctor);
+        rcvManagerAccountUser = view.findViewById(R.id.rcv_managerAccountUser);
         accountDAO = new AccountDAO(getContext());
         listAccount = accountDAO.getAccountUser();
-        adapterAccount = new AdapterAccount(accountDAO, listAccount);
-        rcvManagerAccountDoctor.setAdapter(adapterAccount);
+        adapterAccount = new AdapterManagerAccount_User(accountDAO, listAccount);
+        rcvManagerAccountUser.setAdapter(adapterAccount);
     }
 }
