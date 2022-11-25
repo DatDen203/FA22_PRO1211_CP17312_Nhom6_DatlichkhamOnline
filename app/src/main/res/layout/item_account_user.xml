@@ -25,6 +25,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintStart_toEndOf="@+id/imgManagerUser"
         app:layout_constraintTop_toTopOf="parent">
         <TextView
             android:id="@+id/tvFullName"

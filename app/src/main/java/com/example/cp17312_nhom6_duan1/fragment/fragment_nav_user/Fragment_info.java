@@ -1,19 +1,18 @@
-package com.example.cp17312_nhom6_duan1.fragment;
+package com.example.cp17312_nhom6_duan1.fragment.fragment_nav_user;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.example.cp17312_nhom6_duan1.R;
 
 
-public class Fragment_ManagerFile extends Fragment {
+public class Fragment_info extends Fragment {
 
 
     @Override
