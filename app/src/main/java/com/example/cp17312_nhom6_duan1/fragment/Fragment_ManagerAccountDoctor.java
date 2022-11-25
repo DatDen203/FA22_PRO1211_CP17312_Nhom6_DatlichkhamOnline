@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cp17312_nhom6_duan1.R;
-import com.example.cp17312_nhom6_duan1.adapter.AdapterAccount;
+import com.example.cp17312_nhom6_duan1.adapter.AdapterManagerAccount_Doctor;
 import com.example.cp17312_nhom6_duan1.dao.AccountDAO;
 import com.example.cp17312_nhom6_duan1.dto.AccountDTO;
 
@@ -23,7 +23,7 @@ public class Fragment_ManagerAccountDoctor extends Fragment {
 
     AccountDAO accountDAO;
     ArrayList<AccountDTO> listAccount;
-    AdapterAccount adapterAccount;
+    AdapterManagerAccount_Doctor adapterAccount;
     private RecyclerView rcvManagerAccountDoctor;
 
     @Override
@@ -39,7 +39,7 @@ public class Fragment_ManagerAccountDoctor extends Fragment {
         rcvManagerAccountDoctor = view.findViewById(R.id.rcv_managerAccountDoctor);
         accountDAO = new AccountDAO(getContext());
         listAccount = accountDAO.getAccountDoctor();
-        adapterAccount = new AdapterAccount(accountDAO, listAccount);
+        adapterAccount = new AdapterManagerAccount_Doctor(accountDAO, listAccount);
         rcvManagerAccountDoctor.setAdapter(adapterAccount);
     }
 }

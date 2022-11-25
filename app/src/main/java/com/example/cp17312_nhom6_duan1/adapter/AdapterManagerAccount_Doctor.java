@@ -10,34 +10,34 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cp17312_nhom6_duan1.R;
-import com.example.cp17312_nhom6_duan1.adapter.ViewHolder.ViewHoderAccount;
+import com.example.cp17312_nhom6_duan1.adapter.ViewHolder.ViewHoderAccount_Doctor;
 import com.example.cp17312_nhom6_duan1.dao.AccountDAO;
 import com.example.cp17312_nhom6_duan1.dto.AccountDTO;
 
 import java.util.ArrayList;
 
-public class AdapterAccount extends RecyclerView.Adapter<ViewHoderAccount> {
+public class AdapterManagerAccount_Doctor extends RecyclerView.Adapter<ViewHoderAccount_Doctor> {
     AccountDAO accountDAO;
     ArrayList<AccountDTO> listAccount;
     Context context;
 
-    public AdapterAccount(AccountDAO accountDAO, ArrayList<AccountDTO> listAccount) {
+    public AdapterManagerAccount_Doctor(AccountDAO accountDAO, ArrayList<AccountDTO> listAccount) {
         this.accountDAO = accountDAO;
         this.listAccount = listAccount;
     }
 
     @NonNull
     @Override
-    public ViewHoderAccount onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHoderAccount_Doctor onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.item_account, parent,false);
+        View view = layoutInflater.inflate(R.layout.item_account_doctor, parent,false);
         context = parent.getContext();
         accountDAO = new AccountDAO(context);
-        return new ViewHoderAccount(view);
+        return new ViewHoderAccount_Doctor(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHoderAccount holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHoderAccount_Doctor holder, int position) {
         final int index =position;
         AccountDTO accountDTO = listAccount.get(index);
         holder.tvFullName.setText(accountDTO.getFullName());
