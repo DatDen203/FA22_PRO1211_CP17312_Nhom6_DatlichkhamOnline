@@ -17,7 +17,7 @@ public class Fragment_bookingHistory extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_manager_file, container, false);
+        return inflater.inflate(R.layout.fragment_booking_history, container, false);
     }
 
     @Override

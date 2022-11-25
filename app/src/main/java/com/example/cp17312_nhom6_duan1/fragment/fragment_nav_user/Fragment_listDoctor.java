@@ -17,7 +17,7 @@ public class Fragment_listDoctor extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_manager_file, container, false);
+        return inflater.inflate(R.layout.fragment_list_doctor, container, false);
     }
 
     @Override

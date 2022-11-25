@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/nav_listDoctor"
-        android:title="List of doctors"
-        android:icon="@drawable/img_listofdoctors" />
-    <item android:id="@+id/nav_file"
-        android:title="Medical record"
-        android:icon="@drawable/img_medical_records" />
-    <item android:id="@+id/nav_booking_history"
-        android:title="Booking history"
-        android:icon="@drawable/img_booing_history" />
-    <item android:id="@+id/nav_info"
-        android:title="Infomation"
-        android:icon="@drawable/img_infouser" />
-    <item android:id="@+id/nav_exit"
-        android:title="Log out"
-        android:icon="@drawable/ic_logout" />
+    <item
+        android:id="@+id/nav_home_user"
+        android:icon="@drawable/ic_home"
+        android:title="Home" />
+    <item
+        android:id="@+id/nav_listDoctor"
+        android:icon="@drawable/img_listofdoctors"
+        android:title="List of doctors" />
+    <item
+        android:id="@+id/nav_file"
+        android:icon="@drawable/img_medical_records"
+        android:title="Medical record" />
+    <item
+        android:id="@+id/nav_booking_history"
+        android:icon="@drawable/img_booing_history"
+        android:title="Booking history" />
+    <item
+        android:id="@+id/nav_info"
+        android:icon="@drawable/img_infouser"
+        android:title="Infomation" />
+    <item
+        android:id="@+id/nav_exit"
+        android:icon="@drawable/ic_logout"
+        android:title="Log out" />
 </menu>
