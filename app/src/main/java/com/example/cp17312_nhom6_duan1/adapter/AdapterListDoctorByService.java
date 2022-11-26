@@ -28,6 +28,11 @@ public class AdapterListDoctorByService extends RecyclerView.Adapter<AdapterList
         this.doctorDAO = doctorDAO;
     }
 
+    public AdapterListDoctorByService(ArrayList<AllDTO> listDoctor, Context context) {
+        this.listDoctor = listDoctor;
+        this.context = context;
+    }
+
     @NonNull
     @Override
     public ViewHoderListDoctor onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -65,7 +70,6 @@ public class AdapterListDoctorByService extends RecyclerView.Adapter<AdapterList
         }
         return newDate;
     }
-
     public class ViewHoderListDoctor extends RecyclerView.ViewHolder {
         private TextView tvFullNameDoctor;
         private TextView tvBirthdayDoctor;

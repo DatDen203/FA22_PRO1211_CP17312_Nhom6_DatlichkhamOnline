@@ -1,6 +1,6 @@
 package com.example.cp17312_nhom6_duan1.adapter;
 
-import android.content.Context;
+import  android.content.Context;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,11 +18,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class AdapterCalenderDoctor extends RecyclerView.Adapter<AdapterCalenderDoctor.ViewHoderCalenderDoctor> {
+public class AdapterCalenderDoctor extends RecyclerView.Adapter<AdapterCalenderDoctor.ViewHoderCalenderDoctor>{
     Context context;
     DoctorDAO doctorDAO;
     ArrayList<AllDTO> listCalender;
-
     public AdapterCalenderDoctor(DoctorDAO doctorDAO, ArrayList<AllDTO> listCalender) {
         this.doctorDAO = doctorDAO;
         this.listCalender = listCalender;
@@ -80,7 +79,6 @@ public class AdapterCalenderDoctor extends RecyclerView.Adapter<AdapterCalenderD
             tvBirthdayUser = itemView.findViewById(R.id.tv_birthdayUser);
             tvStarDate = itemView.findViewById(R.id.tv_starDate);
             tvStarTime = itemView.findViewById(R.id.tv_starTime);
-
         }
     }
 }

@@ -29,6 +29,7 @@ import com.example.cp17312_nhom6_duan1.dto.ServicesDTO;
 import com.example.cp17312_nhom6_duan1.fragment.fragment_nav_user.Fragment_bookingHistory;
 import com.example.cp17312_nhom6_duan1.fragment.fragment_nav_user.Fragment_file;
 import com.example.cp17312_nhom6_duan1.fragment.fragment_nav_user.Fragment_home;
+import com.example.cp17312_nhom6_duan1.fragment.fragment_nav_user.Fragment_home_new;
 import com.example.cp17312_nhom6_duan1.fragment.fragment_nav_user.Fragment_info;
 import com.example.cp17312_nhom6_duan1.fragment.fragment_nav_user.Fragment_listDoctor;
 import com.google.android.material.navigation.NavigationView;
@@ -107,13 +108,13 @@ public class MainActivity extends AppCompatActivity{
         imgOpenNav.setOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
 
         NavigationView navView = findViewById(R.id.nav_view);
-        replaceFragment(new Fragment_home());
+        replaceFragment(new Fragment_home_new());
         navView.getMenu().findItem(R.id.nav_home_user).setChecked(true);
         navView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
             switch (id) {
                 case R.id.nav_home_user:
-                    replaceFragment(new Fragment_home());
+                    replaceFragment(new Fragment_home_new());
                     navView.getMenu().findItem(R.id.nav_home_user).setChecked(true);
                     navView.getMenu().findItem(R.id.nav_listDoctor).setChecked(false);
                     navView.getMenu().findItem(R.id.nav_file).setChecked(false);

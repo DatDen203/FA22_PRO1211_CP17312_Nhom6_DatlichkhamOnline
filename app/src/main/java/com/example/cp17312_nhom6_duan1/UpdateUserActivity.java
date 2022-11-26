@@ -86,7 +86,6 @@ public class UpdateUserActivity extends AppCompatActivity {
         findViewById(R.id.img_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UpdateUserActivity.this, MainActivity.class));
                 finish();
             }
         });
