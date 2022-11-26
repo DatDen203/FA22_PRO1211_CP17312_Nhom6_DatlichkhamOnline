@@ -95,6 +95,7 @@ public class AddDoctorActivity extends AppCompatActivity {
                 long res1 = doctorDAO.insertRow(doctorDTO);
                 if(res1>0){
                     Toast.makeText(AddDoctorActivity.this, "Thêm bác sĩ thành công", Toast.LENGTH_SHORT).show();
+
                 }
                 else{
                     Toast.makeText(AddDoctorActivity.this, "Thêm bác sĩ không thành công", Toast.LENGTH_SHORT).show();

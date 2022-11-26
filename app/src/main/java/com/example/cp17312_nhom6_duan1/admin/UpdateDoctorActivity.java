@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -26,9 +25,7 @@ import com.example.cp17312_nhom6_duan1.dto.ServicesDTO;
 import com.example.cp17312_nhom6_duan1.dto.TimeWorkDTO;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class UpdateDoctorActivity extends AppCompatActivity {
     private Spinner spRooms, spServices, spTimeWork;
@@ -36,8 +33,7 @@ public class UpdateDoctorActivity extends AppCompatActivity {
     private SpinnerServiceAdapter spinnerServiceAdapter;
     private SpinnerTimeWorkAdapter spinnerTimeWorkAdapter;
     private Button btnUpdateSaveDoctor;
-    private TextInputLayout edNameUpdateDoctor, edUpdatePhoneDoctor, edUpdateDes, edUpdateBirthdayDoctor;
-
+    private TextInputLayout edNameUpdateDoctor,edUpdatePhoneDoctor,edUpdateDes,edUpdateBirthdayDoctor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,41 +55,41 @@ public class UpdateDoctorActivity extends AppCompatActivity {
         spServices.setAdapter(spinnerServiceAdapter);
 
         ArrayList<TimeWorkDTO> listDtoTimeWork = timeWorkDAO.getAll();
-        spinnerTimeWorkAdapter = new SpinnerTimeWorkAdapter(listDtoTimeWork, this);
+        spinnerTimeWorkAdapter = new SpinnerTimeWorkAdapter(listDtoTimeWork,this);
         spTimeWork.setAdapter(spinnerTimeWorkAdapter);
 
         Intent intent = getIntent();
-        int idDoctor = intent.getIntExtra("idDoctor", -1);
-        Toast.makeText(this, idDoctor + "", Toast.LENGTH_SHORT).show();
+        int idDoctor = intent.getIntExtra("idDoctor",-1);
+        Toast.makeText(this, idDoctor+"", Toast.LENGTH_SHORT).show();
 
         //Gắn dữ
         DoctorDTO doctorDTO = doctorDAO.getDtoDoctorByIdDoctor(idDoctor);
         AccountDTO accountDTO = accountDAO.getDtoAccount(doctorDTO.getUser_id());
 
         edNameUpdateDoctor.getEditText().setText(accountDTO.getFullName());
-        edUpdateBirthdayDoctor.getEditText().setText(formatDate2(doctorDTO.getBirthday()));
+        edUpdateBirthdayDoctor.getEditText().setText(doctorDTO.getBirthday());
         edUpdateDes.getEditText().setText(doctorDTO.getDescription());
         edUpdatePhoneDoctor.getEditText().setText(accountDTO.getPhoneNumber());
 
-        for (int i = 0; i < listDtoRooms.size(); i++) {
+        for(int i=0;i<listDtoRooms.size();i++){
             RoomsDTO roomsDTO = listDtoRooms.get(i);
-            if (roomsDTO.getId() == doctorDTO.getRoom_id()) {
+            if(roomsDTO.getId()==doctorDTO.getRoom_id()){
                 spRooms.setSelection(i);
                 spRooms.setSelected(true);
             }
         }
 
-        for (int i = 0; i < listDtoService.size(); i++) {
+        for(int i=0;i<listDtoService.size();i++){
             ServicesDTO servicesDTO = listDtoService.get(i);
-            if (servicesDTO.getServicesId() == doctorDTO.getService_id()) {
+            if(servicesDTO.getServicesId() == doctorDTO.getService_id()){
                 spServices.setSelected(true);
                 spServices.setSelection(i);
             }
         }
 
-        for (int i = 0; i < listDtoTimeWork.size(); i++) {
+        for(int i=0;i<listDtoTimeWork.size();i++){
             TimeWorkDTO timeWorkDTO = listDtoTimeWork.get(i);
-            if (timeWorkDTO.getId() == doctorDTO.getTimework_id()) {
+            if(timeWorkDTO.getId() == doctorDTO.getTimework_id()){
                 spTimeWork.setSelection(i);
                 spTimeWork.setSelected(true);
             }
@@ -105,9 +101,9 @@ public class UpdateDoctorActivity extends AppCompatActivity {
                 accountDTO.setFullName(edNameUpdateDoctor.getEditText().getText().toString());
                 accountDTO.setPhoneNumber(edUpdatePhoneDoctor.getEditText().getText().toString());
 
-                int res = accountDAO.updateAccount(accountDTO);
+                int res  =accountDAO.updateAccount(accountDTO);
 
-                doctorDTO.setBirthday(formatDate(edUpdateBirthdayDoctor.getEditText().getText().toString()));
+                doctorDTO.setBirthday(edUpdateBirthdayDoctor.getEditText().getText().toString());
 
                 ServicesDTO servicesDTO = (ServicesDTO) spServices.getSelectedItem();
                 doctorDTO.setService_id(servicesDTO.getServicesId());
@@ -117,52 +113,21 @@ public class UpdateDoctorActivity extends AppCompatActivity {
 
                 doctorDTO.setDescription(edUpdateDes.getEditText().getText().toString());
 
-                TimeWorkDTO timeWorkDTO = (TimeWorkDTO) spTimeWork.getSelectedItem();
+                TimeWorkDTO timeWorkDTO  = (TimeWorkDTO) spTimeWork.getSelectedItem();
                 doctorDTO.setTimework_id(timeWorkDTO.getId());
 
                 int res1 = doctorDAO.updateRow(doctorDTO);
-                if (res1 > 0) {
-                    finish();
+                if(res1>0){
                     Toast.makeText(UpdateDoctorActivity.this, "Cập nhật bác sĩ thành công", Toast.LENGTH_SHORT).show();
-                } else {
+                }
+                else{
                     Toast.makeText(UpdateDoctorActivity.this, "Cập nhật bác sĩ không thành công", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
     }
-
-    public String formatDate(String a) {
-        String newDate = "";
-        Date objdate2 = new Date(System.currentTimeMillis());
-        DateFormat dateFormat2 = new DateFormat();
-        String dates2 = a;
-        SimpleDateFormat Format2 = new SimpleDateFormat("dd/mm/yyyy");
-        try {
-            Date obj = Format2.parse(dates2);
-            newDate = (String) dateFormat2.format("yyyy/mm/dd", obj);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return newDate;
-    }
-
-    public String formatDate2(String a) {
-        String newDate = "";
-        Date objdate2 = new Date(System.currentTimeMillis());
-        DateFormat dateFormat2 = new DateFormat();
-        String dates2 = a;
-        SimpleDateFormat Format2 = new SimpleDateFormat("yyyy/mm/dd");
-        try {
-            Date obj = Format2.parse(dates2);
-            newDate = (String) dateFormat2.format("dd/mm/yyyy", obj);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return newDate;
-    }
-
-    public void init() {
+    public void init(){
         spRooms = findViewById(R.id.spRooms);
         spServices = findViewById(R.id.spServices);
         spTimeWork = findViewById(R.id.spTimeWork);
