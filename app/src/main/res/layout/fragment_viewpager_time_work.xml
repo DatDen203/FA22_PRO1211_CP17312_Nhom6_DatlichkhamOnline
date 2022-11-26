@@ -7,9 +7,17 @@
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/xanh_nhat"
-        app:tabSelectedTextColor="@color/light_blue"
+        app:tabSelectedTextColor="@color/khungIcon"
         app:tabTextColor="@color/black"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/background_tab"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="5dp"
+        app:tabIndicatorGravity="stretch"
+        app:tabIndicatorAnimationMode="elastic"
+        app:tabIndicator="@drawable/select_tab"
         android:id="@+id/tab_time_work"/>
     <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
