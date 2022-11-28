@@ -66,11 +66,13 @@ public class MainActivity extends AppCompatActivity{
 //            }
 //        }
 //    };
-
+int back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        back = intent.getIntExtra("back",-1);
 //        servicesDAO = new ServicesDAO(getBaseContext());
 
 //        viewPager = findViewById(R.id.view_pager);
@@ -252,4 +254,11 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
+    @Override
+    protected void onPause() {
+        if(back!=1){
+            finish();
+        }
+        super.onPause();
+    }
 }

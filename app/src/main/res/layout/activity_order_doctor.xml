@@ -144,6 +144,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
+                android:textColor="@color/red"
                 android:text="Tổng tiền: " />
 
             <TextView
@@ -154,6 +155,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="50dp"
+                android:textColor="@color/red"
+                android:textStyle="bold"
                 android:text="1555" />
         </LinearLayout>
 
@@ -169,7 +172,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Đặt cho mình" />
-
+                
             <RadioButton
                 android:id="@+id/rdoOrderI"
                 android:layout_width="wrap_content"

@@ -5,13 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,14 +31,28 @@ import com.example.cp17312_nhom6_duan1.dto.DoctorDTO;
 import com.example.cp17312_nhom6_duan1.dto.FileDTO;
 import com.example.cp17312_nhom6_duan1.dto.OrderDoctorDTO;
 import com.example.cp17312_nhom6_duan1.dto.ServicesDTO;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputLayout;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Fragment_order_others extends Fragment {
-    private EditText edNameFullName, edPhone, edBirthday, edCccd, edCountry, edJob, edAddress, edDes, edEmail;
-    private Button btnOrder;
-    private RadioButton rdoYes, rdoNo;
+    private TextInputLayout tilNameFullName;
+    private TextInputLayout tilPhoneNumber;
+    private TextView tvBirthday;
+    private ImageView imgBirthday;
+    private TextInputLayout tilEmail;
+    private TextInputLayout tilCccd;
+    private TextInputLayout tilCountry;
+    private RadioButton rdoYes;
+    private RadioButton rdoNo;
+    private TextInputLayout tilJob;
+    private TextInputLayout tilAddress;
+    private TextInputLayout tilDes;
+    private MaterialButton btnOrder;
     private FileDAO fileDAO;
 
     @Nullable
@@ -48,25 +65,14 @@ public class Fragment_order_others extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        edNameFullName = view.findViewById(R.id.edNameFullName);
-        edPhone = view.findViewById(R.id.edPhone);
-        edBirthday = view.findViewById(R.id.edBirthday);
-        edCccd = view.findViewById(R.id.edCccd);
-        edCountry = view.findViewById(R.id.edCountry);
-        edJob = view.findViewById(R.id.edJob);
-        edAddress = view.findViewById(R.id.edAddress);
-        edDes = view.findViewById(R.id.edDes);
-        btnOrder = view.findViewById(R.id.btnOrder);
-        rdoYes = view.findViewById(R.id.rdoYes);
-        rdoNo = view.findViewById(R.id.rdoNo);
-        edEmail = view.findViewById(R.id.edEmail);
+        findViewID(view);
         fileDAO = new FileDAO(getContext());
 
         SharedPreferences preferences = getActivity().getSharedPreferences("getIdUser", Context.MODE_PRIVATE);
         int idUser = preferences.getInt("idUser", -1);
 
 
-        edBirthday.setOnClickListener(new View.OnClickListener() {
+        imgBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar c = Calendar.getInstance();
@@ -76,8 +82,8 @@ public class Fragment_order_others extends Fragment {
                 DatePickerDialog dialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        String date = year + "/" + (month + 1) + "/" + day;
-                        edBirthday.setText(date);
+                        String date = day + "/" + (month + 1) + "/" + year;
+                        tvBirthday.setText(date);
                     }
                 }, year, month, day);
                 dialog.show();
@@ -101,20 +107,20 @@ public class Fragment_order_others extends Fragment {
             @Override
             public void onClick(View view) {
                 FileDTO fileDTO = new FileDTO();
-                fileDTO.setFullname(edNameFullName.getText().toString());
+                fileDTO.setFullname(tilNameFullName.getEditText().getText().toString());
                 fileDTO.setUser_id(idUser);
-                fileDTO.setBirthday(edBirthday.getText().toString());
-                fileDTO.setCccd(edCccd.getText().toString());
-                fileDTO.setCountry(edCountry.getText().toString());
+                fileDTO.setBirthday(formatDate(tvBirthday.getText().toString()));
+                fileDTO.setCccd(tilCccd.getEditText().getText().toString());
+                fileDTO.setCountry(tilCountry.getEditText().getText().toString());
                 if (rdoYes.isChecked()) {
                     fileDTO.setBhyt("Có");
                 } else {
                     fileDTO.setBhyt("Không");
                 }
-                fileDTO.setJob(edJob.getText().toString());
-                fileDTO.setEmail(edEmail.getText().toString());
-                fileDTO.setAddress(edAddress.getText().toString());
-                fileDTO.setDes(edDes.getText().toString());
+                fileDTO.setJob(tilJob.getEditText().getText().toString());
+                fileDTO.setEmail(tilEmail.getEditText().getText().toString());
+                fileDTO.setAddress(tilAddress.getEditText().getText().toString());
+                fileDTO.setDes(tilDes.getEditText().getText().toString());
                 long res = fileDAO.insertRow(fileDTO);
                 FileDTO fileDTO1 = fileDAO.getFileDToTop();
                 OrderDoctorDTO orderDoctorDTO = new OrderDoctorDTO();
@@ -134,6 +140,40 @@ public class Fragment_order_others extends Fragment {
             }
         });
 
+
+    }
+
+    public String formatDate(String a) {
+        String newDate = "";
+        Date objdate2 = new Date(System.currentTimeMillis());
+        DateFormat dateFormat2 = new DateFormat();
+        String dates2 = a;
+        SimpleDateFormat Format2 = new SimpleDateFormat("dd/mm/yyyy");
+        try {
+            Date obj = Format2.parse(dates2);
+            newDate = (String) dateFormat2.format("yyyy/mm/dd", obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return newDate;
+    }
+
+    private void findViewID(View view) {
+
+
+        tilNameFullName = view.findViewById(R.id.tilNameFullName);
+        tilPhoneNumber = view.findViewById(R.id.tilPhoneNumber);
+        tvBirthday = view.findViewById(R.id.tvBirthday);
+        imgBirthday = view.findViewById(R.id.imgBirthday);
+        tilEmail = view.findViewById(R.id.tilEmail);
+        tilCccd = view.findViewById(R.id.tilCccd);
+        tilCountry = view.findViewById(R.id.tilCountry);
+        rdoYes = view.findViewById(R.id.rdoYes);
+        rdoNo = view.findViewById(R.id.rdoNo);
+        tilJob = view.findViewById(R.id.tilJob);
+        tilAddress = view.findViewById(R.id.tilAddress);
+        tilDes = view.findViewById(R.id.tilDes);
+        btnOrder = view.findViewById(R.id.btnOrder);
 
     }
 }
