@@ -52,7 +52,6 @@ public class AdapterListTimeWorkDetail extends RecyclerView.Adapter<ItemListTime
         timeWorkDetailDAO.open();
 
         ArrayList<TimeWorkDetailDTO> timeWorkDetailDTOArrayList = timeWorkDetailDAO.listTimeWorkDetailByStartDate(startDate, idDoctor);
-        Toast.makeText(context, startDate+"", Toast.LENGTH_SHORT).show();
         for(int i=0;i<timeWorkDetailDTOArrayList.size();i++){
             if(timeWorkDetailDTOArrayList.get(i).getTime().equals(timeWorkDetailDTO.getTime())){
                 holder.itemView.setEnabled(false);
