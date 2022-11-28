@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
@@ -24,7 +25,9 @@ import com.example.cp17312_nhom6_duan1.dto.ServicesDTO;
 import com.example.cp17312_nhom6_duan1.fragment.Fragment_order_others;
 import com.example.cp17312_nhom6_duan1.fragment.Fragment_order_you;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class OrderDoctorActivity extends AppCompatActivity {
     private TextView tvNameDoctor, tvNameService, tvNameRooms, tvStartDate, tvStartTime, tvPrice;
@@ -40,7 +43,7 @@ public class OrderDoctorActivity extends AppCompatActivity {
         int idDoctor = intent.getIntExtra("idDoctor", -1);
         String startTime = intent.getStringExtra("startTime");
         String startDate = intent.getStringExtra("startDate");
-        tvStartDate.setText(startDate);
+        tvStartDate.setText(formatDate(startDate));
         tvStartTime.setText(startTime);
 
         SharedPreferences sharedPreferences = getSharedPreferences("getOrderDoctor",MODE_PRIVATE);
@@ -67,7 +70,7 @@ public class OrderDoctorActivity extends AppCompatActivity {
 
         tvNameRooms.setText(roomsDTO.getName());
         tvStartTime.setText(startTime);
-        tvStartDate.setText(startDate);
+        tvStartDate.setText(formatDate(startDate));
         tvPrice.setText(servicesDTO.getServicesPrice() + "đ");
 
         rdoOrderYou.setChecked(true);
@@ -86,6 +89,20 @@ public class OrderDoctorActivity extends AppCompatActivity {
             }
         });
     }
+    public String formatDate(String a) {
+        String newDate ="";
+        Date objdate2 = new Date(System.currentTimeMillis());
+        DateFormat dateFormat2 = new DateFormat();
+        String dates2 =a;
+        SimpleDateFormat Format2 = new SimpleDateFormat("yyyy/mm/dd");
+        try {
+            Date obj = Format2.parse(dates2);
+            newDate = (String) dateFormat2.format("dd/mm/yyyy", obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return newDate;
+    }
 
     public void init() {
         tvNameDoctor = findViewById(R.id.tvNameDoctor);
@@ -101,5 +118,10 @@ public class OrderDoctorActivity extends AppCompatActivity {
     public void getFragment(Fragment fg){
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.frameLayout,fg).commit();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 }

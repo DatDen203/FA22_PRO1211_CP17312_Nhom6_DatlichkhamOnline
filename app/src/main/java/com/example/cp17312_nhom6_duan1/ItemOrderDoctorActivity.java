@@ -8,6 +8,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,15 +32,21 @@ import com.example.cp17312_nhom6_duan1.dto.ServicesDTO;
 import com.example.cp17312_nhom6_duan1.dto.TimeWorkDTO;
 import com.example.cp17312_nhom6_duan1.dto.TimeWorkDetailDTO;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class ItemOrderDoctorActivity extends AppCompatActivity {
     private TextView tvNameDoctor, tvDes, tvTimeWork, tvNameSerivce, tvPrice, tvNameRoom,tvOrderDate,tvClickOrder;
-    private EditText edDateOrder;
     private ImageView imgIconOrderDate;
     private RecyclerView rcv_list_timework_detail;
+    private TextView tvBirthdayOrder;
+    private ImageView imgBirthdayOrder;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +77,8 @@ public class ItemOrderDoctorActivity extends AppCompatActivity {
         TimeWorkDAO timeWorkDAO = new TimeWorkDAO(this);
         TimeWorkDTO timeWorkDTO = timeWorkDAO.getDtoTimeWork(doctorDTO.getTimework_id());
         tvTimeWork.setText(timeWorkDTO.getSession());
-        edDateOrder.setOnClickListener(new View.OnClickListener() {
+        tvTimeWork.setVisibility(View.GONE);
+        tvBirthdayOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar c = Calendar.getInstance();
@@ -80,9 +88,9 @@ public class ItemOrderDoctorActivity extends AppCompatActivity {
                 DatePickerDialog dialog = new DatePickerDialog(ItemOrderDoctorActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        String date = year + "/" + (month + 1) + "/" + day;
-                        edDateOrder.setText(date);
-                        editor.putString("startDate", date);
+                        String date = day + "/" + (month + 1) + "/" + year;
+                        tvBirthdayOrder.setText(date);
+                        editor.putString("startDate", formatDate(date));
                         editor.commit();
                         ArrayList<TimeWorkDetailDTO> listTimeWorkDetailDto = timeWorkDetailDAO.selectTimeWorkDetailByTimeWorkId(timeWorkDTO.getId());
                         AdapterListTimeWorkDetail adapterListTimeWorkDetail = new AdapterListTimeWorkDetail(listTimeWorkDetailDto, ItemOrderDoctorActivity.this);
@@ -92,6 +100,7 @@ public class ItemOrderDoctorActivity extends AppCompatActivity {
                         imgIconOrderDate.setVisibility(View.VISIBLE);
                         tvOrderDate.setVisibility(View.VISIBLE);
                         tvClickOrder.setVisibility(View.VISIBLE);
+                        tvTimeWork.setVisibility(View.VISIBLE);
                     }
                 }, year, month, day);
                 dialog.show();
@@ -109,7 +118,20 @@ public class ItemOrderDoctorActivity extends AppCompatActivity {
 
 
     }
-
+    public String formatDate(String a) {
+        String newDate ="";
+        Date objdate2 = new Date(System.currentTimeMillis());
+        DateFormat dateFormat2 = new DateFormat();
+        String dates2 =a;
+        SimpleDateFormat Format2 = new SimpleDateFormat("dd/mm/yyyy");
+        try {
+            Date obj = Format2.parse(dates2);
+            newDate = (String) dateFormat2.format("yyyy/mm/dd", obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return newDate;
+    }
     public void init() {
         tvNameDoctor = findViewById(R.id.tvNameDoctor);
         tvDes = findViewById(R.id.tvDes);
@@ -118,14 +140,20 @@ public class ItemOrderDoctorActivity extends AppCompatActivity {
         tvPrice = findViewById(R.id.tvPrice);
         tvNameRoom = findViewById(R.id.tvNameRoom);
         rcv_list_timework_detail = findViewById(R.id.rcv_list_timework_detail);
-        edDateOrder = findViewById(R.id.edDateOrder);
         imgIconOrderDate = findViewById(R.id.imgIconOrderDate);
         tvOrderDate = findViewById(R.id.tvOrderDate);
         tvClickOrder = findViewById(R.id.tvClickOrder);
+        tvBirthdayOrder = findViewById(R.id.tvBirthdayOrder);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 }

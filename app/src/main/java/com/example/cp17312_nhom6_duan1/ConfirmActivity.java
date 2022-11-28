@@ -91,6 +91,9 @@ public class ConfirmActivity extends AppCompatActivity {
                 }
                 Toast.makeText(ConfirmActivity.this, "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
                 OrderDoctorActivity.listOrderDoctor.clear();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("back",1);
+                startActivity(intent);
             }
         });
 

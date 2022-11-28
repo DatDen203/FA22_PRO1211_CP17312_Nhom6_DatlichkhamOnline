@@ -66,11 +66,13 @@ public class MainActivity extends AppCompatActivity{
 //            }
 //        }
 //    };
-
+int back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        back = intent.getIntExtra("back",-1);
 //        servicesDAO = new ServicesDAO(getBaseContext());
 
 //        viewPager = findViewById(R.id.view_pager);
@@ -154,6 +156,8 @@ public class MainActivity extends AppCompatActivity{
                     navView.getMenu().findItem(R.id.nav_info).setChecked(true);
                     break;
                 case R.id.nav_exit:
+                    Intent back = new Intent(getApplicationContext(), SignInActivity.class);
+                    startActivity(back);
                     finish();
                     break;
             }
@@ -247,9 +251,17 @@ public class MainActivity extends AppCompatActivity{
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        } else if(back==1) {
+            Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
+            startActivity(intent);
+            finish();
+        }else{
+//            super.onBackPressed();
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 }

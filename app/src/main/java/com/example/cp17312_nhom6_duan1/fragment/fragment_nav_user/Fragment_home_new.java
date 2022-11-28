@@ -36,6 +36,7 @@ import me.relex.circleindicator.CircleIndicator;
 
 public class Fragment_home_new extends Fragment {
     private RecyclerView rcv_list_services,rcv_list_doctors;
+
     private TextView tvListService;
     private TextView tvListOrder;
 
@@ -57,6 +58,7 @@ public class Fragment_home_new extends Fragment {
         }
     };
 
+    private TextView tvListOrder,tvlistDoctor,tvListService;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,7 +71,7 @@ public class Fragment_home_new extends Fragment {
         rcv_list_services = view.findViewById(R.id.rcv_list_services);
         rcv_list_doctors = view.findViewById(R.id.rcv_list_doctors);
         tvListService = view.findViewById(R.id.tvListService);
-
+        tvlistDoctor = view.findViewById(R.id.tvlistDoctor);
         tvListOrder = view.findViewById(R.id.tvListOrder);
 
         //banner
@@ -127,6 +129,12 @@ public class Fragment_home_new extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), ListOrderActivity.class);
                 startActivity(intent);
+            }
+        });
+        tvlistDoctor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
 
