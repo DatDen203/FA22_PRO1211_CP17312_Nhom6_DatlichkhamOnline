@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.L;
+import com.example.cp17312_nhom6_duan1.ItemOrderDoctorActivity;
 import com.example.cp17312_nhom6_duan1.OrderDoctorActivity;
 import com.example.cp17312_nhom6_duan1.R;
 import com.example.cp17312_nhom6_duan1.adapter.ViewHolder.ItemListTimeWorkDetailViewHolder;
@@ -25,10 +26,12 @@ import java.util.ArrayList;
 public class AdapterListTimeWorkDetail extends RecyclerView.Adapter<ItemListTimeWorkDetailViewHolder> {
     private ArrayList<TimeWorkDetailDTO> listTimeWorkDetailDto = new ArrayList<>();
     private Context context;
+    ItemOrderDoctorActivity itemOrderDoctorActivity;
 
     public AdapterListTimeWorkDetail(ArrayList<TimeWorkDetailDTO> listTimeWorkDetailDto, Context context) {
         this.listTimeWorkDetailDto = listTimeWorkDetailDto;
         this.context = context;
+
     }
 
     @NonNull
