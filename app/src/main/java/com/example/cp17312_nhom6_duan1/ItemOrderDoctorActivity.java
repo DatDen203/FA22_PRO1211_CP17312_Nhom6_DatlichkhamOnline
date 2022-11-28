@@ -77,7 +77,8 @@ public class ItemOrderDoctorActivity extends AppCompatActivity {
         TimeWorkDAO timeWorkDAO = new TimeWorkDAO(this);
         TimeWorkDTO timeWorkDTO = timeWorkDAO.getDtoTimeWork(doctorDTO.getTimework_id());
         tvTimeWork.setText(timeWorkDTO.getSession());
-        imgBirthdayOrder.setOnClickListener(new View.OnClickListener() {
+        tvTimeWork.setVisibility(View.GONE);
+        tvBirthdayOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar c = Calendar.getInstance();
@@ -99,6 +100,7 @@ public class ItemOrderDoctorActivity extends AppCompatActivity {
                         imgIconOrderDate.setVisibility(View.VISIBLE);
                         tvOrderDate.setVisibility(View.VISIBLE);
                         tvClickOrder.setVisibility(View.VISIBLE);
+                        tvTimeWork.setVisibility(View.VISIBLE);
                     }
                 }, year, month, day);
                 dialog.show();
@@ -142,7 +144,6 @@ public class ItemOrderDoctorActivity extends AppCompatActivity {
         tvOrderDate = findViewById(R.id.tvOrderDate);
         tvClickOrder = findViewById(R.id.tvClickOrder);
         tvBirthdayOrder = findViewById(R.id.tvBirthdayOrder);
-        imgBirthdayOrder = findViewById(R.id.imgBirthdayOrder);
     }
 
     @Override
