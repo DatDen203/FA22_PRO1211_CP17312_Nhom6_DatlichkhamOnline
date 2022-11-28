@@ -60,9 +60,10 @@
                 android:id="@+id/edTimeWorkDetail"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="10dp"
+                app:errorEnabled="true"
                 android:layout_marginRight="25dp">
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"

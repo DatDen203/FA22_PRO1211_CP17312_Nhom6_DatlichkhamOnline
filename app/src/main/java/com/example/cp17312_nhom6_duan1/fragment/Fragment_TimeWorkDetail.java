@@ -42,6 +42,7 @@ public class Fragment_TimeWorkDetail extends Fragment {
     private ArrayList<TimeWorkDetailDTO> listDtoTimeWorkDetail;
     private RecyclerView rcvListTimeWorkDetail;
     private FloatingActionButton fabAddTimeWorkDetail;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_time_work_detail, container, false);
@@ -70,8 +71,8 @@ public class Fragment_TimeWorkDetail extends Fragment {
 
         //Lấy danh sách timeworkdetail
         listDtoTimeWorkDetail = daoTimeWorkDetail.selectAll();
-        TimeWorkDetailAdapter timeWorkDetailAdapter = new TimeWorkDetailAdapter(listDtoTimeWorkDetail,context);
-        LinearLayoutManager manager = new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
+        TimeWorkDetailAdapter timeWorkDetailAdapter = new TimeWorkDetailAdapter(listDtoTimeWorkDetail, context);
+        LinearLayoutManager manager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
         rcvListTimeWorkDetail.setLayoutManager(manager);
         rcvListTimeWorkDetail.setAdapter(timeWorkDetailAdapter);
 
@@ -82,17 +83,16 @@ public class Fragment_TimeWorkDetail extends Fragment {
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_add_timework_detail);
                 Window window = dialog.getWindow();
-                if(window == null){
+                if (window == null) {
                     return;
-                }
-                else{
-                    window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+                } else {
+                    window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
                     window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 }
 
                 Spinner spTimeWork = dialog.findViewById(R.id.spTimeWork);
                 ArrayList<TimeWorkDTO> listTimeWork = daoTimeWork.getAll();
-                SpinnerTimeWorkAdapter timeWorkAdapter = new SpinnerTimeWorkAdapter(listTimeWork,context);
+                SpinnerTimeWorkAdapter timeWorkAdapter = new SpinnerTimeWorkAdapter(listTimeWork, context);
                 spTimeWork.setAdapter(timeWorkAdapter);
 
                 ImageView imgCancel = dialog.findViewById(R.id.img_cancel);
@@ -108,22 +108,28 @@ public class Fragment_TimeWorkDetail extends Fragment {
                 btnSaveTimeWorkDetail.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        TimeWorkDetailDTO dtoTimeWorkDetail = new TimeWorkDetailDTO();
-                        dtoTimeWorkDetail.setTime(edTimeWorkDetail.getEditText().getText().toString());
-                        TimeWorkDTO timeWorkDTO = (TimeWorkDTO) spTimeWork.getSelectedItem();
-                        dtoTimeWorkDetail.setTimework_id(timeWorkDTO.getId());
+                        if (edTimeWorkDetail.getEditText().getText().toString().isEmpty()) {
+                            edTimeWorkDetail.setError("Hours is not isEmpty");
+                        } else if (!edTimeWorkDetail.getEditText().getText().toString().matches("^[0-9]:[0-6][0-9]-[0-9]:[0-6][0-9]$")) {
+                            edTimeWorkDetail.setError("Incorrect format h:mm-h:mm");
+                        } else {
+                            TimeWorkDetailDTO dtoTimeWorkDetail = new TimeWorkDetailDTO();
+                            dtoTimeWorkDetail.setTime(edTimeWorkDetail.getEditText().getText().toString());
+                            TimeWorkDTO timeWorkDTO = (TimeWorkDTO) spTimeWork.getSelectedItem();
+                            dtoTimeWorkDetail.setTimework_id(timeWorkDTO.getId());
 
-                        long res = daoTimeWorkDetail.insertRow(dtoTimeWorkDetail);
-                        if(res>0){
-                            listDtoTimeWorkDetail.clear();
-                            listDtoTimeWorkDetail.addAll(daoTimeWorkDetail.selectAll());
-                            timeWorkDetailAdapter.notifyDataSetChanged();
-                            Toast.makeText(context, "Thêm giờ làm thành công", Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
+                            long res = daoTimeWorkDetail.insertRow(dtoTimeWorkDetail);
+                            if (res > 0) {
+                                listDtoTimeWorkDetail.clear();
+                                listDtoTimeWorkDetail.addAll(daoTimeWorkDetail.selectAll());
+                                timeWorkDetailAdapter.notifyDataSetChanged();
+                                Toast.makeText(context, "Thêm giờ làm thành công", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            } else {
+                                Toast.makeText(context, "Thêm giờ làm không thành công", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                        else{
-                            Toast.makeText(context, "Thêm giờ làm không thành công", Toast.LENGTH_SHORT).show();
-                        }
+
 
                     }
                 });
@@ -131,4 +137,5 @@ public class Fragment_TimeWorkDetail extends Fragment {
             }
         });
     }
+
 }

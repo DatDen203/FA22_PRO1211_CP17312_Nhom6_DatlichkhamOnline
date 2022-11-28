@@ -72,7 +72,7 @@ public class SignInActivity extends AppCompatActivity {
                     tilUsername.setError("Vui lòng không để trống");
                     tilPassword.setError("Vui lòng không để trống");
                     ErrorAnimaton(tilUsername);
-                    ErrorAnimaton2(tilPassword,100);
+//                    ErrorAnimaton2(tilPassword,100);
                 } else {
                     tilUsername.setError("");
                     tilPassword.setError("");
@@ -136,16 +136,14 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     public void ErrorAnimaton(View view){
-        AnimatorSet animatorSet = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.annimation_arror);
-        animatorSet.setTarget(view);
-        animatorSet.start();
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.amin_error);
+        view.setAnimation(animation);
 
     }
     public void ErrorAnimaton2(View view,long delay ){
-        AnimatorSet animatorSet = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.annimation_arror);
-        animatorSet.setTarget(view);
-        animatorSet.setStartDelay(delay);
-        animatorSet.start();
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.amin_error);
+        view.setAnimation(animation);
+
 
     }
 }
