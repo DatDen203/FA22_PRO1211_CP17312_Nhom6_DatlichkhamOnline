@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cp17312_nhom6_duan1.ListOrderActivity;
 import com.example.cp17312_nhom6_duan1.ListServiceActivity;
 import com.example.cp17312_nhom6_duan1.R;
 import com.example.cp17312_nhom6_duan1.adapter.AdapterListDoctor;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 
 public class Fragment_home_new extends Fragment {
     private RecyclerView rcv_list_services,rcv_list_doctors;
-    private TextView tvListService;
+    private TextView tvListService,tvListOrder;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class Fragment_home_new extends Fragment {
         rcv_list_services = view.findViewById(R.id.rcv_list_services);
         rcv_list_doctors = view.findViewById(R.id.rcv_list_doctors);
         tvListService = view.findViewById(R.id.tvListService);
+        tvListOrder = view.findViewById(R.id.tvListOrder);
 
         ServicesDAO servicesDAO = new ServicesDAO(getContext());
         ArrayList<ServicesDTO> listDtoService = servicesDAO.selectAll();
@@ -62,6 +64,14 @@ public class Fragment_home_new extends Fragment {
                 startActivity(intent);
             }
         });
+        tvListOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), ListOrderActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 }

@@ -167,4 +167,16 @@ public class AccountDAO {
         }
         return list;
     }
+
+    public boolean checkFileByIdAcount(int idAccount){
+        String[] selectArgs = new String[]{idAccount+""};
+        String select = "SELECT tbFile.id,tbFile.user_id,tbFile.birthday,tbFile.cccd,tbFile.country,tbFile.bhyt,tbFile.job,tbFile.email,tbFile.address from tbFile INNER JOIN  tbAccount on tbAccount.id = tbFile.user_id where tbAccount.id = ?";
+        Cursor cs = sqLiteDatabase.rawQuery(select,selectArgs);
+        if(cs.getCount()>0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

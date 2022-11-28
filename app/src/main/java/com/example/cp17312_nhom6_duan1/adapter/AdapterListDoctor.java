@@ -5,12 +5,11 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cp17312_nhom6_duan1.OrderDoctorActivity;
+import com.example.cp17312_nhom6_duan1.ItemOrderDoctorActivity;
 import com.example.cp17312_nhom6_duan1.R;
 import com.example.cp17312_nhom6_duan1.adapter.ViewHolder.ListDoctorViewHolder;
 import com.example.cp17312_nhom6_duan1.dao.AccountDAO;
@@ -53,7 +52,7 @@ public class AdapterListDoctor extends RecyclerView.Adapter<ListDoctorViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, OrderDoctorActivity.class);
+                Intent intent = new Intent(context, ItemOrderDoctorActivity.class);
                 intent.putExtra("idDoctor",doctorDTO.getId());
                 context.startActivity(intent);
             }

@@ -21,7 +21,6 @@ public class DoctorOrderViewHolder extends RecyclerView.ViewHolder {
         tvNameSerivce = itemView.findViewById(R.id.tvNameSerivce);
         tvPrice = itemView.findViewById(R.id.tvPrice);
         tvNameRoom = itemView.findViewById(R.id.tvNameRoom);
-        btnOrder = itemView.findViewById(R.id.btnOrder);
         rcv_list_timework_detail = itemView.findViewById(R.id.rcv_list_timework_detail);
     }
 }

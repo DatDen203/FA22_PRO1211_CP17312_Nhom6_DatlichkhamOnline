@@ -79,5 +79,20 @@ public class TimeWorkDetailDAO {
         }
         return listTimeWorkDetail;
     }
+    public ArrayList<TimeWorkDetailDTO> listTimeWorkDetailByStartDate(String startDate , int idDoctor){
+        ArrayList<TimeWorkDetailDTO> listTimeWorkDetail = new ArrayList<>();
+        String[] check = {startDate.trim(),idDoctor+""};
+        String select = "select tbOrderDoctor.start_time  from tbOrderDetail inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbDoctor on tbDoctor.id = tbOrderDoctor.doctor_id where tbOrderDoctor.start_date = ? and tbDoctor.id = ?";
+        Cursor cs = db.rawQuery(select,check);
+        if(cs.moveToFirst()){
+            while(!cs.isAfterLast()){
+                TimeWorkDetailDTO timeWorkDetailDTO = new TimeWorkDetailDTO();
+                timeWorkDetailDTO.setTime(cs.getString(0));
+                listTimeWorkDetail.add(timeWorkDetailDTO);
+                cs.moveToNext();
+            }
+        }
+        return listTimeWorkDetail;
+    }
 
 }
