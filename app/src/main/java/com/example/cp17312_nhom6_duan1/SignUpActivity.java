@@ -3,12 +3,15 @@ package com.example.cp17312_nhom6_duan1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -81,11 +84,14 @@ public class SignUpActivity extends AppCompatActivity {
         findViewById(R.id.btn_continue).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username = edtUsername.getText().toString().trim();
-                String password = edtPassword.getText().toString().trim();
-                String fullName = edtFullname.getText().toString().trim();
-                String phoneNumber = edtPhoneNumber.getText().toString().trim();
-                onClickVerifyPhoneNumber(phoneNumber);
+                if(checkErrorSignUp()==false){
+                    String username = edtUsername.getText().toString().trim();
+                    String password = edtPassword.getText().toString().trim();
+                    String fullName = edtFullname.getText().toString().trim();
+                    String phoneNumber = edtPhoneNumber.getText().toString().trim();
+                    onClickVerifyPhoneNumber(phoneNumber);
+                }
+
             }
         });
     }
@@ -197,28 +203,32 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
     public boolean checkUserName(){
-        boolean a = false;
+        boolean a = true;
         for(int i=0;i<listAccount.size();i++){
             if(listAccount.get(i).getUserName().equals(tilUsername.getEditText().getText().toString().trim())){
-                a= true;
+                a= false;
                 break;
             }else{
-                a= false;
+                a= true;
             }
         }
         return a;
     }
     public void ErrorAnimaton(View view){
-        AnimatorSet animatorSet = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.annimation_arror);
-        animatorSet.setTarget(view);
-        animatorSet.start();
-
+//        AnimatorSet animatorSet = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.annimation_arror);
+//        animatorSet.setTarget(view);
+//        animatorSet.start();
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.amin_error);
+        view.setAnimation(animation);
     }
     public void ErrorAnimaton2(View view,long delay ){
-        AnimatorSet animatorSet = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.annimation_arror);
-        animatorSet.setTarget(view);
-        animatorSet.setStartDelay(delay);
-        animatorSet.start();
+//        AnimatorSet animatorSet = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.annimation_arror);
+//        animatorSet.setTarget(view);
+//        animatorSet.setStartDelay(delay);
+//        animatorSet.start();
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.amin_error);
+        animation.setStartOffset(delay);
+        view.setAnimation(animation);
 
     }
 }

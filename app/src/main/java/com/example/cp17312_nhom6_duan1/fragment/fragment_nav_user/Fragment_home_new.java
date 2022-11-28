@@ -28,7 +28,8 @@ import java.util.ArrayList;
 
 public class Fragment_home_new extends Fragment {
     private RecyclerView rcv_list_services,rcv_list_doctors;
-    private TextView tvListService,tvListOrder;
+    private TextView tvListService;
+    private TextView tvListOrder;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,6 +42,8 @@ public class Fragment_home_new extends Fragment {
         rcv_list_services = view.findViewById(R.id.rcv_list_services);
         rcv_list_doctors = view.findViewById(R.id.rcv_list_doctors);
         tvListService = view.findViewById(R.id.tvListService);
+
+
         tvListOrder = view.findViewById(R.id.tvListOrder);
 
         ServicesDAO servicesDAO = new ServicesDAO(getContext());
@@ -71,7 +74,6 @@ public class Fragment_home_new extends Fragment {
                 startActivity(intent);
             }
         });
-
 
     }
 }

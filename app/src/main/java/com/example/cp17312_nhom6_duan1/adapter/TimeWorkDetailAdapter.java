@@ -31,7 +31,7 @@ public class TimeWorkDetailAdapter extends RecyclerView.Adapter<TimeWorkDetailVi
     private ArrayList<TimeWorkDetailDTO> listTimeWorkDetail = new ArrayList<>();
     private Context context;
     private TimeWorkDetailDAO timeWorkDetailDAO;
-    private  TimeWorkDAO daoTimeWork;
+    private TimeWorkDAO daoTimeWork;
 
     public TimeWorkDetailAdapter(ArrayList<TimeWorkDetailDTO> listTimeWorkDetail, Context context) {
         this.listTimeWorkDetail = listTimeWorkDetail;
@@ -47,10 +47,10 @@ public class TimeWorkDetailAdapter extends RecyclerView.Adapter<TimeWorkDetailVi
 
     @Override
     public void onBindViewHolder(@NonNull TimeWorkDetailViewHolder holder, int position) {
-         daoTimeWork = new TimeWorkDAO(context);
+        daoTimeWork = new TimeWorkDAO(context);
         daoTimeWork.open();
 
-         timeWorkDetailDAO = new TimeWorkDetailDAO(context);
+        timeWorkDetailDAO = new TimeWorkDetailDAO(context);
         timeWorkDetailDAO.open();
 
         final int index = position;
@@ -65,7 +65,7 @@ public class TimeWorkDetailAdapter extends RecyclerView.Adapter<TimeWorkDetailVi
         holder.tvUpdateTimeWorkDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateRow(context,dtoTimeWorkDetail,index);
+                updateRow(context, dtoTimeWorkDetail, index);
             }
         });
     }
@@ -80,21 +80,20 @@ public class TimeWorkDetailAdapter extends RecyclerView.Adapter<TimeWorkDetailVi
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_edit_time_work_detail);
         Window window = dialog.getWindow();
-        if(window == null){
+        if (window == null) {
             return;
-        }
-        else{
-            window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+        } else {
+            window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
         Spinner spTimeWork = dialog.findViewById(R.id.spTimeWork);
         ArrayList<TimeWorkDTO> listTimeWork = daoTimeWork.getAll();
-        SpinnerTimeWorkAdapter timeWorkAdapter = new SpinnerTimeWorkAdapter(listTimeWork,context);
+        SpinnerTimeWorkAdapter timeWorkAdapter = new SpinnerTimeWorkAdapter(listTimeWork, context);
         spTimeWork.setAdapter(timeWorkAdapter);
 
-        for(int i=0;i<listTimeWork.size();i++){
+        for (int i = 0; i < listTimeWork.size(); i++) {
             TimeWorkDTO timeWorkDTO = listTimeWork.get(i);
-            if(timeWorkDTO.getId() == (timeWorkDetailDTO.getTimework_id())){
+            if (timeWorkDTO.getId() == (timeWorkDetailDTO.getTimework_id())) {
                 spTimeWork.setSelected(true);
                 spTimeWork.setSelection(i);
             }
@@ -114,20 +113,26 @@ public class TimeWorkDetailAdapter extends RecyclerView.Adapter<TimeWorkDetailVi
         btnSaveTimeWorkDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               timeWorkDetailDTO.setTime(edTimeWorkDetail.getEditText().getText().toString());
-               TimeWorkDTO timeWorkDTO = (TimeWorkDTO) spTimeWork.getSelectedItem();
-               timeWorkDetailDTO.setTimework_id(timeWorkDTO.getId());
+                if (edTimeWorkDetail.getEditText().getText().toString().isEmpty()) {
+                    edTimeWorkDetail.setError("Hours is not isEmpty");
+                } else if (!edTimeWorkDetail.getEditText().getText().toString().matches("^[0-9]:[0-6][0-9]-[0-9]:[0-6][0-9]$")) {
+                    edTimeWorkDetail.setError("Incorrect format h:mm-h:mm");
+                } else {
+                    timeWorkDetailDTO.setTime(edTimeWorkDetail.getEditText().getText().toString());
+                    TimeWorkDTO timeWorkDTO = (TimeWorkDTO) spTimeWork.getSelectedItem();
+                    timeWorkDetailDTO.setTimework_id(timeWorkDTO.getId());
 
-               int res = timeWorkDetailDAO.updateRow(timeWorkDetailDTO);
-               if(res>0){
-                   listTimeWorkDetail.set(index,timeWorkDetailDTO);
-                   notifyDataSetChanged();
-                   Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
-                   dialog.dismiss();
-               }
-               else{
-                   Toast.makeText(context, "Cập nhật không thành công", Toast.LENGTH_SHORT).show();
-               }
+                    int res = timeWorkDetailDAO.updateRow(timeWorkDetailDTO);
+                    if (res > 0) {
+                        listTimeWorkDetail.set(index, timeWorkDetailDTO);
+                        notifyDataSetChanged();
+                        Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    } else {
+                        Toast.makeText(context, "Cập nhật không thành công", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
             }
 
         });
