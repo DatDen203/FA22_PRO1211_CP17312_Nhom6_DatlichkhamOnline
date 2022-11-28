@@ -7,16 +7,18 @@
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
     android:background="@drawable/shape_border_item"
-    android:padding="8dp">
+    android:padding="5dp">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/imgService"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginHorizontal="15dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/img" />
+        android:src="@drawable/service5" />
 
     <LinearLayout
         android:layout_width="0dp"

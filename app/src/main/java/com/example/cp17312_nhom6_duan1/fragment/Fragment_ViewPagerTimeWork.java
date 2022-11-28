@@ -25,9 +25,6 @@ public class Fragment_ViewPagerTimeWork extends Fragment {
     AdapterViewPagerTimeWork adapterViewPagerTimeWork;
     private TabLayout tabTimeWork;
 
-
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
