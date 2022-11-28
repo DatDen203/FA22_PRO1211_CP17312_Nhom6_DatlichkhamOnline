@@ -156,6 +156,8 @@ int back;
                     navView.getMenu().findItem(R.id.nav_info).setChecked(true);
                     break;
                 case R.id.nav_exit:
+                    Intent back = new Intent(getApplicationContext(), SignInActivity.class);
+                    startActivity(back);
                     finish();
                     break;
             }
@@ -249,16 +251,17 @@ int back;
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        } else if(back==1) {
+            Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
+            startActivity(intent);
+            finish();
+        }else{
+//            super.onBackPressed();
         }
     }
 
     @Override
     protected void onPause() {
-        if(back!=1){
-            finish();
-        }
         super.onPause();
     }
 }

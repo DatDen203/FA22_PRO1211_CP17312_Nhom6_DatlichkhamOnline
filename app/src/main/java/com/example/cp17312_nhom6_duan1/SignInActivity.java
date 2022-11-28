@@ -146,4 +146,13 @@ public class SignInActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent startSignIn = new Intent(Intent.ACTION_MAIN);
+        startSignIn.addCategory(Intent.CATEGORY_HOME);
+        startActivity(startSignIn);
+        finish();
+    }
 }
