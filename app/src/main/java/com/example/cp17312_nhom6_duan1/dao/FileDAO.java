@@ -3,6 +3,7 @@ package com.example.cp17312_nhom6_duan1.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.CursorWrapper;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.cp17312_nhom6_duan1.database.MyDbHelper;
@@ -117,5 +118,29 @@ public class FileDAO {
             fileDTO.setDes(cs.getString(10));
         }
         return fileDTO;
+    }
+    public ArrayList<FileDTO> getAll(){
+        ArrayList<FileDTO> list = new ArrayList<>();
+        String select ="SELECT * FROM tbFile";
+        Cursor cursor = db.rawQuery(select, null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast()){
+                FileDTO obj = new FileDTO();
+                obj.setId(cursor.getInt(0));
+                obj.setFullname(cursor.getString(1));
+                obj.setUser_id(cursor.getInt(2));
+                obj.setBirthday(cursor.getString(3));
+                obj.setCccd(cursor.getString(4));
+                obj.setBhyt(cursor.getString(5));
+                obj.setCountry(cursor.getString(6));
+                obj.setAddress(cursor.getString(7));
+                obj.setDes(cursor.getString(8));
+                list.add(obj);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        return list;
     }
 }

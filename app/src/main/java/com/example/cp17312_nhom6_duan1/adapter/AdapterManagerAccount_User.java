@@ -43,7 +43,6 @@ public class AdapterManagerAccount_User extends RecyclerView.Adapter<ViewHoderAc
         AccountDTO accountDTO = listAccountUser.get(index);
         holder.tvFullName.setText(accountDTO.getFullName());
         holder.tvUserName.setText(accountDTO.getUserName());
-        holder.tvPassWord.setText(accountDTO.getPassWord());
         holder.tvPhoneNumber.setText(accountDTO.getPhoneNumber());
         if(accountDTO.getImg()!=null){
             Uri uri = Uri.parse(accountDTO.getImg());
@@ -55,4 +54,5 @@ public class AdapterManagerAccount_User extends RecyclerView.Adapter<ViewHoderAc
     public int getItemCount() {
         return listAccountUser==null?0: listAccountUser.size();
     }
+
 }
