@@ -43,7 +43,6 @@ public class Fragment_home_new extends Fragment {
         rcv_list_doctors = view.findViewById(R.id.rcv_list_doctors);
         tvListService = view.findViewById(R.id.tvListService);
 
-
         tvListOrder = view.findViewById(R.id.tvListOrder);
 
         ServicesDAO servicesDAO = new ServicesDAO(getContext());
