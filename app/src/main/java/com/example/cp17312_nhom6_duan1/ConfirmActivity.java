@@ -94,7 +94,6 @@ public class ConfirmActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("back",1);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -103,7 +102,6 @@ public class ConfirmActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
 

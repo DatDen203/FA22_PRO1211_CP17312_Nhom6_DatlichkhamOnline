@@ -154,6 +154,5 @@ public class ItemOrderDoctorActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        finish();
     }
 }
