@@ -91,6 +91,10 @@ public class ConfirmActivity extends AppCompatActivity {
                 }
                 Toast.makeText(ConfirmActivity.this, "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
                 OrderDoctorActivity.listOrderDoctor.clear();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("back",1);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -99,6 +103,7 @@ public class ConfirmActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
