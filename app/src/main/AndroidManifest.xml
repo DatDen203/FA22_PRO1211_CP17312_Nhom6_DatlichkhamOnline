@@ -18,7 +18,19 @@
         android:theme="@style/Theme.CP17312_Nhom6_Duan1"
         tools:targetApi="31">
         <activity
+            android:name=".ListOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FileActivity"
+            android:exported="false" />
+        <activity
             android:name=".OrderDoctorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ConfirmActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ItemOrderDoctorActivity"
             android:exported="false" />
         <activity
             android:name=".ListDoctorByServiceActivity"
