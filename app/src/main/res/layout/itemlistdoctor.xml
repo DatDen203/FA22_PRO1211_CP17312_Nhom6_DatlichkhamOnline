@@ -1,30 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:orientation="vertical"
+    android:layout_width="150dp"
+    android:layout_height="200dp"
     android:layout_margin="10dp"
     android:background="@drawable/khung_list_doctor"
-    android:padding="20dp"
-    android:layout_height="200dp">
+    android:orientation="vertical"
+    android:padding="20dp">
+
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="100dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_gravity="center"
-        android:layout_height="100dp"
-        android:src="@drawable/doctor6"/>
+        android:src="@drawable/doctor6" />
+
     <TextView
         android:id="@+id/tvNameDoctor"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:text="Khuat phi Long"
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textColor="@color/black"/>
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Họ và tên"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/tvNameService"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="Khám cơ xươna\nfadfsfafg"
-        android:gravity="center"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="Khám cơ xương"
+        android:textColor="@color/white" />
 </LinearLayout>

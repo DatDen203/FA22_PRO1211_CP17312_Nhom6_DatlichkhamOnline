@@ -22,7 +22,7 @@
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/addimg" />
+                android:src="@drawable/doctor6" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edNameDoctor"
@@ -36,8 +36,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Họ tên" />
+                    android:layout_height="wrap_content"
+                    android:hint="Họ tên"
+                    android:imeOptions="actionNext"
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -52,8 +54,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Ngày sinh" />
+                    android:layout_height="wrap_content"
+                    android:hint="Ngày sinh"
+                    android:imeOptions="actionNext"
+                    android:inputType="date" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -68,8 +72,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Số điện thoại" />
+                    android:layout_height="wrap_content"
+                    android:hint="Số điện thoại"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -84,8 +90,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Tên đăng nhập" />
+                    android:layout_height="wrap_content"
+                    android:hint="Tên đăng nhập"
+                    android:imeOptions="actionNext"
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -100,8 +108,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Mật khẩu" />
+                    android:layout_height="wrap_content"
+                    android:hint="Mật khẩu"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -155,8 +165,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Mô tả" />
+                    android:layout_height="wrap_content"
+                    android:hint="Mô tả"
+                    android:imeOptions="actionDone"
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button

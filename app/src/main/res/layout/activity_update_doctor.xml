@@ -13,7 +13,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
 
             <ImageView
                 android:id="@+id/imgDoctor"
@@ -21,106 +22,122 @@
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/addimg" />
+                android:src="@drawable/doctor6" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edNameUpdateDoctor"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="25dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:hint="Họ tên" />
+                    android:layout_height="wrap_content"
+                    android:hint="Họ tên"
+                    android:imeOptions="actionNext"
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edUpdatePhoneDoctor"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="25dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:hint="Số điện thoại" />
+                    android:layout_height="wrap_content"
+                    android:hint="Số điện thoại"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
-            <TextView
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edUpdateBirthdayDoctor"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="25dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="date"
+                    android:hint="Ngày sinh" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
                 android:text="Phòng khám" />
 
             <Spinner
                 android:id="@+id/spRooms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp" />
+                android:layout_marginHorizontal="24dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
                 android:text="Dịch vụ khám" />
 
             <Spinner
                 android:id="@+id/spServices"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp" />
+                android:layout_marginHorizontal="24dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
                 android:text="Ca làm" />
+
             <Spinner
                 android:id="@+id/spTimeWork"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp" />
+                android:layout_marginHorizontal="24dp" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edUpdateDes"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="25dp">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:hint="Mô tả" />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edUpdateBirthdayDoctor"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="25dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:hint="Ngày sinh" />
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:hint="Mô tả" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnUpdateSaveDoctor"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/khung_btn_sign_in"
                 android:text="Cập nhật" />
 
         </LinearLayout>

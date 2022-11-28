@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:background="@drawable/background_rooms">
 
     <ImageView
         android:layout_width="50dp"
@@ -19,7 +21,7 @@
         android:layout_weight="1"
         android:text="Kham theo ngay"
         android:textColor="@color/black"
-        android:textSize="20dp" />
+        android:textSize="16dp"/>
 
     <ImageView
         android:id="@+id/imgUpdateCategories"
