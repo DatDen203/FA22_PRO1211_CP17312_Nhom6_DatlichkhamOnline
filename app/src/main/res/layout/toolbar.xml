@@ -9,11 +9,43 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     android:background="@color/white">
 
-    <ImageView
-        android:id="@+id/img_open_nav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_menu"
-        app:tint="@color/green" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <ImageView
+            android:id="@+id/img_open_nav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_menu"
+            app:tint="@color/green" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@id/img_open_nav"
+            android:layout_marginStart="32dp">
+
+            <ImageView
+                android:id="@+id/img_logo"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:src="@drawable/logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/img_logo"
+                android:text="BookingCare"
+                android:textColor="@color/green"
+                android:textSize="24dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </Toolbar>
