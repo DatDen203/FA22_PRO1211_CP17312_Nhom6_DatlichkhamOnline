@@ -3,63 +3,68 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:padding="10dp"
     android:background="@drawable/background_rooms"
-    android:layout_height="wrap_content">
+    android:padding="10dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgDoctor"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="16dp"
         android:src="@drawable/imgdoctor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintHorizontal_bias=".2"
         app:layout_constraintStart_toEndOf="@+id/imgDoctor"
         app:layout_constraintTop_toTopOf="parent">
+
         <TextView
             android:id="@+id/tvNameDoctor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Khuat PHi long"
-            android:textSize="25dp"
-            android:textColor="@color/black"/>
+            android:text="Khuat Phi Long"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
         <TextView
             android:id="@+id/tvNameService"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chuyeen khoa: kham thai"/>
+            android:text="Chuyeen khoa: kham thai" />
+
         <TextView
             android:id="@+id/tvNameRoom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Phong lam viec: P123"/>
+            android:text="Phong lam viec: P123" />
+
         <TextView
             android:id="@+id/tvTimeWork"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ca lam viec : Buoi sang"/>
+            android:text="Ca lam viec : Buoi sang" />
+
         <TextView
             android:id="@+id/tvDes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thac si trong nghanh bac si"/>
+            android:text="Thac si trong nghanh bac si" />
+
         <Button
             android:id="@+id/btnUpdateDoctor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sửa"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:layout_gravity="center"/>
+            android:text="Sửa" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

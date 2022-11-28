@@ -6,15 +6,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".OrderDoctorActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/xanh_nhat"
-            app:title="Đặt lịch khám theo bác sĩ" />
+            app:title="Đặt lịch khám theo bác sĩ"
+            app:titleTextColor="@color/xanh_dam" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -155,31 +159,32 @@
                 android:textStyle="bold"
                 android:text="1555" />
         </LinearLayout>
+
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            >
+            android:orientation="horizontal">
+
             <RadioButton
                 android:id="@+id/rdoOrderYou"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:text="Đặt cho mình"/>
+                android:text="Đặt cho mình" />
+                
             <RadioButton
                 android:id="@+id/rdoOrderI"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Đặt cho người khác"/>
+                android:text="Đặt cho người khác" />
         </RadioGroup>
+
         <FrameLayout
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
     </LinearLayout>
-
 
 
 </ScrollView>

@@ -84,7 +84,7 @@ public class SignUpActivity extends AppCompatActivity {
         findViewById(R.id.btn_continue).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkErrorSignUp()==false){
+                if (checkErrorSignUp() == true) {
                     String username = edtUsername.getText().toString().trim();
                     String password = edtPassword.getText().toString().trim();
                     String fullName = edtFullname.getText().toString().trim();
@@ -156,12 +156,13 @@ public class SignUpActivity extends AppCompatActivity {
         intent.putExtra("verification_id", verificationId);
         startActivity(intent);
     }
+
     // check lỗi
     public boolean checkErrorSignUp() {
         if (tilFullname.getEditText().getText().toString().trim().isEmpty() ||
                 tilUsername.getEditText().getText().toString().trim().isEmpty() ||
                 tilPassword.getEditText().getText().toString().trim().isEmpty() ||
-                tilPhoneNumber.getEditText().getText().toString().trim().isEmpty()|| checkUserName()==false) {
+                tilPhoneNumber.getEditText().getText().toString().trim().isEmpty() || checkUserName() == false) {
             if (tilFullname.getEditText().getText().toString().trim().isEmpty()) {
                 tilFullname.setError("FullName can't isEmpty");
                 ErrorAnimaton2(tilFullname, 0);
@@ -171,12 +172,10 @@ public class SignUpActivity extends AppCompatActivity {
             if (tilUsername.getEditText().getText().toString().trim().isEmpty()) {
                 tilUsername.setError("UserName can't isEmpty");
                 ErrorAnimaton2(tilUsername, 50);
-            }
-            else if(checkUserName()==false){
+            } else if (checkUserName() == false) {
                 tilUsername.setError("This account has already existed");
                 ErrorAnimaton2(tilUsername, 50);
-            }
-            else {
+            } else {
                 tilUsername.setError("");
             }
             if (tilPassword.getEditText().getText().toString().trim().isEmpty()) {
@@ -202,26 +201,29 @@ public class SignUpActivity extends AppCompatActivity {
             return true;
         }
     }
-    public boolean checkUserName(){
+
+    public boolean checkUserName() {
         boolean a = true;
-        for(int i=0;i<listAccount.size();i++){
-            if(listAccount.get(i).getUserName().equals(tilUsername.getEditText().getText().toString().trim())){
-                a= false;
+        for (int i = 0; i < listAccount.size(); i++) {
+            if (listAccount.get(i).getUserName().equals(tilUsername.getEditText().getText().toString().trim())) {
+                a = false;
                 break;
-            }else{
-                a= true;
+            } else {
+                a = true;
             }
         }
         return a;
     }
-    public void ErrorAnimaton(View view){
+
+    public void ErrorAnimaton(View view) {
 //        AnimatorSet animatorSet = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.annimation_arror);
 //        animatorSet.setTarget(view);
 //        animatorSet.start();
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.amin_error);
         view.setAnimation(animation);
     }
-    public void ErrorAnimaton2(View view,long delay ){
+
+    public void ErrorAnimaton2(View view, long delay) {
 //        AnimatorSet animatorSet = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.annimation_arror);
 //        animatorSet.setTarget(view);
 //        animatorSet.setStartDelay(delay);
