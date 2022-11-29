@@ -6,16 +6,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ListServiceActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarService"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/xanh_nhat"
-        app:title="Chuyên khoa"
-        />
+        app:titleTextColor="@color/xanh_dam"
+        app:title="Chuyên khoa" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_list_services"
-        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

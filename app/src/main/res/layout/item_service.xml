@@ -3,9 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_marginHorizontal="20dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
+    android:layout_margin="10dp"
     android:background="@drawable/shape_border_item"
     android:padding="6dp">
 
@@ -60,6 +58,6 @@
         android:layout_height="30dp"
         android:layout_gravity="center"
         android:layout_marginRight="15dp"
-        android:src="@drawable/edit"
+        android:src="@drawable/edit1"
         android:textColor="#FA0707" />
 </LinearLayout>
