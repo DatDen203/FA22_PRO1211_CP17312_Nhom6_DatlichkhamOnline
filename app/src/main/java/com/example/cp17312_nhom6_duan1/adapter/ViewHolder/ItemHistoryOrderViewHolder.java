@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cp17312_nhom6_duan1.R;
 
 public class ItemHistoryOrderViewHolder extends RecyclerView.ViewHolder {
-    public TextView tvOrderId,tvNamefile,tvNameDoctor,tvNameService,tvNameRooms,tvStartDate,tvStartTime,tvOrderTime,tvOrderDate,tvPrice;
+    public TextView tvOrderId,tvNamefile,tvNameDoctor,tvNameService,tvNameRooms,tvStartDate,tvStartTime,tvOrderTime,tvOrderDate,tvPrice,tvStatusOrder;
     public ItemHistoryOrderViewHolder(@NonNull View itemView) {
         super(itemView);
         tvOrderId = itemView.findViewById(R.id.tvOrderId);
@@ -22,5 +22,6 @@ public class ItemHistoryOrderViewHolder extends RecyclerView.ViewHolder {
         tvOrderTime = itemView.findViewById(R.id.tvOrderTime);
         tvOrderDate = itemView.findViewById(R.id.tvOrderDate);
         tvPrice = itemView.findViewById(R.id.tvPrice);
+        tvStatusOrder = itemView.findViewById(R.id.tvStatusOrder);
     }
 }

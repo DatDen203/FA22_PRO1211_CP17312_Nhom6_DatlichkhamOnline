@@ -84,6 +84,23 @@ public class DoctorDAO {
         }
         return doctorDTO;
     }
+
+    public DoctorDTO getDtoDoctorByIdAccount(int User_id){
+        DoctorDTO doctorDTO = new DoctorDTO();
+        String where = "User_id = ?";
+        String[] whereArgs = {User_id+""};
+        Cursor cs = db.query(DoctorDTO.nameTable,null,where,whereArgs,null,null,null);
+        if(cs.moveToFirst()){
+            doctorDTO.setId(cs.getInt(0));
+            doctorDTO.setUser_id(cs.getInt(1));
+            doctorDTO.setBirthday(cs.getString(2));
+            doctorDTO.setService_id(cs.getInt(3));
+            doctorDTO.setRoom_id(cs.getInt(4));
+            doctorDTO.setDescription(cs.getString(5));
+            doctorDTO.setTimework_id(cs.getInt(6));
+        }
+        return doctorDTO;
+    }
     public ArrayList<AllDTO> CalendarDoctor(int idDoctor){
         ArrayList<AllDTO> list = new ArrayList<>();
         String select ="select tbAccount.fullName, tbFile.birthday, tbOrderDoctor.start_date, tbOrderDoctor.start_time from  tbFile join tbOrderDoctor  on tbOrderDoctor.file_id = tbFile.id join tbDoctor on tbOrderDoctor.doctor_id = tbDoctor.id join tbAccount on tbFile.user_id =  tbAccount.id where tbOrderDoctor.doctor_id = "+idDoctor +" and tbAccount.role='User' order by tbOrderDoctor.start_date , tbOrderDoctor.start_time ASC";
@@ -165,6 +182,29 @@ public class DoctorDAO {
             }
             cursor.close();
         }
+        return list;
+    }
+    public ArrayList<DoctorDTO> getDocotrByIdService(int idService){
+        ArrayList<DoctorDTO> list = new ArrayList<>();
+        String[] whereArgs = {idService+""};
+        String select = "select * from tbDoctor where service_id = ?";
+        Cursor cs = db.rawQuery(select, whereArgs);
+        if (cs.moveToFirst()) {
+            while (!cs.isAfterLast()) {
+                DoctorDTO doctorDTO = new DoctorDTO();
+                doctorDTO.setId(cs.getInt(0));
+                doctorDTO.setUser_id(cs.getInt(1));
+                doctorDTO.setBirthday(cs.getString(2));
+                doctorDTO.setService_id(cs.getInt(3));
+                doctorDTO.setRoom_id(cs.getInt(4));
+                doctorDTO.setDescription(cs.getString(5));
+                doctorDTO.setTimework_id(cs.getInt(6));
+
+                list.add(doctorDTO);
+                cs.moveToNext();
+            }
+        }
+        cs.close();
         return list;
     }
 }

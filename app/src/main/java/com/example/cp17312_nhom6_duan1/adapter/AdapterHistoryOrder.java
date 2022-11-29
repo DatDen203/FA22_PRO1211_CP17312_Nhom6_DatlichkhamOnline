@@ -80,6 +80,7 @@ public class AdapterHistoryOrder extends RecyclerView.Adapter<ItemHistoryOrderVi
         holder.tvOrderTime.setText("Giờ đặt: "+orderDTO.getOrder_time());
 
         holder.tvPrice.setText(servicesDTO.getServicesPrice()+"đ");
+        holder.tvStatusOrder.setText(orderDTO.getStatus());
     }
 
     @Override

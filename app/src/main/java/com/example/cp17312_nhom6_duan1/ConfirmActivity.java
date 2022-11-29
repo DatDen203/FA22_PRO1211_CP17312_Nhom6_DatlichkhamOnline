@@ -4,11 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,6 +82,7 @@ public class ConfirmActivity extends AppCompatActivity {
                     orderDTO.setFile_id(orderDoctorDTO.getFile_id());
                     orderDTO.setOrder_date(date);
                     orderDTO.setOrder_time(time);
+                    orderDTO.setStatus("Chờ ngày khám");
                     long res = orderDAO.insertRow(orderDTO);
                 }
                 ArrayList<OrderDTO> listOrderDto = orderDAO.selectDesc();
@@ -89,11 +96,28 @@ public class ConfirmActivity extends AppCompatActivity {
 
                     long res = orderDetailDAO.innsertRow(orderDetailDTO);
                 }
-                Toast.makeText(ConfirmActivity.this, "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
                 OrderDoctorActivity.listOrderDoctor.clear();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.putExtra("back",1);
-                startActivity(intent);
+                Dialog dialog = new Dialog(ConfirmActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialo_booked);
+                Window window = dialog.getWindow();
+                if (window == null) {
+                    return;
+                } else {
+                    window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                    window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                }
+                ImageView img_cancel = dialog.findViewById(R.id.img_cancel);
+                img_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("back",1);
+                        startActivity(intent);
+                    }
+                });
+                dialog.show();
+
             }
         });
 

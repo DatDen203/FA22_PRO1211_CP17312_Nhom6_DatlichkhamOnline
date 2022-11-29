@@ -2,6 +2,7 @@ package com.example.cp17312_nhom6_duan1.adapter.ViewHolder;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cp17312_nhom6_duan1.R;
 
 public class DoctorOrderViewHolder extends RecyclerView.ViewHolder {
-    public TextView tvNameDoctor,tvTimeWork,tvDes,tvNameSerivce,tvPrice,tvNameRoom;
-    public Button btnOrder;
+    public TextView tvNameDoctor,tvTimeWork,tvDes,tvNameSerivce,tvPrice,tvNameRoom,tvOrderDate,tvClickOrder,tvBirthdayOrder;
     public RecyclerView rcv_list_timework_detail;
+    public ImageView imgIconOrderDate;
     public DoctorOrderViewHolder(@NonNull View itemView) {
         super(itemView);
         tvNameDoctor = itemView.findViewById(R.id.tvNameDoctor);
@@ -22,5 +23,9 @@ public class DoctorOrderViewHolder extends RecyclerView.ViewHolder {
         tvPrice = itemView.findViewById(R.id.tvPrice);
         tvNameRoom = itemView.findViewById(R.id.tvNameRoom);
         rcv_list_timework_detail = itemView.findViewById(R.id.rcv_list_timework_detail);
+        imgIconOrderDate = itemView.findViewById(R.id.imgIconOrderDate);
+        tvOrderDate = itemView.findViewById(R.id.tvOrderDate);
+        tvClickOrder = itemView.findViewById(R.id.tvClickOrder);
+        tvBirthdayOrder = itemView.findViewById(R.id.tvBirthdayOrder);
     }
 }

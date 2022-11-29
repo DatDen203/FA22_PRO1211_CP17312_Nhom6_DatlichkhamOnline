@@ -24,8 +24,21 @@ public class OrderDAO {
         val.put(OrderDTO.colFile_id,orderDTO.getFile_id());
         val.put(OrderDTO.colOrder_time,orderDTO.getOrder_time());
         val.put(OrderDTO.colOrder_date,orderDTO.getOrder_date());
+        val.put(OrderDTO.colOrder_status,orderDTO.getStatus());
 
         long res = db.insert(OrderDTO.nameTable,null,val);
+        return res;
+    }
+
+    public int updateRow(OrderDTO orderDTO){
+        ContentValues val = new ContentValues();
+        val.put(OrderDTO.colFile_id,orderDTO.getFile_id());
+        val.put(OrderDTO.colOrder_time,orderDTO.getOrder_time());
+        val.put(OrderDTO.colOrder_date,orderDTO.getOrder_date());
+        val.put(OrderDTO.colOrder_status,orderDTO.getStatus());
+
+        String[] check = new String[]{orderDTO.getId()+""};
+        int res  =db.update(OrderDTO.nameTable,val,"id = ?",check);
         return res;
     }
     public ArrayList<OrderDTO> selectDesc(){
@@ -39,7 +52,7 @@ public class OrderDAO {
                 orderDTO.setFile_id(cs.getInt(1));
                 orderDTO.setOrder_time(cs.getString(2));
                 orderDTO.setOrder_date(cs.getString(3));
-
+                orderDTO.setStatus(cs.getString(4));
                 list.add(orderDTO);
                 cs.moveToNext();
             }
@@ -56,7 +69,9 @@ public class OrderDAO {
             orderDTO.setFile_id(cs.getInt(1));
             orderDTO.setOrder_time(cs.getString(2));
             orderDTO.setOrder_date(cs.getString(3));
+            orderDTO.setStatus(cs.getString(4));
         }
         return orderDTO;
     }
+
 }
