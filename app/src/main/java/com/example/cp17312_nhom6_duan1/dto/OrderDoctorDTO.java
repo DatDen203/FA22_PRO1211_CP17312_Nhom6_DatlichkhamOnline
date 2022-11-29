@@ -7,6 +7,7 @@ public class OrderDoctorDTO {
     private String start_time;
     private String start_date;
     private float total;
+    private int order_id;
 
     public static final String nameTable = "tbOrderDoctor";
     public static final String colFileId = "file_id";
@@ -25,6 +26,32 @@ public class OrderDoctorDTO {
         this.start_time = start_time;
         this.start_date = start_date;
         this.total = total;
+    }
+
+    public OrderDoctorDTO(int id, int file_id, int doctor_id, String start_time, String start_date, float total, int order_id) {
+        this.id = id;
+        this.file_id = file_id;
+        this.doctor_id = doctor_id;
+        this.start_time = start_time;
+        this.start_date = start_date;
+        this.total = total;
+        this.order_id = order_id;
+    }
+
+    public int getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
+    }
+
+    public OrderDoctorDTO(int id, int file_id, String start_time, String start_date, int order_id) {
+        this.id = id;
+        this.file_id = file_id;
+        this.start_time = start_time;
+        this.start_date = start_date;
+        this.order_id = order_id;
     }
 
     public int getId() {

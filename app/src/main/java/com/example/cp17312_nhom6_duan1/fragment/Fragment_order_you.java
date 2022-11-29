@@ -113,6 +113,7 @@ public class Fragment_order_you extends Fragment {
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 FileDTO fileDTO = new FileDTO();
                 fileDTO.setFullname(tilNameFullName.getEditText().getText().toString());
                 fileDTO.setUser_id(idUser);
@@ -131,7 +132,7 @@ public class Fragment_order_you extends Fragment {
                 fileDTO.setDes(tilDes.getEditText().getText().toString());
 
                 ArrayList<FileDTO> listFileDto = fileDAO.checkLIstFileYou(tilNameFullName.getEditText().getText().toString());
-                if(listFileDto.size()<1){
+//                if(listFileDto.size()<1){
                     long res = fileDAO.insertRow(fileDTO);
                     FileDTO fileDTO1 = fileDAO.getFileDToTop();
 
@@ -149,23 +150,23 @@ public class Fragment_order_you extends Fragment {
                         Intent intent = new Intent(getContext(), ConfirmActivity.class);
                         startActivity(intent);
                     }
-                }
-                else{
-                    OrderDoctorDTO orderDoctorDTO = new OrderDoctorDTO();
-                    orderDoctorDTO.setFile_id(listFileDto.get(0).getId());
-                    orderDoctorDTO.setDoctor_id(idDoctor);
-                    orderDoctorDTO.setStart_date(startDate);
-                    orderDoctorDTO.setStart_time(startTime);
-                    orderDoctorDTO.setTotal(servicesDTO.getServicesPrice());
-
-                    long res1 = orderDoctorDao.insertRow(orderDoctorDTO);
-                    OrderDoctorDTO orderDoctorDTO1 = orderDoctorDao.getOrderDoctorDtoDesc();
-                    if(res1>0){
-                        OrderDoctorActivity.listOrderDoctor.add(orderDoctorDTO1);
-                        Intent intent = new Intent(getContext(), ConfirmActivity.class);
-                        startActivity(intent);
-                    }
-                }
+//                }
+//                else{
+//                    OrderDoctorDTO orderDoctorDTO = new OrderDoctorDTO();
+//                    orderDoctorDTO.setFile_id(listFileDto.get(0).getId());
+//                    orderDoctorDTO.setDoctor_id(idDoctor);
+//                    orderDoctorDTO.setStart_date(startDate);
+//                    orderDoctorDTO.setStart_time(startTime);
+//                    orderDoctorDTO.setTotal(servicesDTO.getServicesPrice());
+//
+//                    long res1 = orderDoctorDao.insertRow(orderDoctorDTO);
+//                    OrderDoctorDTO orderDoctorDTO1 = orderDoctorDao.getOrderDoctorDtoDesc();
+//                    if(res1>0){
+//                        OrderDoctorActivity.listOrderDoctor.add(orderDoctorDTO1);
+//                        Intent intent = new Intent(getContext(), ConfirmActivity.class);
+//                        startActivity(intent);
+//                    }
+//                }
             }
         });
     }

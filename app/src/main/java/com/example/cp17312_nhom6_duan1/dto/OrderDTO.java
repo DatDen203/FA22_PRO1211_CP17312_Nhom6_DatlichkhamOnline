@@ -5,11 +5,14 @@ public class OrderDTO {
     private int file_id;
     private String order_time;
     private String order_date;
+    private String status;
 
     public static final String nameTable = "tbOrders";
     public static final String colFile_id = "file_id";
     public static final String colOrder_time = "order_time";
     public static final String colOrder_date = "order_date";
+    public static final String colOrder_status = "status";
+
 
     public OrderDTO() {
     }
@@ -19,6 +22,22 @@ public class OrderDTO {
         this.file_id = file_id;
         this.order_time = order_time;
         this.order_date = order_date;
+    }
+
+    public OrderDTO(int id, int file_id, String order_time, String order_date, String status) {
+        this.id = id;
+        this.file_id = file_id;
+        this.order_time = order_time;
+        this.order_date = order_date;
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getId() {

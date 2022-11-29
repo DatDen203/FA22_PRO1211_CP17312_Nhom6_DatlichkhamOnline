@@ -86,4 +86,59 @@ public class OrderDoctorDAO {
         }
         return orderDoctorDTO;
     }
+    public ArrayList<OrderDoctorDTO> listOrderDoctorByDateToDayByDoctor(String dateToDay,int idDoctor){
+        ArrayList<OrderDoctorDTO> list = new ArrayList<>();
+        String[] whereArgs = {dateToDay.trim(),idDoctor+""};
+        String select = "select tbOrders.id,tbOrderDoctor.id from tbOrderDetail inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbOrders on tbOrders.id = tbOrderDetail.order_id where tbOrders.status ='Chờ ngày khám' and tbOrderDoctor.start_date = ? and tbOrderDoctor.doctor_id =?";
+        Cursor cs = db.rawQuery(select,whereArgs);
+        if(cs.moveToFirst()){
+            while(!cs.isAfterLast()){
+                OrderDoctorDTO orderDoctorDTO = new OrderDoctorDTO();
+                orderDoctorDTO.setOrder_id(cs.getInt(0));
+                orderDoctorDTO.setId(cs.getInt(1));
+
+                list.add(orderDoctorDTO);
+                cs.moveToNext();
+            }
+        }
+        cs.close();
+        return list;
+    }
+
+    public ArrayList<OrderDoctorDTO> listOrderDoctorByDateToDayByDoctorAllNoConfirm(int idDoctor){
+        ArrayList<OrderDoctorDTO> list = new ArrayList<>();
+        String[] whereArgs = {idDoctor+""};
+        String select = "select tbOrders.id,tbOrderDoctor.id from tbOrderDetail inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbOrders on tbOrders.id = tbOrderDetail.order_id where tbOrders.status ='Chờ ngày khám'and tbOrderDoctor.doctor_id =?";
+        Cursor cs = db.rawQuery(select,whereArgs);
+        if(cs.moveToFirst()){
+            while(!cs.isAfterLast()){
+                OrderDoctorDTO orderDoctorDTO = new OrderDoctorDTO();
+                orderDoctorDTO.setOrder_id(cs.getInt(0));
+                orderDoctorDTO.setId(cs.getInt(1));
+
+                list.add(orderDoctorDTO);
+                cs.moveToNext();
+            }
+        }
+        cs.close();
+        return list;
+    }
+    public ArrayList<OrderDoctorDTO> listOrderDoctorByDateToDayByDoctorAllYesConfirm(int idDoctor){
+        ArrayList<OrderDoctorDTO> list = new ArrayList<>();
+        String[] whereArgs = {idDoctor+""};
+        String select = "select tbOrders.id,tbOrderDoctor.id from tbOrderDetail inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbOrders on tbOrders.id = tbOrderDetail.order_id where tbOrders.status ='Đã khám xong'and tbOrderDoctor.doctor_id =?";
+        Cursor cs = db.rawQuery(select,whereArgs);
+        if(cs.moveToFirst()){
+            while(!cs.isAfterLast()){
+                OrderDoctorDTO orderDoctorDTO = new OrderDoctorDTO();
+                orderDoctorDTO.setOrder_id(cs.getInt(0));
+                orderDoctorDTO.setId(cs.getInt(1));
+
+                list.add(orderDoctorDTO);
+                cs.moveToNext();
+            }
+        }
+        cs.close();
+        return list;
+    }
 }

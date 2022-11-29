@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class MyDbHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "CP17312_Nhom6_Duan1";
-    public static final int DB_VERSION = 6;
+    public static final int DB_VERSION = 10;
 
     public MyDbHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -108,7 +108,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         String innsertTimeWorkDetail14 = "INSERT INTO tbTimeWorkDetail VALUES(14,3,'16:30-17:30')";
         sqLiteDatabase.execSQL(innsertTimeWorkDetail14);
 
-        String sqlOrders = "CREATE TABLE tbOrders (id INTEGER NOT NULL,file_id INTEGER NOT NULL REFERENCES tbFile(id),order_time TEXT NOT NULL,order_date TEXT NOT NULL,PRIMARY KEY(id AUTOINCREMENT));";
+        String sqlOrders = "CREATE TABLE tbOrders (id INTEGER NOT NULL,file_id INTEGER NOT NULL REFERENCES tbFile(id),order_time TEXT NOT NULL,order_date TEXT NOT NULL,status TEXT NOT NULL,PRIMARY KEY(id AUTOINCREMENT));";
         sqLiteDatabase.execSQL(sqlOrders);
 
         String sqlOrderDetail = "CREATE TABLE tbOrderDetail (order_id INTEGER NOT NULL REFERENCES tbOrders(id),orderDoctor_id INTEGER NOT NULL REFERENCES tbOrderDoctor(id));";

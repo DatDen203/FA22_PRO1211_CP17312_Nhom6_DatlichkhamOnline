@@ -1,14 +1,31 @@
 package com.example.cp17312_nhom6_duan1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-public class ListDoctorActivity extends AppCompatActivity {
+import com.example.cp17312_nhom6_duan1.adapter.AdapterDoctorOrder;
+import com.example.cp17312_nhom6_duan1.dao.DoctorDAO;
+import com.example.cp17312_nhom6_duan1.dto.DoctorDTO;
 
+import java.util.ArrayList;
+
+public class ListDoctorActivity extends AppCompatActivity {
+    private RecyclerView rcv_list_doctors;
+    private DoctorDAO doctorDAO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_doctor);
+        rcv_list_doctors = findViewById(R.id.rcv_list_doctors);
+        doctorDAO = new DoctorDAO(this);
+
+        ArrayList<DoctorDTO> listDoctorDto = doctorDAO.selectAll();
+        AdapterDoctorOrder adapterDoctorOrder = new AdapterDoctorOrder(listDoctorDto,this);
+        LinearLayoutManager manager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
+        rcv_list_doctors.setLayoutManager(manager);
+        rcv_list_doctors.setAdapter(adapterDoctorOrder);
     }
 }

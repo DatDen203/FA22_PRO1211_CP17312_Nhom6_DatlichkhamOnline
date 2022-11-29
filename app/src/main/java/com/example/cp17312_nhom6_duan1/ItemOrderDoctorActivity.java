@@ -53,6 +53,7 @@ public class ItemOrderDoctorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_order_doctor);
         init();
+
         imgIconOrderDate.setVisibility(View.GONE);
         tvOrderDate.setVisibility(View.GONE);
         tvClickOrder.setVisibility(View.GONE);
@@ -64,7 +65,6 @@ public class ItemOrderDoctorActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("getIdOrderDoctor", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("idDoctor", idDoctor);
-
         DoctorDAO doctorDAO = new DoctorDAO(this);
 
         DoctorDTO doctorDTO = doctorDAO.getDtoDoctorByIdDoctor(idDoctor);
@@ -115,8 +115,6 @@ public class ItemOrderDoctorActivity extends AppCompatActivity {
         RoomsDAO roomsDAO = new RoomsDAO(this);
         RoomsDTO roomsDTO = roomsDAO.getDtoRoomByIdRoom(doctorDTO.getRoom_id());
         tvNameRoom.setText(roomsDTO.getName());
-
-
     }
     public String formatDate(String a) {
         String newDate ="";

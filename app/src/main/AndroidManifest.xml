@@ -23,9 +23,8 @@
         <activity
             android:name=".ListOrderActivity"
             android:exported="false" />
-        <activity
-            android:name=".FileActivity"
-            android:exported="false" />
+        <activity android:name=".ListDoctorActivity"
+            android:exported="false"/>
         <activity
             android:name=".OrderDoctorActivity"
             android:exported="false" />
