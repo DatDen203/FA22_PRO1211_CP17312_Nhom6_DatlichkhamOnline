@@ -8,6 +8,7 @@ public class DoctorDTO {
     private int room_id;
     private String description;
     private int timework_id;
+    private float sumPrice;
 
 
     public static final String nameTable = "tbDoctor";
@@ -29,6 +30,19 @@ public class DoctorDTO {
         this.room_id = room_id;
         this.description = description;
         this.timework_id = timework_id;
+    }
+
+    public DoctorDTO(int id, float sumPrice) {
+        this.id = id;
+        this.sumPrice = sumPrice;
+    }
+
+    public float getSumPrice() {
+        return sumPrice;
+    }
+
+    public void setSumPrice(float sumPrice) {
+        this.sumPrice = sumPrice;
     }
 
     public int getId() {

@@ -207,4 +207,22 @@ public class DoctorDAO {
         cs.close();
         return list;
     }
+    public ArrayList<DoctorDTO> getListDoctorSumMoneyByMonth(String monthOne , String monthTwo ){
+        ArrayList<DoctorDTO> list = new ArrayList<>();
+        String[] whereArgs = {monthOne.trim(),monthTwo.trim()};
+        String select = "select tbOrderDoctor.doctor_id,sum(tbOrderDoctor.total)from tbOrderDetail inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbDoctor on tbOrderDoctor.doctor_id = tbDoctor.id inner join tbOrders  on tbOrderDetail.order_id = tbOrders.id  where tbOrders.order_date > ? and tbOrders.order_date< ? group by tbOrderDoctor.doctor_id";
+        Cursor cs = db.rawQuery(select,whereArgs);
+        if(cs.moveToFirst()){
+            while(!cs.isAfterLast()){
+                DoctorDTO doctorDTO = new DoctorDTO();
+                doctorDTO.setId(cs.getInt(0));
+                doctorDTO.setSumPrice(cs.getFloat(1));
+
+                list.add(doctorDTO);
+                cs.moveToNext();
+            }
+        }
+        cs.close();
+        return list;
+    }
 }
