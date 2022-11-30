@@ -21,17 +21,17 @@ import java.util.ArrayList;
 
 
 public class Fragment_bookingHistory extends Fragment {
-    private RecyclerView rcv_list_order;
+    private RecyclerView rcv_bookingHistory;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_list_order, container, false);
+        return inflater.inflate(R.layout.fragment_booking_history, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        rcv_list_order = view.findViewById(R.id.rcv_list_order);
+        rcv_bookingHistory = view.findViewById(R.id.rcv_bookingHistory);
 
         OrderDetailDAO orderDetailDAO = new OrderDetailDAO(getContext());
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("getIdUser", getContext().MODE_PRIVATE);
@@ -40,7 +40,7 @@ public class Fragment_bookingHistory extends Fragment {
 
         AdapterHistoryOrder adapterOrder = new AdapterHistoryOrder(listOrderDetail, getContext());
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        rcv_list_order.setLayoutManager(manager);
-        rcv_list_order.setAdapter(adapterOrder);
+        rcv_bookingHistory.setLayoutManager(manager);
+        rcv_bookingHistory.setAdapter(adapterOrder);
     }
 }

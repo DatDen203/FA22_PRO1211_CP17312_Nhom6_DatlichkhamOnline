@@ -32,8 +32,9 @@ public class MainActivity extends AppCompatActivity {
 //    private RelativeLayout itemService3;
 //    private RelativeLayout itemService4;
     DrawerLayout drawerLayout;
-    TextView tvHiName;
+    TextView tvHiName,tv_title;
     ImageView imgOpenNav, imgAvt;
+
     //    CircleIndicator circleIndicator;
 //    ViewPager viewPager;
 //    BannerAdapter bannerAdapter;
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         imgOpenNav = toolbar.findViewById(R.id.img_open_nav);
-
+        tv_title= findViewById(R.id.tv_title);
 //        tvHiName.setText("Hi " + getIntent().getStringExtra("fullname") + " !");
 //        list = getListPhoto();
 //        bannerAdapter = new BannerAdapter(this, list);
@@ -104,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
             switch (id) {
                 case R.id.nav_home_user:
                     replaceFragment(new Fragment_home_new());
+                    tv_title.setText("BookingCare");
                     navView.getMenu().findItem(R.id.nav_home_user).setChecked(true);
                     navView.getMenu().findItem(R.id.nav_file).setChecked(false);
                     navView.getMenu().findItem(R.id.nav_booking_history).setChecked(false);
@@ -111,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.nav_file:
                     replaceFragment(new Fragment_file());
+                    tv_title.setText("Hồ Sơ Bệnh Án");
                     navView.getMenu().findItem(R.id.nav_home_user).setChecked(false);
                     navView.getMenu().findItem(R.id.nav_file).setChecked(true);
                     navView.getMenu().findItem(R.id.nav_booking_history).setChecked(false);
@@ -118,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.nav_booking_history:
                     replaceFragment(new Fragment_bookingHistory());
+                    tv_title.setText("Lịch Sử Khám Bệnh");
                     navView.getMenu().findItem(R.id.nav_home_user).setChecked(false);
                     navView.getMenu().findItem(R.id.nav_file).setChecked(false);
                     navView.getMenu().findItem(R.id.nav_booking_history).setChecked(true);
@@ -125,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.nav_info:
                     replaceFragment(new Fragment_info());
+                    tv_title.setText("Thông Tin Tài Khoản");
                     navView.getMenu().findItem(R.id.nav_home_user).setChecked(false);
                     navView.getMenu().findItem(R.id.nav_file).setChecked(false);
                     navView.getMenu().findItem(R.id.nav_booking_history).setChecked(false);
