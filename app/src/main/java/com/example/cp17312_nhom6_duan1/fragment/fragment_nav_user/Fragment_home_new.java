@@ -7,6 +7,7 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,10 +38,11 @@ import me.relex.circleindicator.CircleIndicator;
 
 public class Fragment_home_new extends Fragment {
     private RecyclerView rcv_list_services,rcv_list_doctors;
-    CircleIndicator circleIndicator;
-    ViewPager viewPager;
-    BannerAdapter bannerAdapter;
-    List<Banner> list;
+    private CircleIndicator circleIndicator;
+    private ViewPager viewPager;
+    private BannerAdapter bannerAdapter;
+    private List<Banner> list;
+    private LinearLayout llOrderService,llOrderDoctor;
 
     Handler handler = new Handler(Looper.getMainLooper());
     Runnable runnable = new Runnable() {
@@ -70,6 +72,8 @@ public class Fragment_home_new extends Fragment {
         tvListService = view.findViewById(R.id.tvListService);
         tvlistDoctor = view.findViewById(R.id.tvlistDoctor);
         tvListOrder = view.findViewById(R.id.tvListOrder);
+        llOrderDoctor = view.findViewById(R.id.llOrderDoctor);
+        llOrderService = view.findViewById(R.id.llOrderService);
 
         //banner
         viewPager = view.findViewById(R.id.view_pager);
@@ -78,6 +82,22 @@ public class Fragment_home_new extends Fragment {
         list = getListPhoto();
         bannerAdapter = new BannerAdapter(getContext(), list);
         viewPager.setAdapter(bannerAdapter);
+
+        llOrderService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),ListServiceActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        llOrderDoctor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),ListDoctorActivity.class);
+                startActivity(intent);
+            }
+        });
 
         circleIndicator.setViewPager(viewPager);
         handler.postDelayed(runnable, 3000);

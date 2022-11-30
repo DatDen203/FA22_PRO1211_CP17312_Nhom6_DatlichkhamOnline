@@ -20,6 +20,7 @@ import com.example.cp17312_nhom6_duan1.fragment.Fragment_ManagerDoctor;
 import com.example.cp17312_nhom6_duan1.fragment.Fragment_ManagerFile;
 import com.example.cp17312_nhom6_duan1.fragment.Fragment_ManagerRoom;
 import com.example.cp17312_nhom6_duan1.fragment.Fragment_ManagerService;
+import com.example.cp17312_nhom6_duan1.fragment.Fragment_Statistical;
 import com.example.cp17312_nhom6_duan1.fragment.Fragment_ViewPagerTimeWork;
 import com.google.android.material.navigation.NavigationView;
 
@@ -71,6 +72,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 navigationAdmin.getMenu().findItem(R.id.m_managerRoom).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_AccountDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_AccountUser).setChecked(false);
+                navigationAdmin.getMenu().findItem(R.id.Statistical).setChecked(false);
                 break;
             case R.id.m_managerFile:
                 replaceFragmet(new Fragment_ManagerFile());
@@ -83,6 +85,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 navigationAdmin.getMenu().findItem(R.id.m_managerRoom).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_AccountDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_AccountUser).setChecked(false);
+                navigationAdmin.getMenu().findItem(R.id.Statistical).setChecked(false);
                 break;
             case R.id.m_managerTimeWork:
                 toolBar.setTitle("Manager Time Work");
@@ -95,6 +98,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 navigationAdmin.getMenu().findItem(R.id.m_managerRoom).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_AccountDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_AccountUser).setChecked(false);
+                navigationAdmin.getMenu().findItem(R.id.Statistical).setChecked(false);
                 break;
             case R.id.m_managerCategory:
                 replaceFragmet(new Fragment_ManagerCategory());
@@ -107,6 +111,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 navigationAdmin.getMenu().findItem(R.id.m_managerRoom).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_AccountDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_AccountUser).setChecked(false);
+                navigationAdmin.getMenu().findItem(R.id.Statistical).setChecked(false);
                 break;
             case R.id.m_managerService:
                 replaceFragmet(new Fragment_ManagerService());
@@ -119,6 +124,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 navigationAdmin.getMenu().findItem(R.id.m_managerRoom).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_AccountDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_AccountUser).setChecked(false);
+                navigationAdmin.getMenu().findItem(R.id.Statistical).setChecked(false);
                 break;
             case R.id.m_managerRoom:
                 replaceFragmet(new Fragment_ManagerRoom());
@@ -131,6 +137,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 navigationAdmin.getMenu().findItem(R.id.m_managerRoom).setChecked(true);
                 navigationAdmin.getMenu().findItem(R.id.m_AccountDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_AccountUser).setChecked(false);
+                navigationAdmin.getMenu().findItem(R.id.Statistical).setChecked(false);
                 break;
             case R.id.m_AccountDoctor:
                 replaceFragmet(new Fragment_ManagerAccountDoctor());
@@ -143,6 +150,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 navigationAdmin.getMenu().findItem(R.id.m_managerRoom).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_AccountDoctor).setChecked(true);
                 navigationAdmin.getMenu().findItem(R.id.m_AccountUser).setChecked(false);
+                navigationAdmin.getMenu().findItem(R.id.Statistical).setChecked(false);
                 break;
             case R.id.m_AccountUser:
                 replaceFragmet( new Fragment_ManagerAccountUser());
@@ -155,6 +163,21 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 navigationAdmin.getMenu().findItem(R.id.m_managerRoom).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_AccountDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_AccountUser).setChecked(true);
+                navigationAdmin.getMenu().findItem(R.id.Statistical).setChecked(false);
+
+                break;
+            case R.id.Statistical:
+                replaceFragmet(new Fragment_Statistical());
+                toolBar.setTitle("Statistical");
+                navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(false);
+                navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(false);
+                navigationAdmin.getMenu().findItem(R.id.m_managerCategory).setChecked(false);
+                navigationAdmin.getMenu().findItem(R.id.m_managerTimeWork).setChecked(false);
+                navigationAdmin.getMenu().findItem(R.id.m_managerService).setChecked(false);
+                navigationAdmin.getMenu().findItem(R.id.m_managerRoom).setChecked(false);
+                navigationAdmin.getMenu().findItem(R.id.m_AccountDoctor).setChecked(false);
+                navigationAdmin.getMenu().findItem(R.id.m_AccountUser).setChecked(false);
+                navigationAdmin.getMenu().findItem(R.id.Statistical).setChecked(true);
                 break;
             case R.id.m_logOut:
                 finish();

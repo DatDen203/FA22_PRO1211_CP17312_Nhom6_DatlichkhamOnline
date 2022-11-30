@@ -6,7 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.cp17312_nhom6_duan1.database.MyDbHelper;
+import com.example.cp17312_nhom6_duan1.dto.DoctorDTO;
 import com.example.cp17312_nhom6_duan1.dto.OrderDetailDTO;
+import com.example.cp17312_nhom6_duan1.dto.StatisticalDTO;
 
 import java.util.ArrayList;
 
@@ -14,24 +16,25 @@ public class OrderDetailDAO {
     SQLiteDatabase db;
     MyDbHelper dbHelper;
 
-    public OrderDetailDAO(Context context){
+    public OrderDetailDAO(Context context) {
         dbHelper = new MyDbHelper(context);
         db = dbHelper.getWritableDatabase();
     }
-    public long innsertRow(OrderDetailDTO orderDetailDTO){
-        ContentValues val = new ContentValues();
-        val.put(OrderDetailDTO.colOrderId,orderDetailDTO.getOrder_id());
-        val.put(OrderDetailDTO.colOrderDoctorId,orderDetailDTO.getOrderDoctor_id());
 
-        long res = db.insert(OrderDetailDTO.nameTable,null,val);
+    public long innsertRow(OrderDetailDTO orderDetailDTO) {
+        ContentValues val = new ContentValues();
+        val.put(OrderDetailDTO.colOrderId, orderDetailDTO.getOrder_id());
+        val.put(OrderDetailDTO.colOrderDoctorId, orderDetailDTO.getOrderDoctor_id());
+
+        long res = db.insert(OrderDetailDTO.nameTable, null, val);
         return res;
     }
 
-    public ArrayList<OrderDetailDTO> selectAll(){
+    public ArrayList<OrderDetailDTO> selectAll() {
         ArrayList<OrderDetailDTO> list = new ArrayList<>();
-        Cursor cs  =db.query(OrderDetailDTO.nameTable,null,null,null,null,null,null);
-        if(cs.moveToFirst()){
-            while(!cs.isAfterLast()){
+        Cursor cs = db.query(OrderDetailDTO.nameTable, null, null, null, null, null, null);
+        if (cs.moveToFirst()) {
+            while (!cs.isAfterLast()) {
                 OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
                 orderDetailDTO.setOrder_id(cs.getInt(0));
                 orderDetailDTO.setOrderDoctor_id(cs.getInt(1));
@@ -43,13 +46,13 @@ public class OrderDetailDAO {
         return list;
     }
 
-    public ArrayList<OrderDetailDTO> getListOrderDetailDtoById (int idUser){
+    public ArrayList<OrderDetailDTO> getListOrderDetailDtoById(int idUser) {
         ArrayList<OrderDetailDTO> list = new ArrayList<>();
-        String[] whereArgs ={idUser+""};
+        String[] whereArgs = {idUser + ""};
         String select = "select tbOrderDetail.order_id ,tbOrderDetail.orderDoctor_id from tbOrderDetail inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbOrders on tbOrders.id = tbOrderDetail.order_id inner join tbFile on tbFile.id = tbOrders.file_id inner join tbAccount on tbFile.user_id = tbAccount.id where tbAccount.id =?";
-        Cursor cs = db.rawQuery(select,whereArgs);
-        if(cs.moveToFirst()){
-            while(!cs.isAfterLast()){
+        Cursor cs = db.rawQuery(select, whereArgs);
+        if (cs.moveToFirst()) {
+            while (!cs.isAfterLast()) {
                 OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
                 orderDetailDTO.setOrder_id(cs.getInt(0));
                 orderDetailDTO.setOrderDoctor_id(cs.getInt(1));
@@ -60,4 +63,69 @@ public class OrderDetailDAO {
         return list;
     }
 
+    public StatisticalDTO getStatisticalDTOByStartToDay(String toDay) {
+        StatisticalDTO statisticalDTO = new StatisticalDTO();
+        String[] whereArgs = {toDay.trim()};
+        String select = "select count(tbOrders.id),sum(tbOrderDoctor.total) from tbOrderDetail inner join tbOrders on tbOrderDetail.order_id = tbOrders.id inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id where tbOrderDoctor.start_date = ?";
+        Cursor cs = db.rawQuery(select, whereArgs);
+        if (cs.moveToFirst()) {
+            statisticalDTO.setNumberOrder(cs.getInt(0));
+            statisticalDTO.setSumPrice(cs.getFloat(1));
+        }
+        return statisticalDTO;
+    }
+
+    public StatisticalDTO getStatisticalDTOByOrderToDay(String OrderToDay) {
+        StatisticalDTO statisticalDTO = new StatisticalDTO();
+        String[] whereArgs = {OrderToDay.trim()};
+        String select = "select count(tbOrders.id),sum(tbOrderDoctor.total) from tbOrderDetail inner join tbOrders on tbOrderDetail.order_id = tbOrders.id inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id where tbOrders.order_date = ?";
+        Cursor cs = db.rawQuery(select, whereArgs);
+        if (cs.moveToFirst()) {
+            statisticalDTO.setNumberOrder(cs.getInt(0));
+            statisticalDTO.setSumPrice(cs.getFloat(1));
+        }
+        return statisticalDTO;
+    }
+
+    public StatisticalDTO getStatisticalDTOByToMonth(String month1 ,String month2) {
+        StatisticalDTO statisticalDTO = new StatisticalDTO();
+        String[] whereArgs = {month1.trim(),month2.trim()};
+        String select = "select count(tbOrders.id),sum(tbOrderDoctor.total) from tbOrderDetail inner join tbOrders on tbOrderDetail.order_id = tbOrders.id inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id where tbOrderDoctor.start_date > ?  and tbOrderDoctor.start_date <?";
+        Cursor cs = db.rawQuery(select, whereArgs);
+        if (cs.moveToFirst()) {
+            statisticalDTO.setNumberOrder(cs.getInt(0));
+            statisticalDTO.setSumPrice(cs.getFloat(1));
+        }
+        return statisticalDTO;
+    }
+
+    public StatisticalDTO getStatisticalDTOByOrderMonth(String month1 ,String month2) {
+        StatisticalDTO statisticalDTO = new StatisticalDTO();
+        String[] whereArgs = {month1.trim(),month2.trim()};
+        String select = "select count(tbOrders.id),sum(tbOrderDoctor.total) from tbOrderDetail inner join tbOrders on tbOrderDetail.order_id = tbOrders.id inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id where tbOrders.order_date > ?  and tbOrders.order_date <?";
+        Cursor cs = db.rawQuery(select, whereArgs);
+        if (cs.moveToFirst()) {
+            statisticalDTO.setNumberOrder(cs.getInt(0));
+            statisticalDTO.setSumPrice(cs.getFloat(1));
+        }
+        return statisticalDTO;
+    }
+    public ArrayList<DoctorDTO> getListSumPriceByOrderMonth(String month1,String month2){
+        ArrayList<DoctorDTO> list = new ArrayList<>();
+        String[] whereArds = {month1.trim(),month2.trim()};
+        String select = "select tbOrderDoctor.doctor_id ,sum(tbOrderDoctor.total) from tbOrderDetail inner join tbOrders on tbOrderDetail.order_id = tbOrders.id inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbDoctor on tbOrderDoctor.doctor_id = tbDoctor.id   where tbOrders.order_date >?  and tbOrders.order_date< ? group by tbDoctor.id order by sum(tbOrderDoctor.total) desc";
+        Cursor cs  =db.rawQuery(select,whereArds);
+        if(cs.moveToFirst()){
+            while(!cs.isAfterLast()){
+                DoctorDTO doctorDTO = new DoctorDTO();
+                doctorDTO.setId(cs.getInt(0));
+                doctorDTO.setSumPrice(cs.getFloat(1));
+
+                list.add(doctorDTO);
+                cs.moveToNext();
+            }
+        }
+        cs.close();
+        return list;
+    }
 }

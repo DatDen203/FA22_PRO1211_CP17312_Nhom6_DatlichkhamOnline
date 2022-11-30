@@ -95,6 +95,7 @@
                 android:layout_marginHorizontal="24dp">
 
                 <LinearLayout
+                    android:id="@+id/llOrderService"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -118,6 +119,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llOrderDoctor"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

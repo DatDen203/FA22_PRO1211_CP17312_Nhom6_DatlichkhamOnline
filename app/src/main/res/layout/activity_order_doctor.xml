@@ -24,7 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#F1F0F0"
-            android:layout_margin="5dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -35,12 +34,7 @@
                 android:src="@drawable/doctor6" />
 
             <LinearLayout
-
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:paddingLeft="5dp"
-                android:paddingBottom="5dp"
-
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -48,8 +42,7 @@
                     android:id="@+id/tvNameDoctor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-
+                    android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:text="Khuất Phi Long"
                     android:textColor="@color/xanh_dam"
@@ -69,7 +62,7 @@
 
                     <TextView
                         android:id="@+id/tvNameService"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
@@ -89,7 +82,7 @@
 
                     <TextView
                         android:id="@+id/tvNameRooms"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
@@ -109,7 +102,7 @@
 
                     <TextView
                         android:id="@+id/tvStartDate"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
@@ -129,7 +122,7 @@
 
                     <TextView
                         android:id="@+id/tvStartTime"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"

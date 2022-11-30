@@ -86,20 +86,14 @@ public class Fragment_Calender_Doctor extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
-                    AdapterOrderNocofirm adapterOrderNocofirm = new AdapterOrderNocofirm(listOrderNoCofirmByToDay, getContext());
-                    LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-                    rcvCalenderDoctor.setLayoutManager(manager);
-                    rcvCalenderDoctor.setAdapter(adapterOrderNocofirm);
+                    showListNoCofrimByTDay();
+
                 } else if (position == 1) {
-                    AdapterOrderNocofirm adapterOrderNocofirm = new AdapterOrderNocofirm(listAllOrderNoCofirm, getContext());
-                    LinearLayoutManager manager1 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-                    rcvCalenderDoctor.setLayoutManager(manager1);
-                    rcvCalenderDoctor.setAdapter(adapterOrderNocofirm);
+                    showListAllNoCofrim();
+
                 } else {
-                    AdapterOrderYesConfirm adapterOrderYesConfirm = new AdapterOrderYesConfirm(listAllOrderYesCofirm,getContext());
-                    LinearLayoutManager manager3 = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
-                    rcvCalenderDoctor.setLayoutManager(manager3);
-                    rcvCalenderDoctor.setAdapter(adapterOrderYesConfirm);
+                    showListYesConfirm();
+
 
                 }
             }
@@ -109,6 +103,27 @@ public class Fragment_Calender_Doctor extends Fragment {
             }
         });
 
+    }
+
+    private void showListYesConfirm() {
+        AdapterOrderYesConfirm adapterOrderYesConfirm = new AdapterOrderYesConfirm(listAllOrderYesCofirm,getContext());
+        LinearLayoutManager manager3 = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+        rcvCalenderDoctor.setLayoutManager(manager3);
+        rcvCalenderDoctor.setAdapter(adapterOrderYesConfirm);
+    }
+
+    private void showListAllNoCofrim() {
+        AdapterOrderNocofirm adapterOrderNocofirm = new AdapterOrderNocofirm(listAllOrderNoCofirm, getContext());
+        LinearLayoutManager manager1 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+        rcvCalenderDoctor.setLayoutManager(manager1);
+        rcvCalenderDoctor.setAdapter(adapterOrderNocofirm);
+    }
+
+    private void showListNoCofrimByTDay() {
+        AdapterOrderNocofirm adapterOrderNocofirm = new AdapterOrderNocofirm(listOrderNoCofirmByToDay, getContext());
+        LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+        rcvCalenderDoctor.setLayoutManager(manager);
+        rcvCalenderDoctor.setAdapter(adapterOrderNocofirm);
     }
 
     public void findViewId(View view) {
@@ -122,5 +137,9 @@ public class Fragment_Calender_Doctor extends Fragment {
         listAllOrderNoCofirm = orderDoctorDAO.listOrderDoctorByDateToDayByDoctorAllNoConfirm(doctorDTO.getId());
         listAllOrderYesCofirm = orderDoctorDAO.listOrderDoctorByDateToDayByDoctorAllYesConfirm(doctorDTO.getId());
         listOrderNoCofirmByToDay = orderDoctorDAO.listOrderDoctorByDateToDayByDoctor(date, doctorDTO.getId());
+        showListYesConfirm();
+        showListAllNoCofrim();
+        showListNoCofrimByTDay();
     }
+
 }
