@@ -24,16 +24,15 @@ public class ItemFileDetailActivity extends AppCompatActivity {
     private MaterialToolbar toolBar;
     private TextInputLayout tilNameFullName;
     private TextInputLayout tilPhoneNumber;
-    private TextView tvBirthday;
-    private ImageView imgBirthday;
     private TextInputLayout tilEmail;
     private TextInputLayout tilCccd;
     private TextInputLayout tilCountry;
-    private RadioButton rdoYes;
-    private RadioButton rdoNo;
     private TextInputLayout tilJob;
     private TextInputLayout tilAddress;
     private TextInputLayout tilDes;
+    private TextInputLayout tilbhyt;
+
+    private TextInputLayout tilBirthday;
     FileDAO fileDAO;
     FileDTO fileDTO;
     AccountDTO accountDTO;
@@ -55,16 +54,14 @@ public class ItemFileDetailActivity extends AppCompatActivity {
         tilAddress.getEditText().setText(fileDTO.getAddress());
         tilCccd.getEditText().setText(fileDTO.getCccd());
         tilPhoneNumber.getEditText().setText(accountDTO.getPhoneNumber());
-        tvBirthday.setText(formatDate2(fileDTO.getBirthday()));
+        tilBirthday.getEditText().setText(formatDate2(fileDTO.getBirthday()));
         tilEmail.getEditText().setText(fileDTO.getEmail());
         tilCountry.getEditText().setText(fileDTO.getCountry());
         tilJob.getEditText().setText(fileDTO.getJob());
-        if(fileDTO.getBhyt().equalsIgnoreCase("yes")){
-            rdoYes.setChecked(true);
-            rdoNo.setChecked(false);
-        }else if(fileDTO.getBhyt().equalsIgnoreCase("no")){
-            rdoYes.setChecked(false);
-            rdoNo.setChecked(true);
+        if(fileDTO.getBhyt().equalsIgnoreCase("Có")){
+           tilbhyt.getEditText().setText("Có bảo hiểm y tế");
+        }else if(fileDTO.getBhyt().equalsIgnoreCase("Không có bảo hiểm y tế")){
+            tilbhyt.getEditText().setText("Không");
         }
         tilDes.getEditText().setText(fileDTO.getDes());
 
@@ -101,15 +98,14 @@ public class ItemFileDetailActivity extends AppCompatActivity {
         toolBar = findViewById(R.id.toolBar);
         tilNameFullName = findViewById(R.id.tilNameFullName);
         tilPhoneNumber = findViewById(R.id.tilPhoneNumber);
-        tvBirthday = findViewById(R.id.tvBirthday);
-        imgBirthday = findViewById(R.id.imgBirthday);
         tilEmail = findViewById(R.id.tilEmail);
         tilCccd = findViewById(R.id.tilCccd);
         tilCountry = findViewById(R.id.tilCountry);
-        rdoYes = findViewById(R.id.rdoYes);
-        rdoNo = findViewById(R.id.rdoNo);
         tilJob = findViewById(R.id.tilJob);
         tilAddress = findViewById(R.id.tilAddress);
         tilDes = findViewById(R.id.tilDes);
+        tilBirthday = findViewById(R.id.tilBirthday);
+        tilbhyt = findViewById(R.id.tilbhyt);
+
     }
 }

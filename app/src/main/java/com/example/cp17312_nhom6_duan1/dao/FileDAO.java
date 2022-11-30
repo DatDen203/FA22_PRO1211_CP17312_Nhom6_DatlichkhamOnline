@@ -143,4 +143,30 @@ public class FileDAO {
         }
         return list;
     }
+    public ArrayList<FileDTO> getFileByIdUser(int idUser){
+        ArrayList<FileDTO> list = new ArrayList<>();
+        String select = "select tbFile.* from tbFile join tbAccount on tbFile.user_id= tbAccount.id  where tbAccount.id="+idUser+" group by tbFile.fullname";
+        Cursor cursor = db.rawQuery(select, null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast()){
+                FileDTO obj = new FileDTO();
+                obj.setId(cursor.getInt(0));
+                obj.setFullname(cursor.getString(1));
+                obj.setUser_id(cursor.getInt(2));
+                obj.setBirthday(cursor.getString(3));
+                obj.setCccd(cursor.getString(4));
+                obj.setCountry(cursor.getString(5));
+                obj.setBhyt(cursor.getString(6));
+                obj.setJob(cursor.getString(7));
+                obj.setEmail(cursor.getString(8));
+                obj.setAddress(cursor.getString(9));
+                obj.setDes(cursor.getString(10));
+                list.add(obj);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        return list;
+    }
 }
