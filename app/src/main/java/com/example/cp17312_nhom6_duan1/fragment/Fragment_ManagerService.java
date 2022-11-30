@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -90,6 +91,15 @@ public class Fragment_ManagerService extends Fragment {
         TextInputLayout edPriceService = (TextInputLayout) dialog.findViewById(R.id.edPriceService);
         Spinner spCategories = (Spinner) dialog.findViewById(R.id.spCategories);
         Button btnSaveService = (Button) dialog.findViewById(R.id.btnSaveService);
+        ImageView imgCancel = (ImageView) dialog.findViewById(R.id.img_cancel);
+
+        imgCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
 
         ArrayList<CategoriesDTO> listCategories = categoriesDAO.selectAll();
         SpinnerCategoriesAdapter spinnerCategoriesAdapter = new SpinnerCategoriesAdapter(listCategories, getContext());

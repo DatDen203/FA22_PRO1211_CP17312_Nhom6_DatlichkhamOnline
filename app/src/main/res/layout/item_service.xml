@@ -60,6 +60,6 @@
         android:layout_height="30dp"
         android:layout_gravity="center"
         android:layout_marginRight="15dp"
-        android:src="@drawable/edit"
+        android:src="@drawable/edit1"
         android:textColor="#FA0707" />
 </LinearLayout>

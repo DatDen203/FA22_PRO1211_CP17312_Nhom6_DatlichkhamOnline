@@ -102,6 +102,14 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.Servic
         TextInputLayout edPriceService = (TextInputLayout) dialog.findViewById(R.id.edPriceService);
         Spinner spCategories = (Spinner) dialog.findViewById(R.id.spCategories);
         Button btnSaveService = (Button) dialog.findViewById(R.id.btnSaveService);
+        ImageView imgCancel = (ImageView) dialog.findViewById(R.id.img_cancel);
+
+        imgCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
 
         ArrayList<CategoriesDTO> listCategories = categoriesDAO.selectAll();
         SpinnerCategoriesAdapter spinnerCategoriesAdapter = new SpinnerCategoriesAdapter(listCategories, context);
