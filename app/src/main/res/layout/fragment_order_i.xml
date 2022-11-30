@@ -24,7 +24,6 @@
             app:boxCornerRadiusTopEnd="15dp"
             app:boxCornerRadiusTopStart="15dp"
             app:boxStrokeColor="@color/light_blue"
-            android:enabled="false"
             android:layout_marginHorizontal="10dp"
             app:errorEnabled="true">
 
@@ -32,7 +31,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:enabled="false"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -45,7 +43,6 @@
             app:boxCornerRadiusBottomStart="15dp"
             app:boxCornerRadiusTopEnd="15dp"
             app:boxCornerRadiusTopStart="15dp"
-            android:enabled="false"
             app:boxStrokeColor="@color/light_blue"
             android:layout_marginHorizontal="10dp"
             app:errorEnabled="true">
@@ -54,7 +51,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
-                android:enabled="false"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
         <LinearLayout
