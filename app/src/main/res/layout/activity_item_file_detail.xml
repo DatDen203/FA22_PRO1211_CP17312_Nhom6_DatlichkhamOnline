@@ -16,7 +16,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_back_white"
-        app:title="Sồ sơ bệnh án"
+        app:title="Hồ Sơ Bệnh Án"
         app:titleTextColor="@color/white"
         tools:ignore="MissingConstraints" />
 

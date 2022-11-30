@@ -46,7 +46,6 @@ public class Fragment_info extends Fragment {
 
         tvFullName.setText(account.getFullName());
         tvUserName.setText(account.getUserName());
-        tvPassWord.setText(account.getPassWord());
         tvPhoneNumber.setText(account.getPhoneNumber());
 
         btnUpdate.setOnClickListener(view1 -> {
@@ -60,7 +59,6 @@ public class Fragment_info extends Fragment {
 
         imgInfoUser = (ImageView) view.findViewById(R.id.img_infoUser);
         tvUserName = (TextView) view.findViewById(R.id.tv_userName);
-        tvPassWord = (TextView) view.findViewById(R.id.tv_passWord);
         tvFullName = (TextView) view.findViewById(R.id.tv_fullName);
         tvPhoneNumber = (TextView) view.findViewById(R.id.tv_phoneNumber);
         btnUpdate = (AppCompatButton) view.findViewById(R.id.btn_update);
