@@ -59,7 +59,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Name room" />
+                    android:hint="Name room"
+                    android:imeOptions="actionNext"
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -74,7 +76,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Location" />
+                    android:hint="Location"
+                    android:imeOptions="actionDone"
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button

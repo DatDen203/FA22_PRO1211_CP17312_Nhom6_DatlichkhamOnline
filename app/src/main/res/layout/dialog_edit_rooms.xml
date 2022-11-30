@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="20dp"
     android:paddingBottom="10dp">
 
     <RelativeLayout
@@ -14,7 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
+            android:layout_margin="35dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
@@ -34,7 +34,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="50dp"
                     android:layout_weight="1"
-                    android:text="ADD"
+                    android:text="Update"
                     android:textColor="@color/black"
                     android:textSize="30dp"
                     android:textStyle="bold" />
@@ -47,41 +47,38 @@
                     android:src="@drawable/cancel" />
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="15dp"
-                android:text="Ca làm"
-                android:textColor="@color/black" />
-
-            <Spinner
-                android:id="@+id/spTimeWork"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp" />
-
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edTimeWorkDetail"
+                android:id="@+id/edNameRoom"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="25dp"
-                app:errorEnabled="true">
+                android:layout_marginRight="25dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Time work"
-                    android:imeOptions="actionDone"
-                    android:inputType="text" />
+                    android:hint="Name room" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edLocation"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="25dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Location" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/btnSaveTimeWorkDetail"
+                android:id="@+id/btnSave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
@@ -95,6 +92,6 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/timeworkdetail" />
+            android:src="@drawable/rooms" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

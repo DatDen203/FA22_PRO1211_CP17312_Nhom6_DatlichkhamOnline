@@ -44,7 +44,6 @@ public class AdapterListFile extends RecyclerView.Adapter<AdapterListFile.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHoderItemListFile holder, int position) {
         final int index = position;
-        listFile = fileDAO.getAll();
         FileDTO fileDTO = listFile.get(index);
         AccountDTO accountDTO = accountDAO.getDtoAccount(fileDTO.getUser_id());
         holder.tvFullName.setText(fileDTO.getFullname());

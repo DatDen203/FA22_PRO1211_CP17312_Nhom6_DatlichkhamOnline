@@ -75,7 +75,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Time work" />
+                    android:hint="Time work"
+                    android:inputType="text"
+                    android:imeOptions="actionDone"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -83,7 +85,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="25dp"
                 android:background="@drawable/khung_btn_sign_in"
                 android:text="Save" />
