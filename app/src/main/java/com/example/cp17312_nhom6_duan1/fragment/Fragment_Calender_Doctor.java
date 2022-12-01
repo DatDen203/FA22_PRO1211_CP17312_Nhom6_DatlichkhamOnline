@@ -33,18 +33,12 @@ import java.util.Calendar;
 
 public class Fragment_Calender_Doctor extends Fragment {
 
-    private AppCompatSpinner spCalenderDate;
     private RecyclerView rcvCalenderDoctor;
-
-    private ArrayList<String> dates = new ArrayList<>();
-
     private DoctorDAO doctorDAO;
     private ArrayList<OrderDoctorDTO> listAllOrderNoCofirm;
-    private ArrayList<OrderDoctorDTO> listAllOrderYesCofirm;
-    private ArrayList<OrderDoctorDTO> listOrderNoCofirmByToDay;
     private DoctorDTO doctorDTO;
     private OrderDoctorDAO orderDoctorDAO;
-    private String date;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,71 +57,23 @@ public class Fragment_Calender_Doctor extends Fragment {
         if (id != -1) {
             doctorDTO = doctorDAO.getDtoDoctorByIdAccount(id);
             listAllOrderNoCofirm = orderDoctorDAO.listOrderDoctorByDateToDayByDoctorAllNoConfirm(doctorDTO.getId());
-            listAllOrderYesCofirm = orderDoctorDAO.listOrderDoctorByDateToDayByDoctorAllYesConfirm(doctorDTO.getId());
-
-            //Lay ngay hien tai
-            //Lấy ra ngày hiện tại
-            Calendar c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-            date = year + "/" + (month + 1) + "/" + day;
-
-            listOrderNoCofirmByToDay = orderDoctorDAO.listOrderDoctorByDateToDayByDoctor(date, doctorDTO.getId());
+            showListAllNoCofrim(listAllOrderNoCofirm);
         }
 
-        dates.add("Today no confirm");
-        dates.add("All no confirm");
-        dates.add("All yes confirm");
-        ArrayAdapter<String> adapterSpDates = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, dates);
-        adapterSpDates.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spCalenderDate.setAdapter(adapterSpDates);
-        spCalenderDate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) {
-                    showListNoCofrimByTDay();
 
-                } else if (position == 1) {
-                    showListAllNoCofrim();
-
-                } else {
-                    showListYesConfirm();
-
-
-                }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
     }
 
-    private void showListYesConfirm() {
-        AdapterOrderYesConfirm adapterOrderYesConfirm = new AdapterOrderYesConfirm(listAllOrderYesCofirm,getContext());
-        LinearLayoutManager manager3 = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
-        rcvCalenderDoctor.setLayoutManager(manager3);
-        rcvCalenderDoctor.setAdapter(adapterOrderYesConfirm);
-    }
 
-    private void showListAllNoCofrim() {
-        AdapterOrderNocofirm adapterOrderNocofirm = new AdapterOrderNocofirm(listAllOrderNoCofirm, getContext());
+
+    private void showListAllNoCofrim(ArrayList<OrderDoctorDTO> list) {
+        AdapterOrderNocofirm adapterOrderNocofirm = new AdapterOrderNocofirm(list, getContext());
         LinearLayoutManager manager1 = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         rcvCalenderDoctor.setLayoutManager(manager1);
         rcvCalenderDoctor.setAdapter(adapterOrderNocofirm);
     }
 
-    private void showListNoCofrimByTDay() {
-        AdapterOrderNocofirm adapterOrderNocofirm = new AdapterOrderNocofirm(listOrderNoCofirmByToDay, getContext());
-        LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        rcvCalenderDoctor.setLayoutManager(manager);
-        rcvCalenderDoctor.setAdapter(adapterOrderNocofirm);
-    }
-
     public void findViewId(View view) {
-        spCalenderDate = view.findViewById(R.id.sp_calender_date);
         rcvCalenderDoctor = view.findViewById(R.id.rcv_calender_doctor);
     }
 
@@ -135,11 +81,8 @@ public class Fragment_Calender_Doctor extends Fragment {
     public void onResume() {
         super.onResume();
         listAllOrderNoCofirm = orderDoctorDAO.listOrderDoctorByDateToDayByDoctorAllNoConfirm(doctorDTO.getId());
-        listAllOrderYesCofirm = orderDoctorDAO.listOrderDoctorByDateToDayByDoctorAllYesConfirm(doctorDTO.getId());
-        listOrderNoCofirmByToDay = orderDoctorDAO.listOrderDoctorByDateToDayByDoctor(date, doctorDTO.getId());
-        showListYesConfirm();
-        showListAllNoCofrim();
-        showListNoCofrimByTDay();
+        showListAllNoCofrim(listAllOrderNoCofirm);
+
     }
 
 }

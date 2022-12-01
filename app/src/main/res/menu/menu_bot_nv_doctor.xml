@@ -3,9 +3,16 @@
     <item android:id="@+id/m_lich_kham"
         android:title="Lịch khám"
         android:icon="@drawable/date"/>
-    <item android:id="@+id/m_notify"
-        android:title="Thông báo"
-        android:icon="@drawable/notify2"/>
+
+    <item android:id="@+id/m_noCofrimForDay"
+        android:title="Lịch khám hôm nay"
+        android:icon="@drawable/date"/>
+    <item android:id="@+id/m_statisticalDoctor"
+        android:title="Thống kê"
+        android:icon="@drawable/statistical"/>
+    <item android:id="@+id/m_yesCofrim"
+        android:title="lịch đã khám"
+        android:icon="@drawable/date"/>
     <item android:id="@+id/m_inforDoctor"
         android:title="Tài khoản"
         android:icon="@drawable/user"/>

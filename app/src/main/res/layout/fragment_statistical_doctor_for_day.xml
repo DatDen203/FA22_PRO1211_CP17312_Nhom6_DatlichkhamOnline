@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Ngày"
+            android:text="Giờ"
             android:textSize="14dp"
             android:gravity="start"
             android:textColor="@color/black"/>
@@ -31,11 +31,12 @@
             android:textColor="@color/black"/>
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcv_StatisticalDoctorForMonth"
+        android:id="@+id/rcv_StatisticalDoctorForDay"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
+        tools:listitem="@layout/item_statistical_doctor"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <TextView
