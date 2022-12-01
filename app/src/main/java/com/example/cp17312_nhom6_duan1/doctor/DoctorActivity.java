@@ -12,6 +12,10 @@ import android.widget.FrameLayout;
 
 import com.example.cp17312_nhom6_duan1.R;
 import com.example.cp17312_nhom6_duan1.fragment.Fragment_Calender_Doctor;
+import com.example.cp17312_nhom6_duan1.fragment.fragment_doctor.FragmentInforDoctor;
+import com.example.cp17312_nhom6_duan1.fragment.fragment_doctor.FragmentListNoCofrimForDay;
+import com.example.cp17312_nhom6_duan1.fragment.fragment_doctor.FragmentListYesCofrim;
+import com.example.cp17312_nhom6_duan1.fragment.fragment_doctor.FragmentViewPagerDoctor;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -34,9 +38,17 @@ public class DoctorActivity extends AppCompatActivity {
                     case R.id.m_lich_kham:
                         replaceFragment(new Fragment_Calender_Doctor());
                         break;
-                    case R.id.m_notify:
+                    case R.id.m_statisticalDoctor:
+                        replaceFragment(new FragmentViewPagerDoctor());
+                        break;
+                    case R.id.m_noCofrimForDay:
+                        replaceFragment(new FragmentListNoCofrimForDay());
+                        break;
+                    case R.id.m_yesCofrim:
+                        replaceFragment(new FragmentListYesCofrim());
                         break;
                     case R.id.m_inforDoctor:
+                        replaceFragment(new FragmentInforDoctor());
                         break;
                 }
                 return true;

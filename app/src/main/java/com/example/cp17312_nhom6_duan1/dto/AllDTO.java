@@ -14,6 +14,13 @@ public class AllDTO {
     private float servicesPrice;
     private int categoriesId;
 
+    // thong ke cua dcotor
+    private int idDoctor;
+    private String day;
+    private String time;
+    private double total;
+    //===================
+
     public AllDTO() {
     }
 
@@ -135,5 +142,37 @@ public class AllDTO {
 
     public void setStartTime(String startTime) {
         this.startTime = startTime;
+    }
+
+    public int getIdDoctor() {
+        return idDoctor;
+    }
+
+    public void setIdDoctor(int idDoctor) {
+        this.idDoctor = idDoctor;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 }
