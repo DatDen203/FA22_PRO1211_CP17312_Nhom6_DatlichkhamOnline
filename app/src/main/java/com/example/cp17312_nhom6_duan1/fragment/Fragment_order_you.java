@@ -117,11 +117,13 @@ public class Fragment_order_you extends Fragment {
         else{
             rdoYes.setChecked(true);
         }
+
+        ArrayList<FileDTO> listFileDTO = fileDAO.getFileByIdUser(idUser);
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                     OrderDoctorDTO orderDoctorDTO = new OrderDoctorDTO();
-                    orderDoctorDTO.setFile_id(1);
+                    orderDoctorDTO.setFile_id(listFileDTO.get(0).getId());
                     orderDoctorDTO.setDoctor_id(idDoctor);
                     orderDoctorDTO.setStart_date(startDate);
                     orderDoctorDTO.setStart_time(startTime);

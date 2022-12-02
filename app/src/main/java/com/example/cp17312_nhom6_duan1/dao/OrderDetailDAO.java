@@ -64,6 +64,43 @@ public class OrderDetailDAO {
         return list;
     }
 
+    public ArrayList<OrderDetailDTO> getListOrderDetailDtoByYesConfirm(int idUser) {
+        ArrayList<OrderDetailDTO> list = new ArrayList<>();
+        String[] whereArgs = {idUser + ""};
+        String select = "select tbOrders.id,tbOrderDoctor.id from tbOrderDetail inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbOrders on tbOrders.id = tbOrderDetail.order_id inner join tbFile on tbFile.id = tbOrders.file_id inner join tbAccount on tbAccount.id = tbFile.user_id where tbOrders.status ='Đã khám xong' and  tbAccount.id = ?";
+        Cursor cs = db.rawQuery(select, whereArgs);
+        if (cs.moveToFirst()) {
+            while (!cs.isAfterLast()) {
+                OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
+                orderDetailDTO.setOrder_id(cs.getInt(0));
+                orderDetailDTO.setOrderDoctor_id(cs.getInt(1));
+                list.add(orderDetailDTO);
+                cs.moveToNext();
+            }
+        }
+
+        return list;
+    }
+
+    public ArrayList<OrderDetailDTO> getListOrderDetailDtoByNoConfirm(int idUser) {
+        ArrayList<OrderDetailDTO> list = new ArrayList<>();
+        String[] whereArgs = {idUser + ""};
+        String select = "select tbOrders.id,tbOrderDoctor.id from tbOrderDetail inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbOrders on tbOrders.id = tbOrderDetail.order_id inner join tbFile on tbFile.id = tbOrders.file_id inner join tbAccount on tbAccount.id = tbFile.user_id where tbOrders.status ='Chờ ngày khám' and  tbAccount.id = ?";
+        Cursor cs = db.rawQuery(select, whereArgs);
+        if (cs.moveToFirst()) {
+            while (!cs.isAfterLast()) {
+                OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
+                orderDetailDTO.setOrder_id(cs.getInt(0));
+                orderDetailDTO.setOrderDoctor_id(cs.getInt(1));
+                list.add(orderDetailDTO);
+                cs.moveToNext();
+            }
+        }
+        return list;
+    }
+
+
+
     public StatisticalDTO getStatisticalDTOByStartToDay(String toDay) {
         StatisticalDTO statisticalDTO = new StatisticalDTO();
         String[] whereArgs = {toDay.trim()};
