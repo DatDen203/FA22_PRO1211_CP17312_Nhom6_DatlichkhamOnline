@@ -19,7 +19,6 @@ import com.example.cp17312_nhom6_duan1.dto.Banner;
 import com.example.cp17312_nhom6_duan1.fragment.fragment_nav_user.Fragment_bookingHistory;
 import com.example.cp17312_nhom6_duan1.fragment.fragment_nav_user.Fragment_file;
 import com.example.cp17312_nhom6_duan1.fragment.fragment_nav_user.Fragment_home_new;
-import com.example.cp17312_nhom6_duan1.fragment.fragment_nav_user.Fragment_info;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 //    private RelativeLayout itemService3;
 //    private RelativeLayout itemService4;
     DrawerLayout drawerLayout;
-    TextView tvHiName,tv_title;
+    TextView tvHiName, tv_title;
     ImageView imgOpenNav, imgAvt;
 
     //    CircleIndicator circleIndicator;
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         imgOpenNav = toolbar.findViewById(R.id.img_open_nav);
-        tv_title= findViewById(R.id.tv_title);
+        tv_title = findViewById(R.id.tv_title);
 //        tvHiName.setText("Hi " + getIntent().getStringExtra("fullname") + " !");
 //        list = getListPhoto();
 //        bannerAdapter = new BannerAdapter(this, list);
@@ -109,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
                     navView.getMenu().findItem(R.id.nav_home_user).setChecked(true);
                     navView.getMenu().findItem(R.id.nav_file).setChecked(false);
                     navView.getMenu().findItem(R.id.nav_booking_history).setChecked(false);
-                    navView.getMenu().findItem(R.id.nav_info).setChecked(false);
                     break;
                 case R.id.nav_file:
                     replaceFragment(new Fragment_file());
@@ -117,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
                     navView.getMenu().findItem(R.id.nav_home_user).setChecked(false);
                     navView.getMenu().findItem(R.id.nav_file).setChecked(true);
                     navView.getMenu().findItem(R.id.nav_booking_history).setChecked(false);
-                    navView.getMenu().findItem(R.id.nav_info).setChecked(false);
                     break;
                 case R.id.nav_booking_history:
                     replaceFragment(new Fragment_bookingHistory());
@@ -125,15 +122,6 @@ public class MainActivity extends AppCompatActivity {
                     navView.getMenu().findItem(R.id.nav_home_user).setChecked(false);
                     navView.getMenu().findItem(R.id.nav_file).setChecked(false);
                     navView.getMenu().findItem(R.id.nav_booking_history).setChecked(true);
-                    navView.getMenu().findItem(R.id.nav_info).setChecked(false);
-                    break;
-                case R.id.nav_info:
-                    replaceFragment(new Fragment_info());
-                    tv_title.setText("Thông Tin Tài Khoản");
-                    navView.getMenu().findItem(R.id.nav_home_user).setChecked(false);
-                    navView.getMenu().findItem(R.id.nav_file).setChecked(false);
-                    navView.getMenu().findItem(R.id.nav_booking_history).setChecked(false);
-                    navView.getMenu().findItem(R.id.nav_info).setChecked(true);
                     break;
                 case R.id.nav_exit:
                     Intent back = new Intent(getApplicationContext(), SignInActivity.class);
