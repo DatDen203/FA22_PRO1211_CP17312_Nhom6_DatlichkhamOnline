@@ -37,12 +37,12 @@ public class SignInActivity extends AppCompatActivity {
     MaterialCheckBox chkRememberPass;
     ArrayList<AccountDTO> listAcc;
     SharedPreferences sharedPreferences;
-    ActivityResultLauncher activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-        @Override
-        public void onActivityResult(ActivityResult result) {
-            save();
-        }
-    });
+//    ActivityResultLauncher activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+//        @Override
+//        public void onActivityResult(ActivityResult result) {
+//            save();
+//        }
+//    });
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +56,15 @@ public class SignInActivity extends AppCompatActivity {
         accountDAO = new AccountDAO(this);
         listAcc = accountDAO.getAll();
         sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("USER_FILE", MODE_PRIVATE);
+        String user = sharedPreferences.getString("USERNAME", "");
+        String pass = sharedPreferences.getString("PASSWORD", "");
+        Boolean rem = sharedPreferences.getBoolean("REMEMBER", false);
+
+        edtUsername.setText(user);
+        edtPassword.setText(pass);
+        chkRememberPass.setChecked(rem);
         findViewById(R.id.tv_register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,6 +81,7 @@ public class SignInActivity extends AppCompatActivity {
                     tilUsername.setError("Vui lòng không để trống");
                     tilPassword.setError("Vui lòng không để trống");
                     ErrorAnimaton(tilUsername);
+                    ErrorAnimaton(tilPassword);
 //                    ErrorAnimaton2(tilPassword,100);
                 } else {
                     tilUsername.setError("");
@@ -79,10 +89,9 @@ public class SignInActivity extends AppCompatActivity {
                     if (checkLogin == true) {
                         SharedPreferences sharedPreferences = getSharedPreferences("getIdUser", MODE_PRIVATE);
                         String fullname = sharedPreferences.getString("fullname", "");
-                        save();
+                        rememberUser(userName, passWord, chkRememberPass.isChecked());
                         tilUsername.setError("");
                         tilPassword.setError("");
-                        tilPassword.getEditText().setText("");
                         String checkRole = sharedPreferences.getString("role", "");
                         if (checkRole.equalsIgnoreCase("Admin")) {
                             Toast.makeText(SignInActivity.this, "Man admin", Toast.LENGTH_SHORT).show();
@@ -108,11 +117,11 @@ public class SignInActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        read();
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        read();
+//    }
 
     public void save() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -133,6 +142,19 @@ public class SignInActivity extends AppCompatActivity {
             tilPassword.getEditText().setText(pass);
             chkRememberPass.setChecked(true);
         }
+    }
+
+    public void rememberUser(String user, String pass, boolean status){
+        SharedPreferences sharedPreferences = getSharedPreferences("USER_FILE", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if (!status){
+            editor.clear();
+        } else {
+            editor.putString("USERNAME", user);
+            editor.putString("PASSWORD", pass);
+            editor.putBoolean("REMEMBER", status);
+        }
+        editor.commit();
     }
 
     public void ErrorAnimaton(View view){
