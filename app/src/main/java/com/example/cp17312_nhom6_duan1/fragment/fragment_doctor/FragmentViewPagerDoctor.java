@@ -44,6 +44,8 @@ public class FragmentViewPagerDoctor extends Fragment {
                     tab.setText("Thống kê theo tháng");
                 }else if(position==1){
                     tab.setText("Thống kê theo ngày");
+                } else if(position==2){
+                    tab.setText("Thống kê");
                 }
             }
         });

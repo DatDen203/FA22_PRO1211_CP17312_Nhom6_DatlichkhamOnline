@@ -68,7 +68,7 @@ public class FragmentStatisticalDoctorForDay extends Fragment {
         Log.e(TAG, "onViewCreated: list.sixe="+listPriceDay.size() );
         AdapterStatisticalDoctor adapterStatisticalDoctor = new AdapterStatisticalDoctor(listPriceDay,"day");
         rcvStatisticalDoctorForDay.setAdapter(adapterStatisticalDoctor);
-        tvSumPrice.setText(orderDetailDAO.getSumPriceByDayDoctor(date, doctorDTO.getId())+" đ");
+        tvSumPrice.setText("Tổng tiền: "+orderDetailDAO.getSumPriceByDayDoctor(date, doctorDTO.getId())+" đ");
     }
 
 

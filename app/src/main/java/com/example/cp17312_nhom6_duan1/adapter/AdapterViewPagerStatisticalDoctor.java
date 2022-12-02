@@ -22,6 +22,8 @@ public class AdapterViewPagerStatisticalDoctor extends FragmentStateAdapter {
                 return new Fragment_Statistical_month_doctor();
             case 1:
                 return new FragmentStatisticalDoctorForDay();
+            case 2:
+                return new FragmentStatisticalDoctor();
             default:
                 return new Fragment_Statistical_month_doctor();
         }
@@ -29,6 +31,6 @@ public class AdapterViewPagerStatisticalDoctor extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 3;
     }
 }

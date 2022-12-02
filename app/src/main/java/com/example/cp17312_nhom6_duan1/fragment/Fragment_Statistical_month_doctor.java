@@ -65,7 +65,7 @@ public class Fragment_Statistical_month_doctor extends Fragment {
         Log.e("TAG", "onViewCreated: list.size="+listPriceMonth.size());
         AdapterStatisticalDoctor adapterStatisticalDoctor = new AdapterStatisticalDoctor(listPriceMonth,"month");
         rcvStatisticalDoctorForMonth.setAdapter(adapterStatisticalDoctor);
-        tvSumPrice.setText(orderDetailDAO.getSumPriceByMonthDoctor(startDate, endDate, doctorDTO.getId())+" đ");
+        tvSumPrice.setText("Tổng tiền: "+orderDetailDAO.getSumPriceByMonthDoctor(startDate, endDate, doctorDTO.getId())+" đ");
     }
 
     @Override
