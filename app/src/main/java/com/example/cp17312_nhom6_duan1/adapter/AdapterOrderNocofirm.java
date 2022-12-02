@@ -2,6 +2,7 @@ package com.example.cp17312_nhom6_duan1.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.example.cp17312_nhom6_duan1.adapter.ViewHolder.ItemOrderNoCofirmViewH
 import com.example.cp17312_nhom6_duan1.dao.FileDAO;
 import com.example.cp17312_nhom6_duan1.dao.OrderDAO;
 import com.example.cp17312_nhom6_duan1.dao.OrderDoctorDAO;
+import com.example.cp17312_nhom6_duan1.doctor.CofrimOrderDoctorActivity;
 import com.example.cp17312_nhom6_duan1.dto.FileDTO;
 import com.example.cp17312_nhom6_duan1.dto.OrderDTO;
 import com.example.cp17312_nhom6_duan1.dto.OrderDetailDTO;
@@ -43,15 +45,7 @@ public class AdapterOrderNocofirm extends RecyclerView.Adapter<ItemOrderNoCofirm
         OrderDoctorDAO orderDoctorDAO = new OrderDoctorDAO(context);
         OrderDoctorDTO orderDoctorDTO1 = list.get(position);
         OrderDAO orderDAO = new OrderDAO(context);
-        holder.btnStatus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                OrderDTO orderDTO = orderDAO.getOrderDTOById(orderDoctorDTO1.getOrder_id());
-                orderDTO.setStatus("Đã khám xong");
-                int res = orderDAO.updateRow(orderDTO);
-                notifyDataSetChanged();
-            }
-        });
+
         OrderDoctorDTO orderDoctorDTO = orderDoctorDAO.getOrderDoctorDtoById(orderDoctorDTO1.getId());
 
         FileDAO fileDAO = new FileDAO(context);
@@ -62,7 +56,11 @@ public class AdapterOrderNocofirm extends RecyclerView.Adapter<ItemOrderNoCofirm
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Thông tin chi tiết bệnh nhân");
-                builder.setMessage("Tên bệnh nhân: "+fileDTO.getFullname()+"\nNgày sinh: "+fileDTO.getBirthday()+"\nCăn cước công dân: "+fileDTO.getCccd()+"\nQuốc tịch: "+fileDTO.getCountry()+"\nBảo hiểm y tế : "+fileDTO.getBhyt()+"\nCông việc :"+fileDTO.getJob()+"\nĐịa chỉ nơi ở : "+fileDTO.getAddress()+"\nLí do khám : "+fileDTO.getDes());
+                builder.setMessage("Tên bệnh nhân: "+fileDTO.getFullname()+"\nNgày sinh: "
+                        +fileDTO.getBirthday()+"\nCăn cước công dân: "+fileDTO.getCccd()
+                        +"\nQuốc tịch: "+fileDTO.getCountry()+"\nBảo hiểm y tế : "
+                        +fileDTO.getBhyt()+"\nCông việc :"+fileDTO.getJob()
+                        +"\nĐịa chỉ nơi ở : "+fileDTO.getAddress()+"\nLí do khám : "+fileDTO.getDes());
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }
@@ -70,6 +68,22 @@ public class AdapterOrderNocofirm extends RecyclerView.Adapter<ItemOrderNoCofirm
 
         holder.tvStartDate.setText("Ngày khám: "+orderDoctorDTO.getStart_date());
         holder.tvStartTime.setText("Giờ khám: "+orderDoctorDTO.getStart_time());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CofrimOrderDoctorActivity.class);
+                intent.putExtra("fullName", fileDTO.getFullname());
+                intent.putExtra("birthday", fileDTO.getBirthday());
+                intent.putExtra("cccd", fileDTO.getCccd());
+                intent.putExtra("country", fileDTO.getCountry());
+                intent.putExtra("bhyt", fileDTO.getBhyt());
+                intent.putExtra("job", fileDTO.getJob());
+                intent.putExtra("address", fileDTO.getAddress());
+                intent.putExtra("des", fileDTO.getDes());
+                intent.putExtra("orderID",orderDoctorDTO1.getOrder_id());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

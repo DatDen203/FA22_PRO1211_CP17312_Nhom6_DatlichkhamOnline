@@ -118,7 +118,7 @@ public class Fragment_ManagerService extends Fragment {
                     list.addAll(servicesDAO.selectAll());
                     servicesAdapter.notifyDataSetChanged();
                     Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
-//                    dialog.dismiss();
+                    dialog.dismiss();
                 } else {
                     Toast.makeText(getContext(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
                 }
