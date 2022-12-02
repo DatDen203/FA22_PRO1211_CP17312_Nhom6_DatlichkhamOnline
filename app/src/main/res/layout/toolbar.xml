@@ -42,7 +42,7 @@
                 android:layout_toEndOf="@id/img_logo"
                 android:text="BookingCare"
                 android:textColor="@color/green"
-                android:textSize="24dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
