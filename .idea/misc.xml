@@ -34,10 +34,12 @@
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/drawable/shape_border_bot.xml" value="0.132" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/drawable/shape_border_item.xml" value="0.132" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/drawable/shape_fab.xml" value="0.1305" />
+        <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_add_doctor.xml" value="0.22" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_admin.xml" value="0.22" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_doctor.xml" value="0.1796875" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_doctor_by_service.xml" value="0.22" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_item_order_doctor.xml" value="0.22" />
+        <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_list_doctor.xml" value="0.14749893116716545" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_list_order.xml" value="0.14749893116716545" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_sign_in.xml" value="0.1796875" />
@@ -68,6 +70,7 @@
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/fragment_list_yes_cofrim.xml" value="0.14749893116716545" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/fragment_manager_file.xml" value="0.14749893116716545" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/fragment_manager_service.xml" value="0.14749893116716545" />
+        <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/fragment_order_you.xml" value="0.14749893116716545" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/fragment_statistical_doctor.xml" value="0.14749893116716545" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/fragment_statistical_doctor_for_day.xml" value="0.22" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/fragment_statistical_month.xml" value="0.14749893116716545" />
