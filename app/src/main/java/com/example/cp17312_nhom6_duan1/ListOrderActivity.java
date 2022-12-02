@@ -29,7 +29,7 @@ public class ListOrderActivity extends AppCompatActivity {
         OrderDetailDAO orderDetailDAO = new OrderDetailDAO(this);
         SharedPreferences sharedPreferences = getSharedPreferences("getIdUser",MODE_PRIVATE);
         int idUser = sharedPreferences.getInt("idUser",-1);
-        ArrayList<OrderDetailDTO> listOrderDetail = orderDetailDAO.getListOrderDetailDtoById(idUser);
+        ArrayList<OrderDetailDTO> listOrderDetail = orderDetailDAO.getListOrderDetailDtoByNoConfirm(idUser);
 
         AdapterHistoryOrder adapterOrder = new AdapterHistoryOrder(listOrderDetail,this);
         LinearLayoutManager manager  =new LinearLayoutManager(this,RecyclerView.VERTICAL,false);

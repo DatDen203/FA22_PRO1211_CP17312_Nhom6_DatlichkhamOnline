@@ -36,7 +36,7 @@ public class Fragment_bookingHistory extends Fragment {
         OrderDetailDAO orderDetailDAO = new OrderDetailDAO(getContext());
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("getIdUser", getContext().MODE_PRIVATE);
         int idUser = sharedPreferences.getInt("idUser", -1);
-        ArrayList<OrderDetailDTO> listOrderDetail = orderDetailDAO.getListOrderDetailDtoById(idUser);
+        ArrayList<OrderDetailDTO> listOrderDetail = orderDetailDAO.getListOrderDetailDtoByYesConfirm(idUser);
 
         AdapterHistoryOrder adapterOrder = new AdapterHistoryOrder(listOrderDetail, getContext());
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
