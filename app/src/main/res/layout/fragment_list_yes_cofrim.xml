@@ -12,9 +12,9 @@
         android:layout_height="wrap_content"
         android:background="@color/cardview_light_background"
         android:gravity="center"
-        android:padding="8dp"
-        android:text="Lịch khám đã xác nhân"
-        android:textColor="@color/black"
+        android:text="Lịch khám đã xác nhận"
+        android:textAllCaps="true"
+        android:layout_marginTop="24dp"
         android:textSize="18dp" />
 
     <androidx.recyclerview.widget.RecyclerView
