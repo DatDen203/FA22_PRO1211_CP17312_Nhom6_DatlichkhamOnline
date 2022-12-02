@@ -7,13 +7,10 @@
     android:orientation="vertical"
     tools:context=".ListServiceActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarService"
+    <include
+        layout="@layout/toolbar1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/xanh_nhat"
-        app:title="Chuyên khoa"
-        app:titleTextColor="@color/xanh_dam"/>
+        android:layout_height="wrap_content" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_list_services"

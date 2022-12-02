@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.cp17312_nhom6_duan1.dao.FileDAO;
 import com.example.cp17312_nhom6_duan1.dto.FileDTO;
@@ -25,16 +26,24 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class FileActivity extends AppCompatActivity {
-    private TextInputLayout tilNameFullName,tilEmail,tilCccd,tilCountry,tilJob,tilAddress;
+    private TextInputLayout tilNameFullName,tilEmail,tilCccd,tilCountry,tilJob,tilAddress,tilBirthday;
     private RadioButton rdoYes,rdoNo;
     private ImageView imgBirthday;
-    private TextView tvBirthday;
     private Button btnSave;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_file);
         init();
+        Toolbar toolbar1 = findViewById(R.id.toolbar1);
+        ImageView img_open_back = toolbar1.findViewById(R.id.img_open_back);
+        img_open_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
 
         SharedPreferences preferences = getSharedPreferences("getIdUser",MODE_PRIVATE);
         int idUser = preferences.getInt("idUser",-1);
@@ -53,7 +62,7 @@ public class FileActivity extends AppCompatActivity {
             try {
                 Date d = f.parse(fileDTO.getBirthday());
                 SimpleDateFormat f1 = new SimpleDateFormat("dd/MM/yyyy");
-                tvBirthday.setText(f1.format(d));
+                tilBirthday.getEditText().setText(f1.format(d));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -70,7 +79,7 @@ public class FileActivity extends AppCompatActivity {
                         Toast.makeText(FileActivity.this, "Họ tên không được bỏ trống", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    if(tvBirthday.getText().toString().equals("")){
+                    if(tilBirthday.getEditText().getText().toString().equals("")){
                         Toast.makeText(FileActivity.this, "Ngày sinh không được bỏ trống", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -96,7 +105,7 @@ public class FileActivity extends AppCompatActivity {
                     }
                     fileDTO.setFullname(tilNameFullName.getEditText().getText().toString());
                     fileDTO.setUser_id(idUser);
-                    fileDTO.setBirthday(formatDate(tvBirthday.getText().toString()));
+                    fileDTO.setBirthday(formatDate(tilBirthday.getEditText().getText().toString()));
                     fileDTO.setCccd(tilCccd.getEditText().getText().toString());
                     fileDTO.setCountry(tilCountry.getEditText().getText().toString());
                     if(rdoYes.isChecked()){
@@ -126,7 +135,7 @@ public class FileActivity extends AppCompatActivity {
                         Toast.makeText(FileActivity.this, "Họ tên không được bỏ trống", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    if(tvBirthday.getText().toString().equals("")){
+                    if(tilBirthday.getEditText().getText().toString().equals("")){
                         Toast.makeText(FileActivity.this, "Ngày sinh không được bỏ trống", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -154,7 +163,7 @@ public class FileActivity extends AppCompatActivity {
                     FileDTO fileDTO = new FileDTO();
                     fileDTO.setFullname(tilNameFullName.getEditText().getText().toString());
                     fileDTO.setUser_id(idUser);
-                    fileDTO.setBirthday(formatDate(tvBirthday.getText().toString()));
+                    fileDTO.setBirthday(formatDate(tilBirthday.getEditText().getText().toString()));
                     fileDTO.setCccd(tilCccd.getEditText().getText().toString());
                     fileDTO.setCountry(tilCountry.getEditText().getText().toString());
                     if(rdoYes.isChecked()){
@@ -174,7 +183,7 @@ public class FileActivity extends AppCompatActivity {
                 }
             });
         }
-        imgBirthday.setOnClickListener(new View.OnClickListener() {
+        tilBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar c = Calendar.getInstance();
@@ -185,7 +194,7 @@ public class FileActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         String date = day+"/"+(month+1)+"/"+year;
-                        tvBirthday.setText(date);
+                        tilBirthday.getEditText().setText(date);
                     }
                 },year,month,day);
                 dialog.show();
@@ -205,7 +214,7 @@ public class FileActivity extends AppCompatActivity {
         rdoYes = findViewById(R.id.rdoYes);
         rdoNo = findViewById(R.id.rdoNo);
         imgBirthday = findViewById(R.id.imgBirthday);
-        tvBirthday = findViewById(R.id.tvBirthday);
+        tilBirthday = findViewById(R.id.tilBirthday);
         btnSave = findViewById(R.id.btnSave);
     }
     public String formatDate(String a) {

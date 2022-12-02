@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.cp17312_nhom6_duan1.adapter.AdapterOrder;
 import com.example.cp17312_nhom6_duan1.dao.OrderDAO;
@@ -41,6 +42,16 @@ public class ConfirmActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm);
+
+        Toolbar toolbar1 = findViewById(R.id.toolbar1);
+        ImageView img_open_back = toolbar1.findViewById(R.id.img_open_back);
+        img_open_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+        
         rcv_list_order = findViewById(R.id.rcv_list_order);
         tvSumPrice = findViewById(R.id.tvSumPrice);
         btnOrder = findViewById(R.id.btnOrder);
