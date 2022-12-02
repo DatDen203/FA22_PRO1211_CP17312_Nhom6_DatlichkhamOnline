@@ -6,12 +6,17 @@
     android:fillViewport="true"
     android:orientation="vertical">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp"
         android:orientation="vertical">
-
+        <androidx.appcompat.widget.Toolbar
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="Hồ sơ cá nhân"
+            android:background="@color/xanh_nhat"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilNameFullName"
@@ -24,7 +29,6 @@
             app:boxCornerRadiusTopEnd="15dp"
             app:boxCornerRadiusTopStart="15dp"
             app:boxStrokeColor="@color/light_blue"
-            android:enabled="false"
             android:layout_marginHorizontal="10dp"
             app:errorEnabled="true">
 
@@ -32,31 +36,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:enabled="false"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilPhoneNumber"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Số điện thoại"
-            android:enabled="false"
-            app:boxCornerRadiusBottomEnd="15dp"
-            app:boxCornerRadiusBottomStart="15dp"
-            app:boxCornerRadiusTopEnd="15dp"
-            app:boxCornerRadiusTopStart="15dp"
-            app:boxStrokeColor="@color/light_blue"
-            android:layout_marginHorizontal="10dp"
-            app:errorEnabled="true">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="phone"
-                android:enabled="false"
-                android:textColor="@color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
         <LinearLayout
             android:layout_width="250dp"
             android:layout_height="wrap_content"
@@ -74,6 +56,13 @@
                 android:gravity="center_vertical"
                 android:layout_gravity="center"
                 android:text="Ngày sinh" />
+            <ImageView
+                android:id="@+id/imgBirthday"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/schedule"/>
         </LinearLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilEmail"
@@ -86,12 +75,10 @@
             app:boxCornerRadiusTopEnd="15dp"
             app:boxCornerRadiusTopStart="15dp"
             app:boxStrokeColor="@color/light_blue"
-            android:enabled="false"
             android:layout_marginHorizontal="10dp"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
@@ -106,7 +93,6 @@
             app:boxCornerRadiusBottomEnd="15dp"
             app:boxCornerRadiusBottomStart="15dp"
             app:boxCornerRadiusTopEnd="15dp"
-            android:enabled="false"
             app:boxCornerRadiusTopStart="15dp"
             app:boxStrokeColor="@color/light_blue"
             android:layout_marginHorizontal="10dp"
@@ -115,7 +101,6 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
                 android:inputType="number"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -130,13 +115,11 @@
             app:boxCornerRadiusTopEnd="15dp"
             app:boxCornerRadiusTopStart="15dp"
             app:boxStrokeColor="@color/light_blue"
-            android:enabled="false"
             android:layout_marginHorizontal="10dp"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:enabled="false"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:textColor="@color/black" />
@@ -178,14 +161,12 @@
             app:boxCornerRadiusBottomStart="15dp"
             app:boxCornerRadiusTopEnd="15dp"
             app:boxCornerRadiusTopStart="15dp"
-            android:enabled="false"
             app:boxStrokeColor="@color/light_blue"
             android:layout_marginHorizontal="10dp"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:enabled="false"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:textColor="@color/black" />
@@ -200,7 +181,6 @@
             app:boxCornerRadiusBottomStart="15dp"
             app:boxCornerRadiusTopEnd="15dp"
             app:boxCornerRadiusTopStart="15dp"
-            android:enabled="false"
             app:boxStrokeColor="@color/light_blue"
             android:layout_marginHorizontal="10dp"
             app:errorEnabled="true">
@@ -208,35 +188,12 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:inputType="text"
-                android:textColor="@color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilDes"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Lí do khám"
-            app:boxCornerRadiusBottomEnd="15dp"
-            app:boxCornerRadiusBottomStart="15dp"
-            app:boxCornerRadiusTopEnd="15dp"
-            app:boxCornerRadiusTopStart="15dp"
-            android:enabled="false"
-            app:boxStrokeColor="@color/light_blue"
-            android:layout_marginHorizontal="10dp"
-            app:errorEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="false"
                 android:inputType="text"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnOrder"
+            android:id="@+id/btnSave"
             style="@style/Widget.Material3.Button.OutlinedButton"
             app:cornerRadius="13dp"
             app:strokeColor="@color/light_blue"

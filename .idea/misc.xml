@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_add_doctor.xml" value="0.2975630611372381" />
+        <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_file.xml" value="0.2975630611372381" />
         <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/dialog_add_categories.xml" value="0.3625" />
         <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/dialog_add_clinic.xml" value="0.3625" />
         <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/dialog_add_rooms.xml" value="0.3625" />
@@ -14,6 +15,9 @@
         <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/fragment__manager_category.xml" value="0.3625" />
         <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/fragment__manager_doctor.xml" value="0.3625" />
         <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/fragment__manager_room.xml" value="0.3625" />
+        <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/fragment_home_new.xml" value="0.2975630611372381" />
+        <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/fragment_order_i.xml" value="0.14365113296280463" />
+        <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/fragment_order_you.xml" value="0.2975630611372381" />
         <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/fragment_viewpager_time_work.xml" value="0.3223958333333333" />
         <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/item_banner.xml" value="0.3223958333333333" />
         <entry key="..\:/DU_AN_1/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/item_cagories.xml" value="0.3223958333333333" />
@@ -38,9 +42,12 @@
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_admin.xml" value="0.22" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_doctor.xml" value="0.1796875" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_doctor_by_service.xml" value="0.22" />
+
+
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_item_order_doctor.xml" value="0.22" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_list_doctor.xml" value="0.14749893116716545" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_list_order.xml" value="0.14749893116716545" />
+
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_sign_in.xml" value="0.1796875" />
         <entry key="..\:/DuAn/FA22_PRO1211_CP17312_Nhom6_DatlichkhamOnline/app/src/main/res/layout/activity_sign_up.xml" value="0.1796875" />

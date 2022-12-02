@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.cp17312_nhom6_duan1.FileActivity;
 import com.example.cp17312_nhom6_duan1.ListDoctorActivity;
 import com.example.cp17312_nhom6_duan1.ListOrderActivity;
 import com.example.cp17312_nhom6_duan1.ListServiceActivity;
@@ -42,7 +43,7 @@ public class Fragment_home_new extends Fragment {
     private ViewPager viewPager;
     private BannerAdapter bannerAdapter;
     private List<Banner> list;
-    private LinearLayout llOrderService,llOrderDoctor;
+    private LinearLayout llOrderService,llOrderDoctor,llFile;
 
     Handler handler = new Handler(Looper.getMainLooper());
     Runnable runnable = new Runnable() {
@@ -74,6 +75,16 @@ public class Fragment_home_new extends Fragment {
         tvListOrder = view.findViewById(R.id.tvListOrder);
         llOrderDoctor = view.findViewById(R.id.llOrderDoctor);
         llOrderService = view.findViewById(R.id.llOrderService);
+        llFile = view.findViewById(R.id.llFile);
+
+
+        llFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), FileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //banner
         viewPager = view.findViewById(R.id.view_pager);

@@ -41,9 +41,5 @@ public class Fragment_file extends Fragment {
         adapterListFile = new AdapterListFile(listFileByUser, fileDAO);
         rcvListFile = view.findViewById(R.id.rcvListFile);
         rcvListFile.setAdapter(adapterListFile);
-
-
-
-
     }
 }
