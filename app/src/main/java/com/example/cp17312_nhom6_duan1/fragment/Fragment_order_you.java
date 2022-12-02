@@ -81,23 +81,6 @@ public class Fragment_order_you extends Fragment {
         tilPhoneNumber.getEditText().setText(accountDTO.getPhoneNumber());
         rdoYes.setChecked(true);
 
-        imgBirthday.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar c = Calendar.getInstance();
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog dialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        String date = day+"/"+(month+1)+"/"+year;
-                        tvBirthday.setText(date);
-                    }
-                },year,month,day);
-                dialog.show();
-            }
-        });
         FileDAO fileDAO = new FileDAO(getContext());
 
         SharedPreferences preferences1 = getActivity().getSharedPreferences("getOrderDoctor",Context.MODE_PRIVATE);

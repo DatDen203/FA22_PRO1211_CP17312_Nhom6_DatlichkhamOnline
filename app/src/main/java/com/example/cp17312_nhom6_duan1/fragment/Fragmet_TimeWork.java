@@ -91,6 +91,7 @@ public class Fragmet_TimeWork extends Fragment {
                     listTimeWork.clear();
                     listTimeWork.addAll(timeWorkDAO.getAll());
                     adapterTimeWork.notifyDataSetChanged();
+                    dialog.dismiss();
                     Toast.makeText(getContext(), "Thêm ca làm việc thành công", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(), "Thêm ca làm việc không thành công", Toast.LENGTH_SHORT).show();

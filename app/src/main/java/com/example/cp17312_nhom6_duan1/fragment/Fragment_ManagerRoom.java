@@ -100,6 +100,7 @@ public class Fragment_ManagerRoom extends Fragment {
                     listRoomsDto.clear();
                     listRoomsDto.addAll(roomsDAO.selectAll());
                     roomAdapter.notifyDataSetChanged();
+                    dialog.dismiss();
                     Toast.makeText(getContext(), "Thêm phòng khám thành công", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(), "Thêm phòng khám không thành công", Toast.LENGTH_SHORT).show();

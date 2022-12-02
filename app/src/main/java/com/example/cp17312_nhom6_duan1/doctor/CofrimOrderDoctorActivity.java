@@ -1,0 +1,98 @@
+package com.example.cp17312_nhom6_duan1.doctor;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.format.DateFormat;
+import android.widget.Toast;
+
+import com.example.cp17312_nhom6_duan1.R;
+import com.example.cp17312_nhom6_duan1.dao.OrderDAO;
+import com.example.cp17312_nhom6_duan1.dao.OrderDoctorDAO;
+import com.example.cp17312_nhom6_duan1.dto.OrderDTO;
+import com.example.cp17312_nhom6_duan1.dto.OrderDoctorDTO;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputLayout;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class CofrimOrderDoctorActivity extends AppCompatActivity {
+    private Toolbar toolbar;
+    private TextInputLayout tilNameFullName;
+    private TextInputLayout tilPhoneNumber;
+    private TextInputLayout tilBirthday;
+    private TextInputLayout tilEmail;
+    private TextInputLayout tilCccd;
+    private TextInputLayout tilCountry;
+    private TextInputLayout tilbhyt;
+    private TextInputLayout tilJob;
+    private TextInputLayout tilAddress;
+    private TextInputLayout tilDes;
+    private MaterialButton btnComfrim;
+    OrderDAO orderDAO;
+    OrderDoctorDAO orderDoctorDAO;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cofrim_order_doctor);
+        findViewID();
+        orderDoctorDAO = new OrderDoctorDAO(getApplicationContext());
+        orderDAO= new OrderDAO(getApplicationContext());
+        Intent intent = getIntent();
+        toolbar.setNavigationOnClickListener(view->{
+            finish();
+        });
+        tilNameFullName.getEditText().setText(intent.getStringExtra("fullName"));
+        tilBirthday.getEditText().setText(formatDate(intent.getStringExtra("birthday")));
+        tilCccd.getEditText().setText(intent.getStringExtra("cccd"));
+        tilCountry.getEditText().setText(intent.getStringExtra("country"));
+        tilAddress.getEditText().setText(intent.getStringExtra("address"));
+        tilbhyt.getEditText().setText(intent.getStringExtra("bhyt"));
+        tilJob.getEditText().setText(intent.getStringExtra("job"));
+        tilDes.getEditText().setText(intent.getStringExtra("des"));
+        btnComfrim.setOnClickListener(view->{
+            OrderDTO orderDTO = orderDAO.getOrderDTOById(intent.getIntExtra("orderID",-1));
+            orderDTO.setStatus("Đã khám xong");
+            int res = orderDAO.updateRow(orderDTO);
+            if(res>0){
+                Toast.makeText(getApplicationContext(), "Đã xác nhận" , Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+    }
+    public String formatDate(String a) {
+        String newDate ="";
+        Date objdate2 = new Date(System.currentTimeMillis());
+        DateFormat dateFormat2 = new DateFormat();
+        String dates2 =a;
+        SimpleDateFormat Format2 = new SimpleDateFormat("yyyy/mm/dd");
+        try {
+            Date obj = Format2.parse(dates2);
+            newDate = (String) dateFormat2.format("dd/mm/yyyy", obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return newDate;
+    }
+    private void findViewID(){
+
+
+        toolbar = findViewById(R.id.toolbar);
+        tilNameFullName = findViewById(R.id.tilNameFullName);
+        tilPhoneNumber = findViewById(R.id.tilPhoneNumber);
+        tilBirthday = findViewById(R.id.tilBirthday);
+        tilEmail = findViewById(R.id.tilEmail);
+        tilCccd = findViewById(R.id.tilCccd);
+        tilCountry = findViewById(R.id.tilCountry);
+        tilbhyt = findViewById(R.id.tilbhyt);
+        tilJob = findViewById(R.id.tilJob);
+        tilAddress = findViewById(R.id.tilAddress);
+        tilDes = findViewById(R.id.tilDes);
+        btnComfrim = findViewById(R.id.btn_comfrim);
+
+    }
+}
