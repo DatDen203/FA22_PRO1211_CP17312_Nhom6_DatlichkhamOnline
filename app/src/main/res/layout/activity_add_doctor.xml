@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="10dp"
+                app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_person"
                 app:startIconTint="@color/xam">
 
@@ -49,6 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="10dp"
+                app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_person"
                 app:startIconTint="@color/xam">
 
@@ -67,6 +69,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="10dp"
+                app:counterEnabled="true"
+                app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_call"
                 app:startIconTint="@color/xam">
 
@@ -85,6 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="10dp"
+                app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_person"
                 app:startIconTint="@color/xam">
 
@@ -103,6 +108,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="10dp"
+                app:passwordToggleEnabled="true"
+                app:counterEnabled="true"
+                app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_password"
                 app:startIconTint="@color/xam">
 

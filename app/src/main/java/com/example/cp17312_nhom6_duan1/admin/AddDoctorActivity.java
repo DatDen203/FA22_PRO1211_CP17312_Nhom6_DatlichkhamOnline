@@ -37,7 +37,8 @@ public class AddDoctorActivity extends AppCompatActivity {
     private SpinnerServiceAdapter spinnerServiceAdapter;
     private SpinnerTimeWorkAdapter spinnerTimeWorkAdapter;
     private Button btnSaveDoctor;
-    private TextInputLayout edNameDoctor,edPhoneDoctor,edNameAccount,edPassWordDoctor,edDes,edBirthdayDoctor;
+    private TextInputLayout edNameDoctor, edPhoneDoctor, edNameAccount, edPassWordDoctor, edDes, edBirthdayDoctor;
+    ArrayList<AccountDTO> listAccountDoctor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class AddDoctorActivity extends AppCompatActivity {
         TimeWorkDAO timeWorkDAO = new TimeWorkDAO(this);
         AccountDAO accountDAO = new AccountDAO(this);
         DoctorDAO doctorDAO = new DoctorDAO(this);
-
+        listAccountDoctor = accountDAO.getAccountDoctor();
         ArrayList<RoomsDTO> listDtoRooms = roomsDAO.selectAll();
         spinneRoomsAdapter = new SpinneRoomsAdapter(listDtoRooms, this);
         spRooms.setAdapter(spinneRoomsAdapter);
@@ -60,49 +61,116 @@ public class AddDoctorActivity extends AppCompatActivity {
         spServices.setAdapter(spinnerServiceAdapter);
 
         ArrayList<TimeWorkDTO> listDtoTimeWork = timeWorkDAO.getAll();
-        spinnerTimeWorkAdapter = new SpinnerTimeWorkAdapter(listDtoTimeWork,this);
+        spinnerTimeWorkAdapter = new SpinnerTimeWorkAdapter(listDtoTimeWork, this);
         spTimeWork.setAdapter(spinnerTimeWorkAdapter);
 
         btnSaveDoctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AccountDTO accountDTO = new AccountDTO();
-                accountDTO.setUserName(edNameAccount.getEditText().getText().toString());
-                accountDTO.setPassWord(edPassWordDoctor.getEditText().getText().toString());
-                accountDTO.setPhoneNumber(edPhoneDoctor.getEditText().getText().toString());
-                accountDTO.setFullName(edNameDoctor.getEditText().getText().toString());
-                accountDTO.setRole("Doctor");
-                accountDTO.setImg(null);
+                if (checkIsempty()==true) {
+                    AccountDTO accountDTO = new AccountDTO();
+                    accountDTO.setUserName(edNameAccount.getEditText().getText().toString());
+                    accountDTO.setPassWord(edPassWordDoctor.getEditText().getText().toString());
+                    accountDTO.setPhoneNumber(edPhoneDoctor.getEditText().getText().toString());
+                    accountDTO.setFullName(edNameDoctor.getEditText().getText().toString());
+                    accountDTO.setRole("Doctor");
+                    accountDTO.setImg(null);
 
-                long res = accountDAO.insertAccount(accountDTO);
+                    long res = accountDAO.insertAccount(accountDTO);
 
-                AccountDTO accountDTO1 = accountDAO.getTopDtoAccount();
-                DoctorDTO doctorDTO = new DoctorDTO();
-                doctorDTO.setUser_id(accountDTO1.getId());
-                doctorDTO.setBirthday(formatDate(edBirthdayDoctor.getEditText().getText().toString()));
+                    AccountDTO accountDTO1 = accountDAO.getTopDtoAccount();
+                    DoctorDTO doctorDTO = new DoctorDTO();
+                    doctorDTO.setUser_id(accountDTO1.getId());
+                    doctorDTO.setBirthday(formatDate(edBirthdayDoctor.getEditText().getText().toString()));
 
-                ServicesDTO servicesDTO = (ServicesDTO) spServices.getSelectedItem();
-                doctorDTO.setService_id(servicesDTO.getServicesId());
+                    ServicesDTO servicesDTO = (ServicesDTO) spServices.getSelectedItem();
+                    doctorDTO.setService_id(servicesDTO.getServicesId());
 
-                RoomsDTO roomsDTO = (RoomsDTO) spRooms.getSelectedItem();
-                doctorDTO.setRoom_id(roomsDTO.getId());
+                    RoomsDTO roomsDTO = (RoomsDTO) spRooms.getSelectedItem();
+                    doctorDTO.setRoom_id(roomsDTO.getId());
 
-                doctorDTO.setDescription(edDes.getEditText().getText().toString());
+                    doctorDTO.setDescription(edDes.getEditText().getText().toString());
 
-                TimeWorkDTO timeWorkDTO  = (TimeWorkDTO) spTimeWork.getSelectedItem();
-                doctorDTO.setTimework_id(timeWorkDTO.getId());
+                    TimeWorkDTO timeWorkDTO = (TimeWorkDTO) spTimeWork.getSelectedItem();
+                    doctorDTO.setTimework_id(timeWorkDTO.getId());
 
-                long res1 = doctorDAO.insertRow(doctorDTO);
-                if(res1>0){
-                    Toast.makeText(AddDoctorActivity.this, "Thêm bác sĩ thành công", Toast.LENGTH_SHORT).show();
+                    long res1 = doctorDAO.insertRow(doctorDTO);
+                    if (res1 > 0) {
+                        Toast.makeText(AddDoctorActivity.this, "Thêm bác sĩ thành công", Toast.LENGTH_SHORT).show();
 
-                }
-                else{
-                    Toast.makeText(AddDoctorActivity.this, "Thêm bác sĩ không thành công", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(AddDoctorActivity.this, "Thêm bác sĩ không thành công", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
     }
+
+    public boolean checkUserNameDoctor() {
+        boolean check = true;
+        for (int i = 0; i < listAccountDoctor.size(); i++) {
+            if (edNameAccount.getEditText().getText().toString().equals(listAccountDoctor.get(i).getUserName())) {
+                check = false;
+                break;
+            } else {
+                check = true;
+            }
+        }
+        return check;
+    }
+
+    public boolean checkIsempty() {
+        boolean a = false;
+        if (edNameAccount.getEditText().getText().toString().trim().isEmpty()) {
+            edNameAccount.setError("Tên tài khoản không được để trống");
+            a = false;
+        } else if (checkUserNameDoctor() == false) {
+            edNameAccount.setError("Tên tài khoản đã tồn tại");
+            a = false;
+        } else {
+            edNameAccount.setError("");
+            a = true;
+        }
+        if (edNameDoctor.getEditText().getText().toString().trim().isEmpty()) {
+            edNameDoctor.setError("Họ tên không được để trống");
+            a = false;
+        } else {
+            a = true;
+            edNameDoctor.setError("");
+        }
+        if (edBirthdayDoctor.getEditText().getText().toString().trim().isEmpty()) {
+            edBirthdayDoctor.setError("Ngày sinh không được để trống");
+            a = false;
+        } else if (!edBirthdayDoctor.getEditText().getText().toString().matches("^[0-3][1-9]/[0-1][1-9]/[0-9]{4}$")) {
+            edBirthdayDoctor.setError("Ngày sinh không đúng định dạng");
+            a = false;
+        } else {
+            edBirthdayDoctor.setError("");
+            a = true;
+        }
+        if (edPhoneDoctor.getEditText().getText().toString().isEmpty()) {
+            edPhoneDoctor.setError("Số điện thoại không được để trống");
+            a = false;
+        } else if (!edPhoneDoctor.getEditText().getText().toString().trim().matches("^[0-9]{10}$")) {
+            edPhoneDoctor.setError("Số điện thoại phải 10 chữ số");
+            a = false;
+        } else {
+            edPhoneDoctor.setError("");
+            a = true;
+        }
+        if (edPassWordDoctor.getEditText().getText().toString().trim().isEmpty()) {
+            edPassWordDoctor.setError("Mật khẩu không được để trống");
+            a = false;
+        } else if (edPassWordDoctor.getEditText().getText().toString().length() < 8) {
+            edPassWordDoctor.setError("Mật khẩu ít nhất là 8 ký tự");
+            a = false;
+        } else {
+            edPassWordDoctor.setError("");
+            a = true;
+        }
+        return a;
+    }
+
     public void init() {
         spRooms = findViewById(R.id.spRooms);
         spServices = findViewById(R.id.spServices);
@@ -115,11 +183,12 @@ public class AddDoctorActivity extends AppCompatActivity {
         edDes = findViewById(R.id.edDes);
         edBirthdayDoctor = findViewById(R.id.edBirthdayDoctor);
     }
+
     public String formatDate(String a) {
-        String newDate ="";
+        String newDate = "";
         Date objdate2 = new Date(System.currentTimeMillis());
         DateFormat dateFormat2 = new DateFormat();
-        String dates2 =a;
+        String dates2 = a;
         SimpleDateFormat Format2 = new SimpleDateFormat("dd/mm/yyyy");
         try {
             Date obj = Format2.parse(dates2);
