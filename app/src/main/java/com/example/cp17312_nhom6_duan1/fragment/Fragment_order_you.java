@@ -24,6 +24,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.cp17312_nhom6_duan1.ConfirmActivity;
+import com.example.cp17312_nhom6_duan1.FileActivity;
 import com.example.cp17312_nhom6_duan1.ItemOrderDoctorActivity;
 import com.example.cp17312_nhom6_duan1.OrderDoctorActivity;
 import com.example.cp17312_nhom6_duan1.R;
@@ -40,6 +41,7 @@ import com.example.cp17312_nhom6_duan1.dto.ServicesDTO;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -110,34 +112,33 @@ public class Fragment_order_you extends Fragment {
         ServicesDTO servicesDTO = servicesDAO.getDtoServiceByIdByService(doctorDTO.getService_id());
 
         OrderDoctorDAO orderDoctorDao= new OrderDoctorDAO(getContext());
+        ArrayList<FileDTO> listFileDto = fileDAO.getFileByIdUser(idUser);
+        FileDTO fileDTO = listFileDto.get(0);
+        tilAddress.getEditText().setText(fileDTO.getAddress());
+        tilCccd.getEditText().setText(fileDTO.getCccd());
+        tilCountry.getEditText().setText(fileDTO.getCountry());
+        tilEmail.getEditText().setText(fileDTO.getEmail());
+        tilJob.getEditText().setText(fileDTO.getJob());
+        tilNameFullName.getEditText().setText(fileDTO.getFullname());
+        SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd");
+        try {
+            Date d = f.parse(fileDTO.getBirthday());
+            SimpleDateFormat f1 = new SimpleDateFormat("dd/MM/yyyy");
+            tvBirthday.setText(f1.format(d));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if(fileDTO.getBhyt().equals("Không")){
+            rdoNo.setChecked(true);
+        }
+        else{
+            rdoYes.setChecked(true);
+        }
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                FileDTO fileDTO = new FileDTO();
-                fileDTO.setFullname(tilNameFullName.getEditText().getText().toString());
-                fileDTO.setUser_id(idUser);
-                fileDTO.setBirthday(formatDate(tvBirthday.getText().toString()));
-                fileDTO.setCccd(tilCccd.getEditText().getText().toString());
-                fileDTO.setCountry(tilCountry.getEditText().getText().toString());
-                if(rdoYes.isChecked()){
-                    fileDTO.setBhyt("Có");
-                }
-                else{
-                    fileDTO.setBhyt("Không");
-                }
-                fileDTO.setJob(tilJob.getEditText().getText().toString());
-                fileDTO.setEmail(tilEmail.getEditText().getText().toString());
-                fileDTO.setAddress(tilAddress.getEditText().getText().toString());
-                fileDTO.setDes(tilDes.getEditText().getText().toString());
-
-                ArrayList<FileDTO> listFileDto = fileDAO.checkLIstFileYou(tilNameFullName.getEditText().getText().toString());
-//                if(listFileDto.size()<1){
-                    long res = fileDAO.insertRow(fileDTO);
-                    FileDTO fileDTO1 = fileDAO.getFileDToTop();
-
                     OrderDoctorDTO orderDoctorDTO = new OrderDoctorDTO();
-                    orderDoctorDTO.setFile_id(fileDTO1.getId());
+                    orderDoctorDTO.setFile_id(1);
                     orderDoctorDTO.setDoctor_id(idDoctor);
                     orderDoctorDTO.setStart_date(startDate);
                     orderDoctorDTO.setStart_time(startTime);
@@ -150,23 +151,6 @@ public class Fragment_order_you extends Fragment {
                         Intent intent = new Intent(getContext(), ConfirmActivity.class);
                         startActivity(intent);
                     }
-//                }
-//                else{
-//                    OrderDoctorDTO orderDoctorDTO = new OrderDoctorDTO();
-//                    orderDoctorDTO.setFile_id(listFileDto.get(0).getId());
-//                    orderDoctorDTO.setDoctor_id(idDoctor);
-//                    orderDoctorDTO.setStart_date(startDate);
-//                    orderDoctorDTO.setStart_time(startTime);
-//                    orderDoctorDTO.setTotal(servicesDTO.getServicesPrice());
-//
-//                    long res1 = orderDoctorDao.insertRow(orderDoctorDTO);
-//                    OrderDoctorDTO orderDoctorDTO1 = orderDoctorDao.getOrderDoctorDtoDesc();
-//                    if(res1>0){
-//                        OrderDoctorActivity.listOrderDoctor.add(orderDoctorDTO1);
-//                        Intent intent = new Intent(getContext(), ConfirmActivity.class);
-//                        startActivity(intent);
-//                    }
-//                }
             }
         });
     }

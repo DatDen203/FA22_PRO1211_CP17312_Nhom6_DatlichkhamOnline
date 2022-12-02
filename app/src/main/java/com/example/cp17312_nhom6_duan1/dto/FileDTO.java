@@ -24,8 +24,26 @@ public class FileDTO {
     public static final String colEmail = "email";
     public static final String colAddress = "address";
     public static final String colDes = "des";
+    public static final String colId ="id";
 
     public FileDTO() {
+    }
+
+    @Override
+    public String toString() {
+        return "FileDTO{" +
+                "id=" + id +
+                ", fullname='" + fullname + '\'' +
+                ", user_id=" + user_id +
+                ", birthday='" + birthday + '\'' +
+                ", cccd='" + cccd + '\'' +
+                ", country='" + country + '\'' +
+                ", bhyt='" + bhyt + '\'' +
+                ", job='" + job + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", des='" + des + '\'' +
+                '}';
     }
 
     public FileDTO(int id, String fullname, int user_id, String birthday, String cccd, String country, String bhyt, String job, String email, String address, String des) {

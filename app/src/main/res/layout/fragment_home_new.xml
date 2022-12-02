@@ -119,6 +119,31 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llFile"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:tint="@color/xanh_dam"
+                        android:src="@drawable/fileuser" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="Hồ sơ cá nhân"
+                        android:textColor="@color/xanh_dam"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/llOrderDoctor"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -140,6 +165,8 @@
                         android:text="Khám \ntheo bác sĩ"
                         android:textColor="@color/xanh_dam"
                         android:textStyle="bold" />
+
+
                 </LinearLayout>
 
             </LinearLayout>
