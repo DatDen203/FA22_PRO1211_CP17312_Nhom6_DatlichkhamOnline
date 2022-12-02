@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.cp17312_nhom6_duan1.adapter.AdapterListTimeWorkDetail;
 import com.example.cp17312_nhom6_duan1.dao.AccountDAO;
@@ -53,6 +54,14 @@ public class ItemOrderDoctorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_order_doctor);
         init();
+        Toolbar toolbar1 = findViewById(R.id.toolbar1);
+        ImageView img_open_back = toolbar1.findViewById(R.id.img_open_back);
+        img_open_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         imgIconOrderDate.setVisibility(View.GONE);
         tvOrderDate.setVisibility(View.GONE);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/toolbar"
+    android:id="@+id/toolbar1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fitsSystemWindows="true"
@@ -14,11 +14,11 @@
         android:layout_height="?attr/actionBarSize">
 
         <ImageView
-            android:id="@+id/img_open_nav"
+            android:id="@+id/img_open_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_menu"
+            android:src="@drawable/back"
             app:tint="@color/green" />
 
         <RelativeLayout

@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.cp17312_nhom6_duan1.adapter.AdapterHistoryOrder;
 import com.example.cp17312_nhom6_duan1.adapter.AdapterOrder;
@@ -32,5 +35,15 @@ public class ListOrderActivity extends AppCompatActivity {
         LinearLayoutManager manager  =new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         rcv_list_order.setLayoutManager(manager);
         rcv_list_order.setAdapter(adapterOrder);
+
+        Toolbar toolbar1 = findViewById(R.id.toolbar1);
+        ImageView img_open_back = toolbar1.findViewById(R.id.img_open_back);
+        img_open_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
     }
 }

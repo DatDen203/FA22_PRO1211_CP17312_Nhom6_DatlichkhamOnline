@@ -18,6 +18,5 @@ public class ItemOrderYesCofirmViewHolder extends RecyclerView.ViewHolder {
         tvDetailFile = itemView.findViewById(R.id.tvDetailFile);
         tvStartDate = itemView.findViewById(R.id.tvStartDate);
         tvStartTime = itemView.findViewById(R.id.tvStartTime);
-        btnStatus = itemView.findViewById(R.id.btnStatus);
     }
 }

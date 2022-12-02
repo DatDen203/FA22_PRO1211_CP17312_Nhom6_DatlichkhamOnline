@@ -43,8 +43,6 @@ public class AdapterOrderYesConfirm extends RecyclerView.Adapter<ItemOrderYesCof
         OrderDoctorDTO orderDoctorDTO1 = list.get(position);
         OrderDAO orderDAO = new OrderDAO(context);
         OrderDTO orderDTO = orderDAO.getOrderDTOById(orderDoctorDTO1.getOrder_id());
-        holder.btnStatus.setText(orderDTO.getStatus());
-        holder.btnStatus.setEnabled(false);
 
         OrderDoctorDTO orderDoctorDTO = orderDoctorDAO.getOrderDoctorDtoById(orderDoctorDTO1.getId());
 

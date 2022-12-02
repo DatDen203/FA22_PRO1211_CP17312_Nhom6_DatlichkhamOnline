@@ -10,8 +10,10 @@ import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.example.cp17312_nhom6_duan1.dao.AccountDAO;
 import com.example.cp17312_nhom6_duan1.dao.DoctorDAO;
@@ -39,6 +41,16 @@ public class OrderDoctorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_doctor);
         init();
+
+        Toolbar toolbar1 = findViewById(R.id.toolbar1);
+        ImageView img_open_back = toolbar1.findViewById(R.id.img_open_back);
+        img_open_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
         Intent intent = getIntent();
         int idDoctor = intent.getIntExtra("idDoctor", -1);
         String startTime = intent.getStringExtra("startTime");
