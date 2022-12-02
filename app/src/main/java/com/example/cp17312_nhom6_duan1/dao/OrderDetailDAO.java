@@ -194,7 +194,7 @@ public class OrderDetailDAO {
         AllDTO obj = new AllDTO();
         String select = "select sum(tbOrderDoctor.total) from tbOrderDetail inner join tbOrders on tbOrderDetail.order_id = tbOrders.id\n" +
                 " inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id join tbDoctor on tbDoctor.id = tbOrderDoctor.doctor_id join tbServices on tbDoctor.service_id=tbServices.id\n" +
-                "  where tbOrderDoctor.doctor_id= " + id + " and tbOrderDoctor.start_date>= '" + startDate + "'";
+                "  where tbOrderDoctor.doctor_id= " + id + " and tbOrderDoctor.start_date= '" + startDate + "'";
         Cursor cursor = db.rawQuery(select, null);
         if (cursor != null) {
             cursor.moveToFirst();
