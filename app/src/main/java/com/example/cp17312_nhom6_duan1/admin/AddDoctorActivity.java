@@ -67,7 +67,7 @@ public class AddDoctorActivity extends AppCompatActivity {
         btnSaveDoctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (checkIsempty()==true) {
+                if (checkIsempty() == true) {
                     AccountDTO accountDTO = new AccountDTO();
                     accountDTO.setUserName(edNameAccount.getEditText().getText().toString());
                     accountDTO.setPassWord(edPassWordDoctor.getEditText().getText().toString());
@@ -96,6 +96,8 @@ public class AddDoctorActivity extends AppCompatActivity {
 
                     long res1 = doctorDAO.insertRow(doctorDTO);
                     if (res1 > 0) {
+                        listAccountDoctor.clear();
+                        listAccountDoctor = accountDAO.getAccountDoctor();
                         Toast.makeText(AddDoctorActivity.this, "Thêm bác sĩ thành công", Toast.LENGTH_SHORT).show();
 
                     } else {
@@ -121,55 +123,49 @@ public class AddDoctorActivity extends AppCompatActivity {
 
     public boolean checkIsempty() {
         boolean a = false;
-        if (edNameAccount.getEditText().getText().toString().trim().isEmpty()) {
-            edNameAccount.setError("Tên tài khoản không được để trống");
-            a = false;
-        } else if (checkUserNameDoctor() == false) {
-            edNameAccount.setError("Tên tài khoản đã tồn tại");
-            a = false;
-        } else {
+        if (edNameAccount.getEditText().getText().toString().trim().isEmpty() || checkUserNameDoctor() == false ||
+                edNameDoctor.getEditText().getText().toString().trim().isEmpty() ||
+                edBirthdayDoctor.getEditText().getText().toString().trim().isEmpty() ||
+                !edBirthdayDoctor.getEditText().getText().toString().matches("^[0-9]{2}/[0-9]{2}/[0-9]{4}$") ||
+                edPhoneDoctor.getEditText().getText().toString().isEmpty() || !edPhoneDoctor.getEditText().getText().toString().trim().matches("^[0-9]{10}$") ||
+                edPassWordDoctor.getEditText().getText().toString().trim().isEmpty() || edPassWordDoctor.getEditText().getText().toString().length() < 8){
+
+            if (edNameAccount.getEditText().getText().toString().trim().isEmpty()) {
+                edNameAccount.setError("Tên tài khoản không được để trống");
+            } else if (checkUserNameDoctor() == false) {
+                edNameAccount.setError("Tên tài khoản đã tồn tại");
+            }
+            if (edNameDoctor.getEditText().getText().toString().trim().isEmpty()) {
+                edNameDoctor.setError("Họ tên không được để trống");
+            }
+            if (edBirthdayDoctor.getEditText().getText().toString().trim().isEmpty()) {
+                edBirthdayDoctor.setError("Ngày sinh không được để trống");
+            } else if (!edBirthdayDoctor.getEditText().getText().toString().matches("^[0-9]{2}/[0-9]{2}/[0-9]{4}$")) {
+                edBirthdayDoctor.setError("Ngày sinh không đúng định dạng");
+            }
+            if (edPhoneDoctor.getEditText().getText().toString().isEmpty()) {
+                edPhoneDoctor.setError("Số điện thoại không được để trống");
+            } else if (!edPhoneDoctor.getEditText().getText().toString().trim().matches("^[0-9]{10}$")) {
+                edPhoneDoctor.setError("Số điện thoại phải 10 chữ số");
+            }
+            if (edPassWordDoctor.getEditText().getText().toString().trim().isEmpty()) {
+                edPassWordDoctor.setError("Mật khẩu không được để trống");
+            } else if (edPassWordDoctor.getEditText().getText().toString().length() < 8) {
+                edPassWordDoctor.setError("Mật khẩu ít nhất là 8 ký tự");
+            }
+            return false;
+        }else{
             edNameAccount.setError("");
-            a = true;
-        }
-        if (edNameDoctor.getEditText().getText().toString().trim().isEmpty()) {
-            edNameDoctor.setError("Họ tên không được để trống");
-            a = false;
-        } else {
-            a = true;
             edNameDoctor.setError("");
-        }
-        if (edBirthdayDoctor.getEditText().getText().toString().trim().isEmpty()) {
-            edBirthdayDoctor.setError("Ngày sinh không được để trống");
-            a = false;
-        } else if (!edBirthdayDoctor.getEditText().getText().toString().matches("^[0-3][1-9]/[0-1][1-9]/[0-9]{4}$")) {
-            edBirthdayDoctor.setError("Ngày sinh không đúng định dạng");
-            a = false;
-        } else {
             edBirthdayDoctor.setError("");
-            a = true;
-        }
-        if (edPhoneDoctor.getEditText().getText().toString().isEmpty()) {
-            edPhoneDoctor.setError("Số điện thoại không được để trống");
-            a = false;
-        } else if (!edPhoneDoctor.getEditText().getText().toString().trim().matches("^[0-9]{10}$")) {
-            edPhoneDoctor.setError("Số điện thoại phải 10 chữ số");
-            a = false;
-        } else {
             edPhoneDoctor.setError("");
-            a = true;
-        }
-        if (edPassWordDoctor.getEditText().getText().toString().trim().isEmpty()) {
-            edPassWordDoctor.setError("Mật khẩu không được để trống");
-            a = false;
-        } else if (edPassWordDoctor.getEditText().getText().toString().length() < 8) {
-            edPassWordDoctor.setError("Mật khẩu ít nhất là 8 ký tự");
-            a = false;
-        } else {
             edPassWordDoctor.setError("");
-            a = true;
+            return true;
         }
-        return a;
-    }
+
+
+
+}
 
     public void init() {
         spRooms = findViewById(R.id.spRooms);
