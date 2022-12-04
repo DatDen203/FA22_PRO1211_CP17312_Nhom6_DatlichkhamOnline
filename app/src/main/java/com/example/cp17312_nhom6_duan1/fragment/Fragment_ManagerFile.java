@@ -36,7 +36,7 @@ public class Fragment_ManagerFile extends Fragment {
         rcvListFile = view.findViewById(R.id.rcvListFile);
         fileDAO = new FileDAO(getContext());
         listFile = fileDAO.getAll();
-        adapterListFile = new AdapterListFile(listFile, fileDAO);
+        adapterListFile = new AdapterListFile(listFile, fileDAO,"admin");
         rcvListFile.setAdapter(adapterListFile);
     }
 }

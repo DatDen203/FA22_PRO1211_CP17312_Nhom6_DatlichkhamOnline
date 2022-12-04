@@ -7,20 +7,6 @@
     android:layout_margin="10dp"
     android:padding="10dp"
     android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/tvOrderId"
-        android:layout_margin="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mã đặt hàng:"/>
-    <TextView
-        android:id="@+id/tvStatusOrder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chờ ngày khám"
-        android:textSize="20dp"
-        android:textColor="@color/red"
-        android:layout_marginLeft="10dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,7 +17,7 @@
             android:layout_height="25dp"
             android:src="@drawable/user_doctor"/>
         <TextView
-            android:id="@+id/tvNamefile"
+            android:id="@+id/tvfullName"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -49,14 +35,11 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:src="@drawable/icondoctor"/>
-        <TextView
-            android:id="@+id/tvNameDoctor"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Khuất Phi Long"
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:textColor="@color/black"/>
+            android:id="@+id/spNameDoctor"/>
     </LinearLayout>
 
     <LinearLayout
@@ -68,15 +51,14 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:src="@drawable/service1"/>
-
         <TextView
             android:id="@+id/tvNameService"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:text="Khuất Phi Long"
-            android:textColor="@color/black" />
+            android:layout_gravity="center"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <LinearLayout
@@ -137,6 +119,7 @@
             android:textColor="@color/black"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/ll_note"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -161,44 +144,17 @@
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
         />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/tvOrderTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Giờ đặt"
-            android:layout_marginLeft="20dp"/>
-
-        <TextView
-            android:id="@+id/tvOrderDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ngày đặt:"
-            android:layout_marginLeft="20dp"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="right"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_marginTop="10dp"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/price"
-            />
-        <TextView
-            android:id="@+id/tvPrice"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="50dp"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1555"/>
-    </LinearLayout>
+   <com.google.android.material.button.MaterialButton
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:id="@+id/btn_update"
+       style="@style/Widget.Material3.Button.OutlinedButton"
+       app:cornerRadius="15dp"
+       app:strokeColor="@color/light_blue"
+       app:backgroundTint="@color/light_blue"
+       android:text="Cập nhật"
+       android:textSize="14dp"
+       android:layout_gravity="center"
+       android:layout_marginVertical="10dp"
+       android:textColor="@color/white"/>
 </LinearLayout>

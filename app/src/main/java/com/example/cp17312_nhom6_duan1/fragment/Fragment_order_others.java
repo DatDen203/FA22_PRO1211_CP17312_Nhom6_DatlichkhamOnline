@@ -121,6 +121,7 @@ public class Fragment_order_others extends Fragment {
                 fileDTO.setEmail(tilEmail.getEditText().getText().toString());
                 fileDTO.setAddress(tilAddress.getEditText().getText().toString());
                 fileDTO.setDes(tilDes.getEditText().getText().toString());
+                fileDTO.setPhoneNumber(tilPhoneNumber.getEditText().getText().toString());
                 long res = fileDAO.insertRow(fileDTO);
                 FileDTO fileDTO1 = fileDAO.getFileDToTop();
                 OrderDoctorDTO orderDoctorDTO = new OrderDoctorDTO();

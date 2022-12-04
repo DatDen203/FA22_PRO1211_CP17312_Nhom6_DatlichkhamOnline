@@ -38,7 +38,7 @@ public class Fragment_file extends Fragment {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("getIdUser", Context.MODE_PRIVATE);
         int idUser = sharedPreferences.getInt("idUser",-1);
         listFileByUser = fileDAO.getFileByIdUser(idUser);
-        adapterListFile = new AdapterListFile(listFileByUser, fileDAO);
+        adapterListFile = new AdapterListFile(listFileByUser, fileDAO,"user");
         rcvListFile = view.findViewById(R.id.rcvListFile);
         rcvListFile.setAdapter(adapterListFile);
     }

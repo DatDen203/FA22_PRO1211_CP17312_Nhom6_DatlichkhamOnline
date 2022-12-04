@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cp17312_nhom6_duan1.R;
 
 public class ItemHistoryOrderViewHolder extends RecyclerView.ViewHolder {
+    public TextView tvNote;
     public TextView tvOrderId,tvNamefile,tvNameDoctor,tvNameService,tvNameRooms,tvStartDate,tvStartTime,tvOrderTime,tvOrderDate,tvPrice,tvStatusOrder;
     public ItemHistoryOrderViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -23,5 +24,9 @@ public class ItemHistoryOrderViewHolder extends RecyclerView.ViewHolder {
         tvOrderDate = itemView.findViewById(R.id.tvOrderDate);
         tvPrice = itemView.findViewById(R.id.tvPrice);
         tvStatusOrder = itemView.findViewById(R.id.tvStatusOrder);
+
+
+        tvNote = itemView.findViewById(R.id.tvNote);
+
     }
 }

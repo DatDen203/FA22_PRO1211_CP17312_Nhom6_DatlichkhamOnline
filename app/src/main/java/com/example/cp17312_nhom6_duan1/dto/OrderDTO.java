@@ -6,12 +6,14 @@ public class OrderDTO {
     private String order_time;
     private String order_date;
     private String status;
+    private String note;
 
     public static final String nameTable = "tbOrders";
     public static final String colFile_id = "file_id";
     public static final String colOrder_time = "order_time";
     public static final String colOrder_date = "order_date";
     public static final String colOrder_status = "status";
+    public static final String colNote="note";
 
 
     public OrderDTO() {
@@ -30,6 +32,14 @@ public class OrderDTO {
         this.order_time = order_time;
         this.order_date = order_date;
         this.status = status;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public String getStatus() {

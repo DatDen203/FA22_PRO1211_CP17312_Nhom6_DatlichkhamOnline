@@ -73,12 +73,11 @@ public class AdapterHistoryOrder extends RecyclerView.Adapter<ItemHistoryOrderVi
 
         holder.tvStartDate.setText(orderDoctorDTO.getStart_date());
         holder.tvStartTime.setText(orderDoctorDTO.getStart_time());
-
         OrderDAO orderDAO = new OrderDAO(context);
         OrderDTO orderDTO = orderDAO.getOrderDTOById(orderDetailDTO.getOrder_id());
         holder.tvOrderDate.setText("Ngày đăt: "+orderDTO.getOrder_date());
         holder.tvOrderTime.setText("Giờ đặt: "+orderDTO.getOrder_time());
-
+        holder.tvNote.setVisibility(View.INVISIBLE);
         holder.tvPrice.setText(servicesDTO.getServicesPrice()+"đ");
         holder.tvStatusOrder.setText(orderDTO.getStatus());
     }

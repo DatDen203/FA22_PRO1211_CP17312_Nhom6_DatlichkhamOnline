@@ -25,33 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    //    private RelativeLayout itemService1;
-//    private RelativeLayout itemDoctor;
-//    private RelativeLayout itemService2;
-//    private RelativeLayout itemService3;
-//    private RelativeLayout itemService4;
+
     DrawerLayout drawerLayout;
     TextView tvHiName, tv_title;
     ImageView imgOpenNav, imgAvt;
 
-    //    CircleIndicator circleIndicator;
-//    ViewPager viewPager;
-//    BannerAdapter bannerAdapter;
-//    List<Banner> list;
-//    ServicesDAO servicesDAO;
-//    ArrayList<ServicesDTO> listService;
-//    Handler handler = new Handler(Looper.getMainLooper());
-//    Runnable runnable = new Runnable() {
-//        @Override
-//        public void run() {
-//            int currentPosition = viewPager.getCurrentItem();
-//            if (currentPosition == list.size() - 1) {
-//                viewPager.setCurrentItem(0);
-//            } else {
-//                viewPager.setCurrentItem(currentPosition + 1);
-//            }
-//        }
-//    };
     int back;
 
     @Override
@@ -151,42 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        listService = servicesDAO.selectAll();
-//        itemService1 = findViewById(R.id.item_service1);
-//        itemDoctor = findViewById(R.id.item_doctor);
-//        itemService2 = findViewById(R.id.item_service2);
-//        itemService3 = findViewById(R.id.item_service3);
-//        itemService4 = findViewById(R.id.item_service4);
-//        itemService1.setOnClickListener(view -> {
-//            Intent intent = new Intent(this, DoctorByServiceActivity.class);
-//            intent.putExtra("serviceid", listService.get(0).getServicesId());
-//            intent.putExtra("serviceName", listService.get(0).getServicesName());
-//            startActivity(intent);
-//        });
-//        itemService2.setOnClickListener(view -> {
-//            Intent intent = new Intent(this, DoctorByServiceActivity.class);
-//            intent.putExtra("serviceid", listService.get(1).getServicesId());
-//            intent.putExtra("serviceName", listService.get(1).getServicesName());
-//            startActivity(intent);
-//        });
-//        itemService3.setOnClickListener(view -> {
-//            Intent intent = new Intent(this, DoctorByServiceActivity.class);
-//            intent.putExtra("serviceid", listService.get(2).getServicesId());
-//            intent.putExtra("serviceName", listService.get(3).getServicesName());
-//            startActivity(intent);
-//        });
-//        itemService4.setOnClickListener(view -> {
-//            Intent intent = new Intent(this, DoctorByServiceActivity.class);
-//            intent.putExtra("serviceid", listService.get(3).getServicesId());
-//            intent.putExtra("serviceName", listService.get(3).getServicesName());
-//            startActivity(intent);
-//        });
-//        itemDoctor.setOnClickListener(view -> {
-//            Intent intent = new Intent(this, DoctorByServiceActivity.class);
-//            intent.putExtra("serviceid", -1);
-//            intent.putExtra("serviceName", "List of Doctors");
-//            startActivity(intent);
-//        });
+
 
     }
 

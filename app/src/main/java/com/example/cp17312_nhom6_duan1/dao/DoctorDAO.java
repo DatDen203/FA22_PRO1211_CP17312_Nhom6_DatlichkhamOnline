@@ -225,4 +225,30 @@ public class DoctorDAO {
         cs.close();
         return list;
     }
+    public ArrayList<DoctorDTO> getListDoctorByTimeWord(String time, int idService, int idTimeWord){
+        ArrayList<DoctorDTO> list = new ArrayList<>();
+        String select ="select tbDoctor.*  from tbDoctor join tbTimeWork on tbDoctor.timework_id = tbTimeWork.id join tbTimeWorkDetail on tbTimeWork.id = tbTimeWorkDetail.timework_id \n" +
+                " join tbServices on tbDoctor.service_id =  tbServices.id where tbDoctor.service_id= "+idService+" and tbDoctor.timework_id= "+idTimeWord+" and tbDoctor.id\n" +
+                " not in (select tbDoctor.id  from tbDoctor join tbTimeWork on tbDoctor.timework_id = tbTimeWork.id\n" +
+                " join tbTimeWorkDetail on tbTimeWork.id = tbTimeWorkDetail.timework_id \n" +
+                " join tbServices on tbDoctor.service_id =  tbServices.id join tbOrderDoctor on tbDoctor.id=tbOrderDoctor.doctor_id where tbOrderDoctor.start_time='"+time+"' ) group by tbDoctor.id";
+        Cursor cursor = db.rawQuery(select,null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast()){
+                DoctorDTO obj = new DoctorDTO();
+                obj.setId(cursor.getInt(0));
+                obj.setUser_id(cursor.getInt(1));
+                obj.setBirthday(cursor.getString(2));
+                obj.setService_id(cursor.getInt(3));
+                obj.setRoom_id(cursor.getInt(4));
+                obj.setDescription(cursor.getString(5));
+                obj.setTimework_id(cursor.getInt(6));
+                list.add(obj);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        return list;
+    }
 }

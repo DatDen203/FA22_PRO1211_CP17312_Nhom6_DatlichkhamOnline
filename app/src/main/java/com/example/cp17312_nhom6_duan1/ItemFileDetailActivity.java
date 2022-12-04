@@ -53,7 +53,7 @@ public class ItemFileDetailActivity extends AppCompatActivity {
         tilNameFullName.getEditText().setText(fileDTO.getFullname());
         tilAddress.getEditText().setText(fileDTO.getAddress());
         tilCccd.getEditText().setText(fileDTO.getCccd());
-        tilPhoneNumber.getEditText().setText(accountDTO.getPhoneNumber());
+        tilPhoneNumber.getEditText().setText(fileDTO.getPhoneNumber());
         tilBirthday.getEditText().setText(formatDate2(fileDTO.getBirthday()));
         tilEmail.getEditText().setText(fileDTO.getEmail());
         tilCountry.getEditText().setText(fileDTO.getCountry());

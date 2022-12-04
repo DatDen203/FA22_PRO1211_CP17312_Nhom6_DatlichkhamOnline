@@ -15,7 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.example.cp17312_nhom6_duan1.dao.AccountDAO;
 import com.example.cp17312_nhom6_duan1.dao.FileDAO;
+import com.example.cp17312_nhom6_duan1.dto.AccountDTO;
 import com.example.cp17312_nhom6_duan1.dto.FileDTO;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -30,6 +32,10 @@ public class FileActivity extends AppCompatActivity {
     private RadioButton rdoYes,rdoNo;
     private ImageView imgBirthday;
     private Button btnSave;
+    private TextInputLayout tilPhoneNumber;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +56,8 @@ public class FileActivity extends AppCompatActivity {
 
         FileDAO fileDAO = new FileDAO(FileActivity.this);
         ArrayList<FileDTO> listFileDto = fileDAO.getFileByIdUser(idUser);
+        AccountDAO accountDAO = new AccountDAO(getApplicationContext());
+        AccountDTO accountDTO = accountDAO.getDtoAccount(idUser);
         if(listFileDto.size() != 0){
             FileDTO fileDTO = listFileDto.get(0);
             tilAddress.getEditText().setText(fileDTO.getAddress());
@@ -58,6 +66,7 @@ public class FileActivity extends AppCompatActivity {
             tilEmail.getEditText().setText(fileDTO.getEmail());
             tilJob.getEditText().setText(fileDTO.getJob());
             tilNameFullName.getEditText().setText(fileDTO.getFullname());
+            tilPhoneNumber.getEditText().setText(accountDTO.getPhoneNumber());
             SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd");
             try {
                 Date d = f.parse(fileDTO.getBirthday());
@@ -103,11 +112,16 @@ public class FileActivity extends AppCompatActivity {
                         Toast.makeText(FileActivity.this, "Địa chỉ không được bỏ trống", Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    if(tilPhoneNumber.getEditText().getText().toString().equals("")){
+                        Toast.makeText(FileActivity.this, "Số điện thoại không được bỏ trống", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     fileDTO.setFullname(tilNameFullName.getEditText().getText().toString());
                     fileDTO.setUser_id(idUser);
                     fileDTO.setBirthday(formatDate(tilBirthday.getEditText().getText().toString()));
                     fileDTO.setCccd(tilCccd.getEditText().getText().toString());
                     fileDTO.setCountry(tilCountry.getEditText().getText().toString());
+                    fileDTO.setPhoneNumber(tilPhoneNumber.getEditText().getText().toString());
                     if(rdoYes.isChecked()){
                         fileDTO.setBhyt("Có");
                     }
@@ -117,9 +131,17 @@ public class FileActivity extends AppCompatActivity {
                     fileDTO.setJob(tilJob.getEditText().getText().toString());
                     fileDTO.setEmail(tilEmail.getEditText().getText().toString());
                     fileDTO.setAddress(tilAddress.getEditText().getText().toString());
-
+                    accountDTO.setPhoneNumber(tilPhoneNumber.getEditText().getText().toString().trim());
                     int res = fileDAO.updateRow(fileDTO);
                     if(res>0){
+                        tilPhoneNumber.getEditText().setText("");
+                        tilAddress.getEditText().setText("");
+                        tilEmail.getEditText().setText("");
+                        tilJob.getEditText().setText("");
+                        tilCountry.getEditText().setText("");
+                        tilCccd.getEditText().setText("");
+                        tilNameFullName.getEditText().setText("");
+                        tilBirthday.getEditText().setText("");
                         Toast.makeText(FileActivity.this, "Hồ sơ đã được cập nhật thành thành công", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -175,7 +197,7 @@ public class FileActivity extends AppCompatActivity {
                     fileDTO.setJob(tilJob.getEditText().getText().toString());
                     fileDTO.setEmail(tilEmail.getEditText().getText().toString());
                     fileDTO.setAddress(tilAddress.getEditText().getText().toString());
-
+                    fileDTO.setPhoneNumber(tilPhoneNumber.getEditText().getText().toString());
                     long res = fileDAO.insertRow(fileDTO);
                     if(res>0){
                         Toast.makeText(FileActivity.this, "Hồ sơ đã được lưu thành công", Toast.LENGTH_SHORT).show();
@@ -216,6 +238,7 @@ public class FileActivity extends AppCompatActivity {
         imgBirthday = findViewById(R.id.imgBirthday);
         tilBirthday = findViewById(R.id.tilBirthday);
         btnSave = findViewById(R.id.btnSave);
+        tilPhoneNumber = findViewById(R.id.tilPhoneNumber);
     }
     public String formatDate(String a) {
         String newDate = "";

@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class MyDbHelper extends SQLiteOpenHelper {
-    public static final String DB_NAME = "CP17312_Nhom6_Duan1";
+    public static final String DB_NAME = "CP17312_Nhom6_Duan1_6";
     public static final int DB_VERSION = 103;
 
     public MyDbHelper(Context context) {
@@ -57,7 +57,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         String innertCategories2 = "INSERT INTO tbCategories VALUES(2,'Khám theo liệu trình')";
         sqLiteDatabase.execSQL(innertCategories2);
 
-        String sqlFile = "CREATE TABLE tbFile (id INTEGER NOT NULL,fullname TEXT NOT NULL, user_id INTEGER REFERENCES tbAccount(id),birthday TEXT NOT NULL,cccd TEXT NOT NULL,country TEXT NOT NULL,bhyt TEXT NOT NULL,job TEXT NOT NULL,email TEXT NOT NULL,address TEXT NOT NULL,des TEXT,PRIMARY KEY(id AUTOINCREMENT));";
+        String sqlFile = "CREATE TABLE tbFile (id INTEGER NOT NULL,fullname TEXT NOT NULL, user_id INTEGER REFERENCES tbAccount(id),birthday TEXT NOT NULL,cccd TEXT NOT NULL,country TEXT NOT NULL,bhyt TEXT NOT NULL,job TEXT NOT NULL,email TEXT NOT NULL,address TEXT NOT NULL,des TEXT, phoneNumber TEXT NOT NULL ,PRIMARY KEY(id AUTOINCREMENT));";
         sqLiteDatabase.execSQL(sqlFile);
 
         String sqlTimeWork = "CREATE TABLE  tbTimeWork  (id  INTEGER NOT NULL,session  TEXT NOT NULL,PRIMARY KEY( id  AUTOINCREMENT));";
@@ -108,13 +108,13 @@ public class MyDbHelper extends SQLiteOpenHelper {
         String innsertTimeWorkDetail14 = "INSERT INTO tbTimeWorkDetail VALUES(14,3,'16:30-17:30')";
         sqLiteDatabase.execSQL(innsertTimeWorkDetail14);
 
-        String sqlOrders = "CREATE TABLE tbOrders (id INTEGER NOT NULL,file_id INTEGER NOT NULL REFERENCES tbFile(id),order_time TEXT NOT NULL,order_date TEXT NOT NULL,status TEXT NOT NULL,PRIMARY KEY(id AUTOINCREMENT));";
+        String sqlOrders = "CREATE TABLE tbOrders (id INTEGER NOT NULL,file_id INTEGER NOT NULL REFERENCES tbFile(id),order_time TEXT NOT NULL,order_date TEXT NOT NULL,status TEXT,note TEXT,PRIMARY KEY(id AUTOINCREMENT));";
         sqLiteDatabase.execSQL(sqlOrders);
 
         String sqlOrderDetail = "CREATE TABLE tbOrderDetail (order_id INTEGER NOT NULL REFERENCES tbOrders(id),orderDoctor_id INTEGER NOT NULL REFERENCES tbOrderDoctor(id));";
         sqLiteDatabase.execSQL(sqlOrderDetail);
 
-        String sqlOrderDoctor = "CREATE TABLE tbOrderDoctor (id INTEGER NOT NULL,file_id INTEGER NOT NULL REFERENCES tbFile(id),doctor_id INTEGER NOT NULL REFERENCES tbDoctor(id),start_time TEXT NOT NULL,start_date TEXT NOT NULL,total FLOAT NOT NULL,PRIMARY KEY(id AUTOINCREMENT));";
+        String sqlOrderDoctor = "CREATE TABLE tbOrderDoctor (id INTEGER NOT NULL,file_id INTEGER NOT NULL REFERENCES tbFile(id),doctor_id INTEGER NOT NULL REFERENCES tbDoctor(id),start_time TEXT NOT NULL,start_date TEXT NOT NULL,total FLOAT NOT NULL,status TEXT,PRIMARY KEY(id AUTOINCREMENT));";
         sqLiteDatabase.execSQL(sqlOrderDoctor);
     }
 

@@ -106,6 +106,10 @@ public class ConfirmActivity extends AppCompatActivity {
                     orderDetailDTO.setOrderDoctor_id(orderDoctorDTO.getId());
 
                     long res = orderDetailDAO.innsertRow(orderDetailDTO);
+                    orderDoctorDTO.setStatus("Chờ ngày khám");
+                    long res2 = orderDoctorDAO.updateRow(orderDoctorDTO);
+
+
                 }
                 OrderDoctorActivity.listOrderDoctor.clear();
                 Dialog dialog = new Dialog(ConfirmActivity.this);
