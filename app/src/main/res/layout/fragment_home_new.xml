@@ -138,7 +138,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:gravity="center"
-                        android:text="Hồ sơ cá nhân"
+                        android:text="Thêm hồ sơ cá nhân"
                         android:textColor="@color/xanh_dam"
                         android:textStyle="bold" />
                 </LinearLayout>

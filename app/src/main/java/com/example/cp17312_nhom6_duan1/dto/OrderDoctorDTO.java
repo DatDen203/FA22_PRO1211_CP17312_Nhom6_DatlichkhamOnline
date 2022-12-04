@@ -1,5 +1,7 @@
 package com.example.cp17312_nhom6_duan1.dto;
 
+import java.util.PrimitiveIterator;
+
 public class OrderDoctorDTO {
     private int id;
     private int file_id;
@@ -8,6 +10,7 @@ public class OrderDoctorDTO {
     private String start_date;
     private float total;
     private int order_id;
+    private String status;
 
     public static final String nameTable = "tbOrderDoctor";
     public static final String colFileId = "file_id";
@@ -15,7 +18,7 @@ public class OrderDoctorDTO {
     public static final String colStartTime = "start_time";
     public static final String colStartDate = "start_date";
     public static final String colTotal = "total";
-
+    public static final String colStatus ="status";
     public OrderDoctorDTO() {
     }
 
@@ -36,6 +39,14 @@ public class OrderDoctorDTO {
         this.start_date = start_date;
         this.total = total;
         this.order_id = order_id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getOrder_id() {

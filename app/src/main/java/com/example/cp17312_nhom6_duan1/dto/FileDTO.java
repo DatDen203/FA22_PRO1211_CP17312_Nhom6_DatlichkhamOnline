@@ -12,6 +12,7 @@ public class FileDTO {
     private String email;
     private String address;
     private String des;
+    private String phoneNumber;
 
     public static final String nameTable = "tbFile";
     public static final String colFullName = "fullname";
@@ -25,6 +26,7 @@ public class FileDTO {
     public static final String colAddress = "address";
     public static final String colDes = "des";
     public static final String colId ="id";
+    public static final String colPhoneNumber="phoneNumber";
 
     public FileDTO() {
     }
@@ -44,6 +46,14 @@ public class FileDTO {
                 ", address='" + address + '\'' +
                 ", des='" + des + '\'' +
                 '}';
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public FileDTO(int id, String fullname, int user_id, String birthday, String cccd, String country, String bhyt, String job, String email, String address, String des) {

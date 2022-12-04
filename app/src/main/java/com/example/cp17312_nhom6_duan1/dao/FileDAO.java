@@ -32,7 +32,7 @@ public class FileDAO {
         val.put(FileDTO.colEmail,fileDTO.getEmail());
         val.put(FileDTO.colAddress,fileDTO.getAddress());
         val.put(FileDTO.colDes,fileDTO.getDes());
-
+        val.put(FileDTO.colPhoneNumber, fileDTO.getPhoneNumber());
         long res = db.insert(FileDTO.nameTable,null,val);
         return res;
     }
@@ -48,7 +48,7 @@ public class FileDAO {
         val.put(FileDTO.colEmail,fileDTO.getEmail());
         val.put(FileDTO.colAddress,fileDTO.getAddress());
         val.put(FileDTO.colDes,fileDTO.getDes());
-
+        val.put(FileDTO.colPhoneNumber, fileDTO.getPhoneNumber());
         String[] check = new String[]{fileDTO.getId()+""};
         int res = db.update(FileDTO.nameTable,val,"id = ?",check);
         return res;
@@ -72,7 +72,7 @@ public class FileDAO {
                 fileDTO.setEmail(cs.getString(8));
                 fileDTO.setAddress(cs.getString(9));
                 fileDTO.setDes(cs.getString(10));
-
+                fileDTO.setPhoneNumber(cs.getString(11));
                 listFileDto.add(fileDTO);
                 cs.moveToNext();
             }
@@ -95,6 +95,7 @@ public class FileDAO {
             fileDTO.setEmail(cs.getString(8));
             fileDTO.setAddress(cs.getString(9));
             fileDTO.setDes(cs.getString(10));
+            fileDTO.setPhoneNumber(cs.getString(11));
         }
         return fileDTO;
     }
@@ -115,6 +116,7 @@ public class FileDAO {
             fileDTO.setEmail(cs.getString(8));
             fileDTO.setAddress(cs.getString(9));
             fileDTO.setDes(cs.getString(10));
+            fileDTO.setPhoneNumber(cs.getString(11));
         }
         return fileDTO;
     }
@@ -131,10 +133,13 @@ public class FileDAO {
                 obj.setUser_id(cursor.getInt(2));
                 obj.setBirthday(cursor.getString(3));
                 obj.setCccd(cursor.getString(4));
-                obj.setBhyt(cursor.getString(5));
-                obj.setCountry(cursor.getString(6));
-                obj.setAddress(cursor.getString(7));
-                obj.setDes(cursor.getString(8));
+                obj.setCountry(cursor.getString(5));
+                obj.setBhyt(cursor.getString(6));
+                obj.setJob(cursor.getString(7));
+                obj.setEmail(cursor.getString(8));
+                obj.setAddress(cursor.getString(9));
+                obj.setDes(cursor.getString(10));
+                obj.setPhoneNumber(cursor.getString(11));
                 list.add(obj);
                 cursor.moveToNext();
             }
@@ -161,6 +166,7 @@ public class FileDAO {
                 obj.setEmail(cursor.getString(8));
                 obj.setAddress(cursor.getString(9));
                 obj.setDes(cursor.getString(10));
+                obj.setPhoneNumber(cursor.getString(11));
                 list.add(obj);
                 cursor.moveToNext();
             }

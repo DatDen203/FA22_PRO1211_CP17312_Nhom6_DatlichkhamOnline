@@ -78,7 +78,6 @@ public class Fragment_order_you extends Fragment {
         AccountDAO accountDAO = new AccountDAO(getContext());
         AccountDTO accountDTO = accountDAO.getDtoAccount(idUser);
         tilNameFullName.getEditText().setText(accountDTO.getFullName());
-        tilPhoneNumber.getEditText().setText(accountDTO.getPhoneNumber());
         rdoYes.setChecked(true);
 
         FileDAO fileDAO = new FileDAO(getContext());
@@ -103,6 +102,7 @@ public class Fragment_order_you extends Fragment {
         tilEmail.getEditText().setText(fileDTO.getEmail());
         tilJob.getEditText().setText(fileDTO.getJob());
         tilNameFullName.getEditText().setText(fileDTO.getFullname());
+        tilPhoneNumber.getEditText().setText(fileDTO.getPhoneNumber());
         SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd");
         try {
             Date d = f.parse(fileDTO.getBirthday());

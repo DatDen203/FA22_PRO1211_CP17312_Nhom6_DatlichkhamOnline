@@ -13,6 +13,7 @@ public class AllDTO {
     private String servicesName;
     private float servicesPrice;
     private int categoriesId;
+    private String note;
 
     // thong ke cua dcotor
     private int idDoctor;
@@ -22,6 +23,14 @@ public class AllDTO {
     //===================
 
     public AllDTO() {
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public int getId() {

@@ -2,6 +2,7 @@ package com.example.cp17312_nhom6_duan1.fragment;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -211,9 +212,10 @@ public class Fragment_Statistical extends Fragment {
         btnTestListDoctorOrderMonth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String month1 = yearTest+"/"+monthTest+"/00";
-                String month2 = yearTest +"/"+monthTest+"/32";
+                String month1 = yearTest+"/"+monthTest+"/01";
+                String month2 = yearTest +"/"+monthTest+"/31";
                 ArrayList<DoctorDTO> list = orderDetailDAO.getListSumPriceByOrderMonth(month1,month2);
+                Log.e("TAG", "onClick: list="+list.size() );
                 AdapterListDoctorStatistical adapterListDoctorStatistical = new AdapterListDoctorStatistical(list,getContext());
                 LinearLayoutManager manager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
                 rcv_listDoctorOrderMonth.setLayoutManager(manager);

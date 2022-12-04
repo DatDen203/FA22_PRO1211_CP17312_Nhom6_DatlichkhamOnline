@@ -25,7 +25,7 @@ public class OrderDAO {
         val.put(OrderDTO.colOrder_time,orderDTO.getOrder_time());
         val.put(OrderDTO.colOrder_date,orderDTO.getOrder_date());
         val.put(OrderDTO.colOrder_status,orderDTO.getStatus());
-
+        val.put(OrderDTO.colNote, orderDTO.getNote());
         long res = db.insert(OrderDTO.nameTable,null,val);
         return res;
     }
@@ -36,7 +36,7 @@ public class OrderDAO {
         val.put(OrderDTO.colOrder_time,orderDTO.getOrder_time());
         val.put(OrderDTO.colOrder_date,orderDTO.getOrder_date());
         val.put(OrderDTO.colOrder_status,orderDTO.getStatus());
-
+        val.put(OrderDTO.colNote, orderDTO.getNote());
         String[] check = new String[]{orderDTO.getId()+""};
         int res  =db.update(OrderDTO.nameTable,val,"id = ?",check);
         return res;
@@ -53,6 +53,7 @@ public class OrderDAO {
                 orderDTO.setOrder_time(cs.getString(2));
                 orderDTO.setOrder_date(cs.getString(3));
                 orderDTO.setStatus(cs.getString(4));
+                orderDTO.setNote(cs.getString(5));
                 list.add(orderDTO);
                 cs.moveToNext();
             }
@@ -70,6 +71,7 @@ public class OrderDAO {
             orderDTO.setOrder_time(cs.getString(2));
             orderDTO.setOrder_date(cs.getString(3));
             orderDTO.setStatus(cs.getString(4));
+            orderDTO.setNote(cs.getString(5));
         }
         return orderDTO;
     }

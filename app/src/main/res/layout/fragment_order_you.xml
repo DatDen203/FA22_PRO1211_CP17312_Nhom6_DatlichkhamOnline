@@ -225,7 +225,7 @@
             app:boxCornerRadiusBottomStart="15dp"
             app:boxCornerRadiusTopEnd="15dp"
             app:boxCornerRadiusTopStart="15dp"
-            android:enabled="false"
+            android:enabled="true"
             app:boxStrokeColor="@color/light_blue"
             android:layout_marginHorizontal="10dp"
             app:errorEnabled="true">
@@ -233,7 +233,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
+                android:enabled="true"
                 android:inputType="text"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>

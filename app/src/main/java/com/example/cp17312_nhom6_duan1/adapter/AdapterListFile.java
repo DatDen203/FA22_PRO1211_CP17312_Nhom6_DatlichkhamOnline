@@ -2,6 +2,7 @@ package com.example.cp17312_nhom6_duan1.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cp17312_nhom6_duan1.ItemFileDetailActivity;
 import com.example.cp17312_nhom6_duan1.R;
+import com.example.cp17312_nhom6_duan1.ViewPagerItemFileDetailActivity;
 import com.example.cp17312_nhom6_duan1.dao.AccountDAO;
 import com.example.cp17312_nhom6_duan1.dao.FileDAO;
 import com.example.cp17312_nhom6_duan1.dto.AccountDTO;
 import com.example.cp17312_nhom6_duan1.dto.FileDTO;
+import com.example.cp17312_nhom6_duan1.fragment.FragmentItemFileDetail;
 
 import java.util.ArrayList;
 
@@ -24,10 +27,12 @@ public class AdapterListFile extends RecyclerView.Adapter<AdapterListFile.ViewHo
     FileDAO fileDAO;
     Context context;
     AccountDAO accountDAO;
+    String check;
 
-    public AdapterListFile(ArrayList<FileDTO> listFile, FileDAO fileDAO) {
+    public AdapterListFile(ArrayList<FileDTO> listFile, FileDAO fileDAO, String check) {
         this.listFile = listFile;
         this.fileDAO = fileDAO;
+        this.check = check;
     }
 
     @NonNull
@@ -48,14 +53,26 @@ public class AdapterListFile extends RecyclerView.Adapter<AdapterListFile.ViewHo
         AccountDTO accountDTO = accountDAO.getDtoAccount(fileDTO.getUser_id());
         holder.tvFullName.setText(fileDTO.getFullname());
         holder.tvAddress.setText(fileDTO.getAddress());
-        holder.tvPhoneNumber.setText(accountDTO.getPhoneNumber());
+        holder.tvPhoneNumber.setText(fileDTO.getPhoneNumber());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, ItemFileDetailActivity.class);
-                intent.putExtra("id",fileDTO.getId());
-                intent.putExtra("idUser",fileDTO.getUser_id());
-                context.startActivity(intent);
+                if(check.equalsIgnoreCase("user")){
+                    Intent intent = new Intent(context, ItemFileDetailActivity.class);
+                    intent.putExtra("id",fileDTO.getId());
+                    intent.putExtra("idUser",fileDTO.getUser_id());
+                    context.startActivity(intent);
+                }else if(check.equalsIgnoreCase("admin")){
+                    Intent intent = new Intent(context, ViewPagerItemFileDetailActivity.class);
+                    context.startActivity(intent);
+                    SharedPreferences sharedPreferences = context.getSharedPreferences("idFile",Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.clear();
+                    editor.putInt("idFile",fileDTO.getId());
+                    editor.putInt("id_user",fileDTO.getUser_id());
+                    editor.commit();
+                }
+
             }
         });
     }

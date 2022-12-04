@@ -100,5 +100,8 @@ public class DoctorDTO {
     public void setTimework_id(int timework_id) {
         this.timework_id = timework_id;
     }
+public String toString(){
+        return "id:"+getId()+"\n"+"idUser:"+getUser_id()+"\n"+"idService: "+getService_id()+"\n"+"idRoom"+getRoom_id();
+}
 
 }
