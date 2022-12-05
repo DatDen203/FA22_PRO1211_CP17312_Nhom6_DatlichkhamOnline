@@ -22,6 +22,10 @@ public class DoctorDTO {
     public DoctorDTO() {
     }
 
+    public DoctorDTO(String birthday) {
+        this.birthday = birthday;
+    }
+
     public DoctorDTO(int id, int user_id, String birthday, int service_id, int room_id, String description, int timework_id) {
         this.id = id;
         this.user_id = user_id;

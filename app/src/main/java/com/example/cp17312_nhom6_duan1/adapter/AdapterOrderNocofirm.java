@@ -60,7 +60,7 @@ public class AdapterOrderNocofirm extends RecyclerView.Adapter<ItemOrderNoCofirm
                         +fileDTO.getBirthday()+"\nCăn cước công dân: "+fileDTO.getCccd()
                         +"\nQuốc tịch: "+fileDTO.getCountry()+"\nBảo hiểm y tế : "
                         +fileDTO.getBhyt()+"\nCông việc :"+fileDTO.getJob()
-                        +"\nĐịa chỉ nơi ở : "+fileDTO.getAddress()+"\nLí do khám : "+fileDTO.getDes());
+                        +"\nĐịa chỉ nơi ở : "+fileDTO.getAddress());
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }

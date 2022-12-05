@@ -2,6 +2,7 @@ package com.example.cp17312_nhom6_duan1.adapter;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cp17312_nhom6_duan1.ItemOrderDoctorActivity;
 import com.example.cp17312_nhom6_duan1.R;
+import com.example.cp17312_nhom6_duan1.UpdateOrderActivity;
 import com.example.cp17312_nhom6_duan1.adapter.ViewHolder.DoctorOrderViewHolder;
 import com.example.cp17312_nhom6_duan1.dao.AccountDAO;
 import com.example.cp17312_nhom6_duan1.dao.RoomsDAO;
@@ -110,8 +112,6 @@ public class AdapterDoctorOrder extends RecyclerView.Adapter<DoctorOrderViewHold
                 dialog.show();
             }
         });
-
-
     }
 
     @Override

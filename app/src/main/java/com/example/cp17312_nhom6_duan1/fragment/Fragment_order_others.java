@@ -71,7 +71,7 @@ public class Fragment_order_others extends Fragment {
         SharedPreferences preferences = getActivity().getSharedPreferences("getIdUser", Context.MODE_PRIVATE);
         int idUser = preferences.getInt("idUser", -1);
 
-
+        rdoNo.setChecked(true);
         imgBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,7 +120,6 @@ public class Fragment_order_others extends Fragment {
                 fileDTO.setJob(tilJob.getEditText().getText().toString());
                 fileDTO.setEmail(tilEmail.getEditText().getText().toString());
                 fileDTO.setAddress(tilAddress.getEditText().getText().toString());
-                fileDTO.setDes(tilDes.getEditText().getText().toString());
                 fileDTO.setPhoneNumber(tilPhoneNumber.getEditText().getText().toString());
                 long res = fileDAO.insertRow(fileDTO);
                 FileDTO fileDTO1 = fileDAO.getFileDToTop();

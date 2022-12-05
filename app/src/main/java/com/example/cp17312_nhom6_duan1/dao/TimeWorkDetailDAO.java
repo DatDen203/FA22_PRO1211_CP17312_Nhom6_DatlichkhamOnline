@@ -95,4 +95,17 @@ public class TimeWorkDetailDAO {
         return listTimeWorkDetail;
     }
 
+    public TimeWorkDetailDTO getTimeWorkDetail (String timeWorkDetail){
+        TimeWorkDetailDTO timeWorkDetailDTO  = new TimeWorkDetailDTO();
+        String where = "time = ?";
+        String[] whereArgs = new String[]{timeWorkDetail.trim()};
+        Cursor cs = db.query(TimeWorkDetailDTO.nameTable,null,where,whereArgs,null,null,null);
+        if(cs.moveToFirst()){
+            timeWorkDetailDTO.setId(cs.getInt(0));
+            timeWorkDetailDTO.setTimework_id(cs.getInt(1));
+            timeWorkDetailDTO.setTime(cs.getString(2));
+        }
+        return timeWorkDetailDTO;
+    }
+
 }

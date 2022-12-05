@@ -22,7 +22,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.cp17312_nhom6_duan1.R;
 import com.example.cp17312_nhom6_duan1.adapter.AdapterListDoctorStatistical;
-import com.example.cp17312_nhom6_duan1.adapter.AdapterViewPagerStatistical;
 import com.example.cp17312_nhom6_duan1.dao.OrderDetailDAO;
 import com.example.cp17312_nhom6_duan1.dto.DoctorDTO;
 import com.example.cp17312_nhom6_duan1.dto.StatisticalDTO;
@@ -72,14 +71,12 @@ public class Fragment_Statistical extends Fragment {
         btnTestListDoctorOrderMonth = view.findViewById(R.id.btnTestListDoctorOrderMonth);
         tvListDoctoOrderMonth =view.findViewById(R.id.tvListDoctoOrderMonth);
         rcv_listDoctorOrderMonth = view.findViewById(R.id.rcv_listDoctorOrderMonth);
-
         orderDetailDAO = new OrderDetailDAO(getContext());
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
         String toDay = year + "/" + (month + 1) + "/" + day;
-
         ll_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,7 +97,6 @@ public class Fragment_Statistical extends Fragment {
                 date.show();
             }
         });
-
         ll_dateOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,7 +117,6 @@ public class Fragment_Statistical extends Fragment {
                 date.show();
             }
         });
-
         btnTestOrderToDay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,7 +125,6 @@ public class Fragment_Statistical extends Fragment {
                 tvSumPriceOrderByToDay.setText(statisticalDTO.getSumPrice()+"vnđ");
             }
         });
-
         btnStartTestDay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,6 +149,7 @@ public class Fragment_Statistical extends Fragment {
                 date.show();
             }
         });
+
         btnTestStartMonth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

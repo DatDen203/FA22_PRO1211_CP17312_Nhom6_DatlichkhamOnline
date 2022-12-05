@@ -61,8 +61,8 @@
             app:ci_drawable="@drawable/cham_tron"
             android:layout_gravity="center" />
 
-        <EditText
-            android:id="@+id/edt_search"
+        <TextView
+            android:id="@+id/tvSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
@@ -70,7 +70,7 @@
             android:background="@drawable/khung_edt_search"
             android:drawableEnd="@drawable/ic_search"
             android:drawableTint="@color/text"
-            android:hint="Search"
+            android:hint="Tìm kiếm chuyên ngành"
             android:paddingStart="24dp"
             android:paddingTop="16dp"
             android:paddingEnd="16dp"

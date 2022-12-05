@@ -59,12 +59,7 @@ public class Fragment_Calender_Doctor extends Fragment {
             listAllOrderNoCofirm = orderDoctorDAO.listOrderDoctorByDateToDayByDoctorAllNoConfirm(doctorDTO.getId());
             showListAllNoCofrim(listAllOrderNoCofirm);
         }
-
-
-
     }
-
-
 
     private void showListAllNoCofrim(ArrayList<OrderDoctorDTO> list) {
         AdapterOrderNocofirm adapterOrderNocofirm = new AdapterOrderNocofirm(list, getContext());

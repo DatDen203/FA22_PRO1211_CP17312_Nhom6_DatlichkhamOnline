@@ -32,7 +32,6 @@ public class CofrimOrderDoctorActivity extends AppCompatActivity {
     private TextInputLayout tilAddress;
     private TextInputLayout tilDes;
     private MaterialButton btnComfrim;
-    private TextInputLayout tilNote;
     OrderDAO orderDAO;
     OrderDoctorDAO orderDoctorDAO;
 
@@ -58,12 +57,8 @@ public class CofrimOrderDoctorActivity extends AppCompatActivity {
         btnComfrim.setOnClickListener(view->{
             OrderDTO orderDTO = orderDAO.getOrderDTOById(intent.getIntExtra("orderID",-1));
             orderDTO.setStatus("Đã khám xong");
-            orderDTO.setNote(tilNote.getEditText().getText().toString());
-            OrderDoctorDTO orderDoctorDTO = orderDoctorDAO.getOrderDoctorDtoById(intent.getIntExtra("orderID",-1));
-            orderDoctorDTO.setStatus("Đã khám xong");
             int res = orderDAO.updateRow(orderDTO);
-            int res2 = orderDoctorDAO.updateRow(orderDoctorDTO);
-            if(res>0&&res2>0){
+            if(res>0){
                 Toast.makeText(getApplicationContext(), "Đã xác nhận" , Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -98,10 +93,6 @@ public class CofrimOrderDoctorActivity extends AppCompatActivity {
         tilAddress = findViewById(R.id.tilAddress);
         tilDes = findViewById(R.id.tilDes);
         btnComfrim = findViewById(R.id.btn_comfrim);
-
-
-        tilNote = findViewById(R.id.tilNote);
-
 
     }
 }
