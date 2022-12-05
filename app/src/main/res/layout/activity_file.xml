@@ -139,7 +139,11 @@
                 android:inputType="text"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bảo hiểm y tế"
+            android:layout_marginLeft="20dp"/>
         <RadioGroup
             android:layout_marginLeft="15dp"
             android:layout_width="wrap_content"

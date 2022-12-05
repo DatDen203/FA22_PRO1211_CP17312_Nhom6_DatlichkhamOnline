@@ -251,4 +251,47 @@ public class DoctorDAO {
         }
         return list;
     }
+    public ArrayList<DoctorDTO> getListDoctorByIdService(int idService,int idTimeWork){
+        ArrayList<DoctorDTO> list = new ArrayList<>();
+        String where = "service_id = ? and timework_id = ? or timework_id = ? and service_id = ?";
+        String[] whereArgs = new String[]{idService+"",3+"",idTimeWork+"",idService+""};
+        Cursor cursor = db.query(DoctorDTO.nameTable,null,where,whereArgs,null,null,null);
+        if(cursor.moveToFirst()){
+            while(!cursor.isAfterLast()){
+                DoctorDTO obj = new DoctorDTO();
+                obj.setId(cursor.getInt(0));
+                obj.setUser_id(cursor.getInt(1));
+                obj.setBirthday(cursor.getString(2));
+                obj.setService_id(cursor.getInt(3));
+                obj.setRoom_id(cursor.getInt(4));
+                obj.setDescription(cursor.getString(5));
+                obj.setTimework_id(cursor.getInt(6));
+                list.add(obj);
+                cursor.moveToNext();
+            }
+        }
+        return list;
+    }
+    public ArrayList<DoctorDTO> listDoctorbyIdTimeWorkDetail(String startdate,String dateToDay,int idService){
+        ArrayList<DoctorDTO> list = new ArrayList<>();
+        String[] whereArgs= new String[]{startdate.trim(),dateToDay.trim(),idService+""};
+        String select = "select tbDoctor.id,tbDoctor.user_id,tbDoctor.birthday,tbDoctor.service_id,tbDoctor.room_id,tbDoctor.description,tbDoctor.timework_id from tbOrderDetail inner join tbOrders on tbOrderDetail.order_id = tbOrders.id inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbDoctor on tbDoctor.id = tbOrderDoctor.doctor_id inner join tbServices on tbDoctor.service_id = tbServices.id where tbOrderDoctor.start_time = ?  and tbOrderDoctor.start_date = ? and tbServices.id = ?";
+        Cursor cursor = db.rawQuery(select,whereArgs);
+        if(cursor.moveToFirst()){
+            while(!cursor.isAfterLast()){
+                DoctorDTO obj = new DoctorDTO();
+                obj.setId(cursor.getInt(0));
+                obj.setUser_id(cursor.getInt(1));
+                obj.setBirthday(cursor.getString(2));
+                obj.setService_id(cursor.getInt(3));
+                obj.setRoom_id(cursor.getInt(4));
+                obj.setDescription(cursor.getString(5));
+                obj.setTimework_id(cursor.getInt(6));
+                list.add(obj);
+                cursor.moveToNext();
+            }
+
+        }
+        return list;
+    }
 }
