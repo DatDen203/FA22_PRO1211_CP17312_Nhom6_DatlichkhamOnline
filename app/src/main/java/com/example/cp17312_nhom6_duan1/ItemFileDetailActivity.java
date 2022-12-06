@@ -8,6 +8,7 @@ import android.text.format.DateFormat;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cp17312_nhom6_duan1.dao.AccountDAO;
 import com.example.cp17312_nhom6_duan1.dao.FileDAO;
@@ -31,8 +32,10 @@ public class ItemFileDetailActivity extends AppCompatActivity {
     private TextInputLayout tilAddress;
     private TextInputLayout tilDes;
     private TextInputLayout tilbhyt;
-
+    private MaterialButton btnUpdate;
     private TextInputLayout tilBirthday;
+    private RadioButton rdoYes;
+    private RadioButton rdoNo;
     FileDAO fileDAO;
     FileDTO fileDTO;
     AccountDTO accountDTO;
@@ -59,12 +62,31 @@ public class ItemFileDetailActivity extends AppCompatActivity {
         tilCountry.getEditText().setText(fileDTO.getCountry());
         tilJob.getEditText().setText(fileDTO.getJob());
         if(fileDTO.getBhyt().equalsIgnoreCase("Có")){
-           tilbhyt.getEditText().setText("Có bảo hiểm y tế");
-        }else if(fileDTO.getBhyt().equalsIgnoreCase("Không có bảo hiểm y tế")){
-            tilbhyt.getEditText().setText("Không");
+          rdoYes.setChecked(true);
+        }else if(fileDTO.getBhyt().equalsIgnoreCase("Không")){
+           rdoNo.setChecked(true);
         }
         tilDes.getEditText().setText(fileDTO.getDes());
-
+        btnUpdate.setOnClickListener(view->{
+            fileDTO.setFullname(tilNameFullName.getEditText().getText().toString());
+            fileDTO.setPhoneNumber(tilPhoneNumber.getEditText().getText().toString());
+            fileDTO.setDes(tilDes.getEditText().getText().toString());
+            fileDTO.setAddress(tilAddress.getEditText().getText().toString());
+            fileDTO.setEmail(tilEmail.getEditText().getText().toString());
+            fileDTO.setJob(tilJob.getEditText().getText().toString());
+            fileDTO.setCountry(tilCountry.getEditText().getText().toString());
+            fileDTO.setCccd(tilCccd.getEditText().getText().toString());
+            fileDTO.setBirthday(formatDate(tilBirthday.getEditText().getText().toString()));
+            if(rdoYes.isChecked()){
+                fileDTO.setBhyt("Có");
+            }else if(rdoNo.isChecked()){
+                fileDTO.setBhyt("Không");
+            }
+            int res = fileDAO.updateRow(fileDTO);
+            if(res>0){
+                Toast.makeText(getApplicationContext(), "Cập nhật thành công" , Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     public String formatDate2(String a) {
         String newDate ="";
@@ -106,6 +128,13 @@ public class ItemFileDetailActivity extends AppCompatActivity {
         tilDes = findViewById(R.id.tilDes);
         tilBirthday = findViewById(R.id.tilBirthday);
         tilbhyt = findViewById(R.id.tilbhyt);
+        btnUpdate = findViewById(R.id.btn_update);
+
+
+        rdoYes = findViewById(R.id.rdoYes);
+        rdoNo = findViewById(R.id.rdoNo);
+
+
 
     }
 }

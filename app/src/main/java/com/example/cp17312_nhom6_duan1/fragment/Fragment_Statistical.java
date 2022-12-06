@@ -108,7 +108,7 @@ public class Fragment_Statistical extends Fragment {
                             today = year + "/" + (month + 1) + "/" + day;
                         }
                         else{
-                            today = year + "/" + (month + 1) + "/"+ day;
+                            today = year + "/" + (month + 1) + "/0"+ day;
                         }
 
                         tvDayOrder.setText(today);

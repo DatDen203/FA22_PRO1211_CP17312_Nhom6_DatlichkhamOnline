@@ -84,7 +84,7 @@ public class AdapterUpdateDoctorInOrder extends RecyclerView.Adapter<AdapterUpda
         final int index = position;
         allDTO = listOrder.get(index);
         DoctorDTO doctorDTO = doctorDAO.getDtoDoctorByIdDoctor(allDTO.getIdDoctor());
-        listDoctor = doctorDAO.getListDoctorByTimeWord(allDTO.getStartTime(), doctorDTO.getService_id(), doctorDTO.getTimework_id());
+        listDoctor = doctorDAO.getListDoctorByTimeWord(allDTO.getStartTime(), doctorDTO.getService_id(), doctorDTO.getTimework_id(), allDTO.getStartDate());
         spinnerDoctorAdapter = new SpinnerDoctorAdapter(listDoctor, context);
         holder.tvfullName.setText(allDTO.getFullameUser());
         listDoctor.add(0, doctorDTO);
@@ -143,7 +143,7 @@ public class AdapterUpdateDoctorInOrder extends RecyclerView.Adapter<AdapterUpda
 
     public void dialogupdate2(Spinner spinner) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("delete");
+        builder.setTitle("Cập nhật");
         builder.setMessage("Cập nhật thành công ");
         builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
             @Override
