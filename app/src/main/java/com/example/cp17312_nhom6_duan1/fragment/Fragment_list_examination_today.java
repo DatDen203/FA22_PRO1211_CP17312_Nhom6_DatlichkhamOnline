@@ -57,9 +57,7 @@ public class Fragment_list_examination_today extends Fragment {
         LinearLayoutManager manager  =new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
         rcv_list_examination_today.setLayoutManager(manager);
         rcv_list_examination_today.setAdapter(adapterOrder);
-
         tvSumNumberExaminationToDay.setText("Tổng đơn đặt: "+listOrderDetail.size());
-
     }
     public void onResume() {
         super.onResume();
@@ -74,7 +72,6 @@ public class Fragment_list_examination_today extends Fragment {
         else{
             today = year+"/"+(month+1)+"/0"+day;
         }
-
         ArrayList<OrderDetailDTO> listOrderDetail = orderDetailDAO.getListExaminationToDay(today);
         AdapterUpdateOrder adapterOrder = new AdapterUpdateOrder(listOrderDetail,getContext());
         LinearLayoutManager manager  =new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
