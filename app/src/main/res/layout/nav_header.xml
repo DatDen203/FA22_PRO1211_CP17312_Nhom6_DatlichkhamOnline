@@ -17,7 +17,7 @@
         android:id="@+id/tv_hi_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hi Luan !"
+        android:text="Xin Chào !"
         android:textSize="20dp"
         android:textStyle="bold"
         android:layout_marginTop="8dp"
@@ -26,7 +26,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="how do you feel today?"
+        android:text="Hôm nay bạn cảm thấy thế nào?"
         android:textSize="16dp"
         android:textColor="@color/white" />
 

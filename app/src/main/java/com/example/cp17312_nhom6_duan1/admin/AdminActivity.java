@@ -47,7 +47,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         navigationAdmin.setNavigationItemSelectedListener(this);
         replaceFragmet(new Fragment_ManagerDoctor());
         navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(true);
-        toolBar.setTitle("Manager Doctor");
+        toolBar.setTitle("Quản lí bác sĩ");
 
     }
 

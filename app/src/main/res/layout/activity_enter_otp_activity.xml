@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:fontFamily="@font/gilroybold"
-        android:text="Enter OTP"
+        android:text="Nhập mã OTP"
         android:textColor="@color/black"
         android:textSize="24dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
-        android:text="An 6 digit code has been sent to"
+        android:text="Mã gồm 6 chữ số đã đuọc gửi"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_enter_otp" />
@@ -166,7 +166,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Did not receive OTP"
+            android:text="Không nhận được OTP"
             android:textSize="14sp" />
 
         <TextView
@@ -174,7 +174,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Resend OTP"
+            android:text="Gửi lại OTP"
             android:textColor="@android:color/holo_red_light"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -191,7 +191,7 @@
             android:id="@+id/btnVerify"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Verify"
+            android:text="Xác nhận"
             android:textColor="@color/white"
             android:background="@drawable/khung_btn_sign_in"
             android:textStyle="bold" />

@@ -70,7 +70,7 @@
             android:id="@+id/edt_fullname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Full name"
+            android:hint="Tên đầy đủ"
             android:imeOptions="actionDone"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -82,7 +82,7 @@
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/khung_btn_sign_in"
-        android:text="Save"
+        android:text="Lưu"
         android:textStyle="bold"
         app:backgroundTint="@color/green"
         app:layout_constraintTop_toBottomOf="@id/til_username" />
