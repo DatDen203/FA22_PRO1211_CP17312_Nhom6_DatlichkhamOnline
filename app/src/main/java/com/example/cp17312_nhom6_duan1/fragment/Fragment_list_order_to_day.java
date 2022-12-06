@@ -48,7 +48,7 @@ public class Fragment_list_order_to_day extends Fragment {
         String today = year+"/"+(month+1)+"/"+day;
 
         orderDetailDAO = new OrderDetailDAO(getContext());
-        ArrayList<OrderDetailDTO> listOrderDetail = orderDetailDAO.getListExaminationToDay(today);
+        ArrayList<OrderDetailDTO> listOrderDetail = orderDetailDAO.getListOrderToDay(today);
         AdapterUpdateOrder adapterOrder = new AdapterUpdateOrder(listOrderDetail,getContext());
         LinearLayoutManager manager  =new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
         rcv_list_order_today.setLayoutManager(manager);
