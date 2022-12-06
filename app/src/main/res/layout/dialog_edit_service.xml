@@ -33,7 +33,7 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="50dp"
                     android:layout_weight="1"
-                    android:text="Update"
+                    android:text="Cập nhật"
                     android:textColor="@color/black"
                     android:textSize="32sp"
                     android:textStyle="bold" />
@@ -58,7 +58,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Name"
+                    android:hint="Tên dịch vụ"
                     android:inputType="text"
                     android:imeOptions="actionNext"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -75,7 +75,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Price"
+                    android:hint="Giá dịch vụ"
                     android:inputType="text"
                     android:imeOptions="actionDone"/>
             </com.google.android.material.textfield.TextInputLayout>

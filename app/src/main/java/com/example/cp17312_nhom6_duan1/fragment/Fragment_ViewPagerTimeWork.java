@@ -43,9 +43,9 @@ public class Fragment_ViewPagerTimeWork extends Fragment {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                 if(position==0){
-                    tab.setText("Time Work");
+                    tab.setText("Ca làm việc");
                 }else if(position==1){
-                    tab.setText("Time Work Detail");
+                    tab.setText("Thời gian làm việc");
                 }
             }
         });

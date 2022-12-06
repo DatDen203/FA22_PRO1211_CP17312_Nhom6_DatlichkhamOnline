@@ -110,7 +110,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                             @Override
                             public void onVerificationFailed(@NonNull FirebaseException e) {
-                                Toast.makeText(SignUpActivity.this, "Verification Failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
@@ -164,34 +164,34 @@ public class SignUpActivity extends AppCompatActivity {
                 tilPassword.getEditText().getText().toString().trim().isEmpty() ||
                 tilPhoneNumber.getEditText().getText().toString().trim().isEmpty() || checkUserName() == false) {
             if (tilFullname.getEditText().getText().toString().trim().isEmpty()) {
-                tilFullname.setError("FullName can't isEmpty");
+                tilFullname.setError("Họ và tên không đúng định dạng");
                 ErrorAnimaton2(tilFullname, 0);
             } else {
                 tilFullname.setError("");
             }
             if (tilUsername.getEditText().getText().toString().trim().isEmpty()) {
-                tilUsername.setError("UserName can't isEmpty");
+                tilUsername.setError("Tên đăng nhập không đúng định dạng");
                 ErrorAnimaton2(tilUsername, 50);
             } else if (checkUserName() == false) {
-                tilUsername.setError("This account has already existed");
+                tilUsername.setError("Tài khoản đã tồn tại");
                 ErrorAnimaton2(tilUsername, 50);
             } else {
                 tilUsername.setError("");
             }
             if (tilPassword.getEditText().getText().toString().trim().isEmpty()) {
-                tilPassword.setError("Password can't isEmpty");
+                tilPassword.setError("Mật khẩu không đúng định dạng");
                 ErrorAnimaton2(tilPassword, 60);
             } else if (tilPassword.getEditText().getText().toString().trim().length() < 8) {
-                tilPassword.setError("Password must be at least 8 characters");
+                tilPassword.setError("Mật khẩu phải có ít nhất 8 kí tự");
                 ErrorAnimaton2(tilPassword, 60);
             } else {
                 tilPassword.setError("");
             }
             if (tilPhoneNumber.getEditText().getText().toString().trim().isEmpty()) {
-                tilPhoneNumber.setError("PhoneNumber can't isEmpty");
+                tilPhoneNumber.setError("Số điện thoại không đúng định dạng");
                 ErrorAnimaton2(tilPhoneNumber, 70);
             } else if (!tilPhoneNumber.getEditText().getText().toString().trim().matches("^[0-9]{10}$")) {
-                tilPhoneNumber.setError("Incorrect phone number");
+                tilPhoneNumber.setError("Số điện thoại không đúng");
                 ErrorAnimaton2(tilPhoneNumber, 70);
             } else {
                 tilPhoneNumber.setError("");

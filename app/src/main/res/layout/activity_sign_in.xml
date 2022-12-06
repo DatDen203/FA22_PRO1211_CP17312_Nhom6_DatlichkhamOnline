@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:text="Sign in"
+            android:text="Đăng nhập"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -47,7 +47,7 @@
                 android:id="@+id/edt_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Username"
+                android:hint="Tên đăng nhập"
                 android:imeOptions="actionNext"
                 android:inputType="text" />
 
@@ -72,7 +72,7 @@
                 android:id="@+id/edt_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
+                android:hint="Mật khẩu"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword" />
 
@@ -85,7 +85,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="10dp"
             android:buttonTint="@color/xanh_dam"
-            android:text="Remember Password"
+            android:text="Nhớ mật khẩu"
             android:textColor="@color/xanh_dam"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -100,7 +100,7 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/khung_btn_sign_in"
             android:padding="5dp"
-            android:text="Sign in"
+            android:text="Đăng nhập"
             android:textAllCaps="false"
             android:textStyle="bold"
             app:backgroundTint="@color/xanh_dam"
@@ -111,7 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="OR"
+            android:text="Hoặc"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_sign_in" />
@@ -157,7 +157,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Sign in with Google"
+                    android:text="Đăng nhập bằng Google"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -178,14 +178,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="New to Healthcare?" />
+                android:text="Bạn là người mới?" />
 
             <TextView
                 android:id="@+id/tv_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/tv_new"
-                android:text="Register"
+                android:text="Đăng ký ngay"
                 android:textColor="@color/xanh_dam"
                 android:textStyle="bold" />
         </RelativeLayout>

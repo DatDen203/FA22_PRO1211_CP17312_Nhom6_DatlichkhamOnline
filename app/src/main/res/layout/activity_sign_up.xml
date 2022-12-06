@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:text="Sign up"
+            android:text="Đăng ký"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -58,7 +58,7 @@
                 android:id="@+id/edt_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Username"
+                android:hint="Tên đăng nhập"
                 android:imeOptions="actionNext"
                 android:inputType="text" />
 
@@ -83,7 +83,7 @@
                 android:id="@+id/edt_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
+                android:hint="Mật khẩu"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -105,7 +105,7 @@
                 android:id="@+id/edt_fullname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Full name"
+                android:hint="Tên đầy đủ"
                 android:imeOptions="actionNext"
                 android:inputType="text" />
 
@@ -128,7 +128,7 @@
                 android:id="@+id/edt_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Phone number"
+                android:hint="Số điện thoại"
                 android:inputType="phone"
                 android:imeOptions="actionDone" />
 
@@ -147,7 +147,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
-                android:text="By signing up, you're agree to our"
+                android:text="Bằng cách đăng ký, bạn đồng ý với"
                 android:textSize="12sp" />
 
             <TextView
@@ -156,7 +156,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:layout_toEndOf="@id/tv_subtitle"
-                android:text="Terms &amp; Conditions"
+                android:text="Điều kiện &amp; Điều kiện"
                 android:textColor="@color/xanh_dam"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -167,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_terms_cons"
                 android:layout_marginEnd="5dp"
-                android:text="and"
+                android:text="và"
                 android:textSize="12sp" />
 
             <TextView
@@ -176,7 +176,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_subtitle"
                 android:layout_toEndOf="@id/tv_subtitle2"
-                android:text="Private Policy"
+                android:text="Chính sách riêng tư của chúng tôi"
                 android:textColor="@color/xanh_dam"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -190,7 +190,7 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/khung_btn_sign_in"
             android:padding="5dp"
-            android:text="Continue"
+            android:text="Tiếp tục"
             android:textAllCaps="false"
             android:textStyle="bold"
             app:backgroundTint="@color/xanh_dam"
@@ -211,14 +211,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="Joined us before?" />
+                android:text="Bạn đã có tài khoản?" />
 
             <TextView
                 android:id="@+id/tv_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/tv_joined"
-                android:text="Login"
+                android:text="Đăng nhập"
                 android:textColor="@color/xanh_dam"
                 android:textStyle="bold" />
         </RelativeLayout>
