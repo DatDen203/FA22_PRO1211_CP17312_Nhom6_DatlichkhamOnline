@@ -51,7 +51,7 @@ public class ConfirmActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        
+
         rcv_list_order = findViewById(R.id.rcv_list_order);
         tvSumPrice = findViewById(R.id.tvSumPrice);
         btnOrder = findViewById(R.id.btnOrder);
@@ -71,13 +71,19 @@ public class ConfirmActivity extends AppCompatActivity {
 
         OrderDAO orderDAO = new OrderDAO(this);
         OrderDetailDAO orderDetailDAO = new OrderDetailDAO(this);
-
+        String date;
         //Lấy ra ngày hiện tại
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-        String date = year + "/" + (month + 1) + "/" + day;
+        if (day >=10) {
+            date = year + "/" + (month + 1) + "/" + day;
+        }
+        else{
+            date = year + "/" + (month + 1) + "/0" + day;
+        }
+
 
         //Lấy ra giờ hiện tại
         int hour = c.get(Calendar.HOUR);
@@ -97,7 +103,7 @@ public class ConfirmActivity extends AppCompatActivity {
                     long res = orderDAO.insertRow(orderDTO);
                 }
                 ArrayList<OrderDTO> listOrderDto = orderDAO.selectDesc();
-                for(int i = 0;i<list.size();i++){
+                for (int i = 0; i < list.size(); i++) {
                     OrderDTO orderDTO = listOrderDto.get(i);
                     OrderDoctorDTO orderDoctorDTO = OrderDoctorActivity.listOrderDoctor.get(i);
 
@@ -127,7 +133,7 @@ public class ConfirmActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        intent.putExtra("back",1);
+                        intent.putExtra("back", 1);
                         startActivity(intent);
                     }
                 });

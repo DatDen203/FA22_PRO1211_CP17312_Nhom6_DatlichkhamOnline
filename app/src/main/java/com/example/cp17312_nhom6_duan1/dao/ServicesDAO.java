@@ -71,5 +71,24 @@ public class ServicesDAO {
         }
         return servicesDTO;
     }
+    public ArrayList<ServicesDTO> getDtoServiceByIdByNameService (String name){
+        ArrayList<ServicesDTO> list = new ArrayList<>();
+        String where = "name = ?";
+        String[] whereArgs = {name.trim()};
+        Cursor cs = sqLiteDatabase.query(ServicesDTO.nameTable,null,where,whereArgs,null,null,null);
+        if (cs.moveToFirst()) {
+            while (!cs.isAfterLast()) {
+                ServicesDTO servicesDTO = new ServicesDTO();
+                servicesDTO.setServicesId(cs.getInt(0));
+                servicesDTO.setServicesName(cs.getString(1));
+                servicesDTO.setServicesPrice(cs.getFloat(2));
+                servicesDTO.setCategoriesId(cs.getInt(3));
+
+                list.add(servicesDTO);
+                cs.moveToNext();
+            }
+        }
+        return list;
+    }
 
 }
