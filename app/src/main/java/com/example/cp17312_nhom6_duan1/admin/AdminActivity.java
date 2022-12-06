@@ -111,7 +111,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 break;
             case R.id.m_managerCategory:
                 replaceFragmet(new Fragment_ManagerCategory());
-                toolBar.setTitle("Quản lí loại  dịch vụ khám");
+                toolBar.setTitle("Quản lí loại dịch vụ khám");
                 navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerCategory).setChecked(true);
