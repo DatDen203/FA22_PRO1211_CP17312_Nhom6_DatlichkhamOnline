@@ -32,12 +32,13 @@ import java.util.Calendar;
 
 
 public class Fragment_Statistical extends Fragment {
-    private LinearLayout ll_date,ll_startMonth,ll_dateOrder,ll_OrderMonth,ll_listDoctorOrderMonth;
-    private TextView tvDay, tvNumBerOrderStartToDay,tvStartMonth,tvNumBerStartMonth,tvNumBerOrderToDay,tvSumPriceOrderByToDay,tvSumPriceStartMonth,tvSumPriceOrderStartByToDay,tvDayOrder,tvOrderMonth,tvNumBerOrderMonth,tvSumPriceOrderbyMonth,tvListDoctoOrderMonth;
+    private LinearLayout ll_date, ll_startMonth, ll_dateOrder, ll_OrderMonth, ll_listDoctorOrderMonth;
+    private TextView tvDay, tvNumBerOrderStartToDay, tvStartMonth, tvNumBerStartMonth, tvNumBerOrderToDay, tvSumPriceOrderByToDay, tvSumPriceStartMonth, tvSumPriceOrderStartByToDay, tvDayOrder, tvOrderMonth, tvNumBerOrderMonth, tvSumPriceOrderbyMonth, tvListDoctoOrderMonth;
     private OrderDetailDAO orderDetailDAO;
-    private Button btnStartTestDay,btnTestStartMonth,btnTestOrderToDay,btnTestOrderMonth,btnTestListDoctorOrderMonth;
-    private int monthTest,yearTest;
+    private Button btnStartTestDay, btnTestStartMonth, btnTestOrderToDay, btnTestOrderMonth, btnTestListDoctorOrderMonth;
+    private int monthTest, yearTest;
     private RecyclerView rcv_listDoctorOrderMonth;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,7 +70,7 @@ public class Fragment_Statistical extends Fragment {
         tvSumPriceOrderByToDay = view.findViewById(R.id.tvSumPriceOrderByToDay);
         ll_listDoctorOrderMonth = view.findViewById(R.id.ll_listDoctorOrderMonth);
         btnTestListDoctorOrderMonth = view.findViewById(R.id.btnTestListDoctorOrderMonth);
-        tvListDoctoOrderMonth =view.findViewById(R.id.tvListDoctoOrderMonth);
+        tvListDoctoOrderMonth = view.findViewById(R.id.tvListDoctoOrderMonth);
         rcv_listDoctorOrderMonth = view.findViewById(R.id.rcv_listDoctorOrderMonth);
         orderDetailDAO = new OrderDetailDAO(getContext());
         Calendar c = Calendar.getInstance();
@@ -84,11 +85,10 @@ public class Fragment_Statistical extends Fragment {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         String today;
-                        if(day>10){
+                        if (day > 10) {
                             today = year + "/" + (month + 1) + "/" + day;
-                        }
-                        else{
-                             today = year + "/" + (month + 1) + "/0" + day;
+                        } else {
+                            today = year + "/" + (month + 1) + "/0" + day;
                         }
 
                         tvDay.setText(today);
@@ -103,12 +103,13 @@ public class Fragment_Statistical extends Fragment {
                 DatePickerDialog date = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+
                         String today;
-                        if(day>10){
+                        if(day>=10){
                             today = year + "/" + (month + 1) + "/" + day;
                         }
                         else{
-                            today = year + "/" + (month + 1) + "/0"+ day;
+                            today = year + "/" + (month + 1) + "/0" + day;
                         }
 
                         tvDayOrder.setText(today);
@@ -121,8 +122,8 @@ public class Fragment_Statistical extends Fragment {
             @Override
             public void onClick(View view) {
                 StatisticalDTO statisticalDTO = orderDetailDAO.getStatisticalDTOByOrderToDay(tvDayOrder.getText().toString());
-                tvNumBerOrderToDay.setText(statisticalDTO.getNumberOrder()+"");
-                tvSumPriceOrderByToDay.setText(statisticalDTO.getSumPrice()+"vnđ");
+                tvNumBerOrderToDay.setText(statisticalDTO.getNumberOrder() + "");
+                tvSumPriceOrderByToDay.setText(statisticalDTO.getSumPrice() + "vnđ");
             }
         });
         btnStartTestDay.setOnClickListener(new View.OnClickListener() {
@@ -139,9 +140,16 @@ public class Fragment_Statistical extends Fragment {
                 DatePickerDialog date = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                       monthTest = (month + 1);
+                        monthTest = (month + 1);
                         yearTest = year;
-                        String today = year + "/" + (month + 1) + "/" + day;
+                        String today;
+                        if(day>=10){
+                            today = year + "/" + (month + 1) + "/" + day;
+                        }
+                        else{
+                            today = year + "/" + (month + 1) + "/0" + day;
+                        }
+
                         tvStartMonth.setText(today);
 
                     }
@@ -153,11 +161,11 @@ public class Fragment_Statistical extends Fragment {
         btnTestStartMonth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String month1 = yearTest+"/"+monthTest+"/00";
-                String month2 = yearTest +"/"+monthTest+"/32";
-                StatisticalDTO statisticalDTO = orderDetailDAO.getStatisticalDTOByToMonth(month1,month2);
-                tvNumBerStartMonth.setText(statisticalDTO.getNumberOrder()+"");
-                tvSumPriceStartMonth.setText(statisticalDTO.getSumPrice()+"vnđ");
+                String month1 = yearTest + "/" + monthTest + "/00";
+                String month2 = yearTest + "/" + monthTest + "/32";
+                StatisticalDTO statisticalDTO = orderDetailDAO.getStatisticalDTOByToMonth(month1, month2);
+                tvNumBerStartMonth.setText(statisticalDTO.getNumberOrder() + "");
+                tvSumPriceStartMonth.setText(statisticalDTO.getSumPrice() + "vnđ");
             }
         });
 
@@ -169,7 +177,14 @@ public class Fragment_Statistical extends Fragment {
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         monthTest = (month + 1);
                         yearTest = year;
-                        String today = year + "/" + (month + 1) + "/" + day;
+                        String today;
+                        if(day>=10){
+                            today = year + "/" + (month + 1) + "/" + day;
+                        }
+                        else{
+                            today = year + "/" + (month + 1) + "/0" + day;
+                        }
+
                         tvOrderMonth.setText(today);
 
                     }
@@ -180,11 +195,11 @@ public class Fragment_Statistical extends Fragment {
         btnTestOrderMonth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String month1 = yearTest+"/"+monthTest+"/00";
-                String month2 = yearTest +"/"+monthTest+"/32";
-                StatisticalDTO statisticalDTO = orderDetailDAO.getStatisticalDTOByOrderMonth(month1,month2);
-                tvNumBerOrderMonth.setText(statisticalDTO.getNumberOrder()+"");
-                tvSumPriceOrderbyMonth.setText(statisticalDTO.getSumPrice()+"vnđ");
+                String month1 = yearTest + "/" + monthTest + "/0";
+                String month2 = yearTest + "/" + monthTest + "/32";
+                StatisticalDTO statisticalDTO = orderDetailDAO.getStatisticalDTOByOrderMonth(month1, month2);
+                tvNumBerOrderMonth.setText(statisticalDTO.getNumberOrder() + "");
+                tvSumPriceOrderbyMonth.setText(statisticalDTO.getSumPrice() + "vnđ");
             }
         });
 
@@ -196,7 +211,14 @@ public class Fragment_Statistical extends Fragment {
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         monthTest = (month + 1);
                         yearTest = year;
-                        String today = year + "/" + (month + 1) + "/" + day;
+                        String today;
+                        if(day>=10){
+                            today = year + "/" + (month + 1) + "/" + day;
+                        }
+                        else{
+                            today = year + "/" + (month + 1) + "/0" + day;
+                        }
+
                         tvListDoctoOrderMonth.setText(today);
 
                     }
@@ -207,12 +229,12 @@ public class Fragment_Statistical extends Fragment {
         btnTestListDoctorOrderMonth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String month1 = yearTest+"/"+monthTest+"/01";
-                String month2 = yearTest +"/"+monthTest+"/31";
-                ArrayList<DoctorDTO> list = orderDetailDAO.getListSumPriceByOrderMonth(month1,month2);
-                Log.e("TAG", "onClick: list="+list.size() );
-                AdapterListDoctorStatistical adapterListDoctorStatistical = new AdapterListDoctorStatistical(list,getContext());
-                LinearLayoutManager manager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+                String month1 = yearTest + "/" + monthTest + "/01";
+                String month2 = yearTest + "/" + monthTest + "/31";
+                ArrayList<DoctorDTO> list = orderDetailDAO.getListSumPriceByOrderMonth(month1, month2);
+                Log.e("TAG", "onClick: list=" + list.size());
+                AdapterListDoctorStatistical adapterListDoctorStatistical = new AdapterListDoctorStatistical(list, getContext());
+                LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                 rcv_listDoctorOrderMonth.setLayoutManager(manager);
                 rcv_listDoctorOrderMonth.setAdapter(adapterListDoctorStatistical);
             }

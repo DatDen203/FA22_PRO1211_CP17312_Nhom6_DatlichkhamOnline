@@ -22,6 +22,7 @@ import com.example.cp17312_nhom6_duan1.ListDoctorActivity;
 import com.example.cp17312_nhom6_duan1.ListOrderActivity;
 import com.example.cp17312_nhom6_duan1.ListServiceActivity;
 import com.example.cp17312_nhom6_duan1.R;
+import com.example.cp17312_nhom6_duan1.SearchActivity;
 import com.example.cp17312_nhom6_duan1.adapter.AdapterListDoctor;
 import com.example.cp17312_nhom6_duan1.adapter.AdapterListDoctorByService;
 import com.example.cp17312_nhom6_duan1.adapter.AdapterListService;
@@ -44,6 +45,7 @@ public class Fragment_home_new extends Fragment {
     private BannerAdapter bannerAdapter;
     private List<Banner> list;
     private LinearLayout llOrderService,llOrderDoctor,llFile;
+    private TextView tvSearch;
 
     Handler handler = new Handler(Looper.getMainLooper());
     Runnable runnable = new Runnable() {
@@ -76,7 +78,14 @@ public class Fragment_home_new extends Fragment {
         llOrderDoctor = view.findViewById(R.id.llOrderDoctor);
         llOrderService = view.findViewById(R.id.llOrderService);
         llFile = view.findViewById(R.id.llFile);
-
+        tvSearch = view.findViewById(R.id.tvSearch);
+        tvSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    Intent intent = new Intent(getContext(), SearchActivity.class);
+                    startActivity(intent);
+            }
+        });
 
         llFile.setOnClickListener(new View.OnClickListener() {
             @Override
