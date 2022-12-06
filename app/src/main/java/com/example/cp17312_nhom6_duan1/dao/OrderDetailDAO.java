@@ -144,8 +144,6 @@ public class OrderDetailDAO {
         return list;
     }
 
-
-
     public StatisticalDTO getStatisticalDTOByStartToDay(String toDay) {
         StatisticalDTO statisticalDTO = new StatisticalDTO();
         String[] whereArgs = {toDay.trim()};
