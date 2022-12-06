@@ -32,8 +32,11 @@ public class CofrimOrderDoctorActivity extends AppCompatActivity {
     private TextInputLayout tilAddress;
     private TextInputLayout tilDes;
     private MaterialButton btnComfrim;
+    private TextInputLayout tilNote;
+
     OrderDAO orderDAO;
     OrderDoctorDAO orderDoctorDAO;
+    OrderDoctorDTO orderDoctorDTO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +44,9 @@ public class CofrimOrderDoctorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cofrim_order_doctor);
         findViewID();
         orderDoctorDAO = new OrderDoctorDAO(getApplicationContext());
-        orderDAO= new OrderDAO(getApplicationContext());
+        orderDAO = new OrderDAO(getApplicationContext());
         Intent intent = getIntent();
-        toolbar.setNavigationOnClickListener(view->{
+        toolbar.setNavigationOnClickListener(view -> {
             finish();
         });
         tilNameFullName.getEditText().setText(intent.getStringExtra("fullName"));
@@ -54,21 +57,26 @@ public class CofrimOrderDoctorActivity extends AppCompatActivity {
         tilbhyt.getEditText().setText(intent.getStringExtra("bhyt"));
         tilJob.getEditText().setText(intent.getStringExtra("job"));
         tilDes.getEditText().setText(intent.getStringExtra("des"));
-        btnComfrim.setOnClickListener(view->{
-            OrderDTO orderDTO = orderDAO.getOrderDTOById(intent.getIntExtra("orderID",-1));
+        btnComfrim.setOnClickListener(view -> {
+            OrderDTO orderDTO = orderDAO.getOrderDTOById(intent.getIntExtra("orderID", -1));
             orderDTO.setStatus("Đã khám xong");
+            orderDTO.setNote(tilNote.getEditText().getText().toString());
+            orderDoctorDTO = orderDoctorDAO.getOrderDoctorDtoById(intent.getIntExtra("orderID", -1));
+            orderDoctorDTO.setStatus("Đã khám xong");
+            int res2 = orderDoctorDAO.updateRow(orderDoctorDTO);
             int res = orderDAO.updateRow(orderDTO);
-            if(res>0){
-                Toast.makeText(getApplicationContext(), "Đã xác nhận" , Toast.LENGTH_SHORT).show();
+            if (res > 0 & res2 > 0) {
+                Toast.makeText(getApplicationContext(), "Đã xác nhận", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
     }
+
     public String formatDate(String a) {
-        String newDate ="";
+        String newDate = "";
         Date objdate2 = new Date(System.currentTimeMillis());
         DateFormat dateFormat2 = new DateFormat();
-        String dates2 =a;
+        String dates2 = a;
         SimpleDateFormat Format2 = new SimpleDateFormat("yyyy/mm/dd");
         try {
             Date obj = Format2.parse(dates2);
@@ -78,7 +86,8 @@ public class CofrimOrderDoctorActivity extends AppCompatActivity {
         }
         return newDate;
     }
-    private void findViewID(){
+
+    private void findViewID() {
 
 
         toolbar = findViewById(R.id.toolbar);
@@ -93,6 +102,7 @@ public class CofrimOrderDoctorActivity extends AppCompatActivity {
         tilAddress = findViewById(R.id.tilAddress);
         tilDes = findViewById(R.id.tilDes);
         btnComfrim = findViewById(R.id.btn_comfrim);
+        tilNote = findViewById(R.id.tilNote);
 
     }
 }

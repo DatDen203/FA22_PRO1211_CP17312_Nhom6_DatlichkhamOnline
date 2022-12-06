@@ -113,7 +113,7 @@ public class OrderDetailDAO {
     public ArrayList<OrderDetailDTO> getListOrderToDay(String today) {
         ArrayList<OrderDetailDTO> list = new ArrayList<>();
         String[] whereArgs = {today.trim()};
-        String select = "select tbOrders.id,tbOrderDoctor.id from tbOrderDetail inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbOrders on tbOrders.id = tbOrderDetail.order_id inner join tbFile on tbFile.id = tbOrders.file_id inner join tbAccount on tbAccount.id = tbFile.user_id where tbOrders.order_date = ? and tbOrders.status ='Chờ ngày khám'";
+        String select = "select tbOrders.id,tbOrderDoctor.id from tbOrderDetail inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbOrders on tbOrders.id = tbOrderDetail.order_id inner join tbFile on tbFile.id = tbOrders.file_id inner join tbAccount on tbAccount.id = tbFile.user_id where tbOrders.order_date = ? ";
         Cursor cs = db.rawQuery(select, whereArgs);
         if (cs.moveToFirst()) {
             while (!cs.isAfterLast()) {
@@ -130,7 +130,7 @@ public class OrderDetailDAO {
     public ArrayList<OrderDetailDTO> getListExaminationToDay(String today) {
         ArrayList<OrderDetailDTO> list = new ArrayList<>();
         String[] whereArgs = {today.trim()};
-        String select = "select tbOrders.id,tbOrderDoctor.id from tbOrderDetail inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbOrders on tbOrders.id = tbOrderDetail.order_id inner join tbFile on tbFile.id = tbOrders.file_id inner join tbAccount on tbAccount.id = tbFile.user_id where tbOrderDoctor.start_date = ? and tbOrders.status ='Chờ ngày khám'";
+        String select = "select tbOrders.id,tbOrderDoctor.id from tbOrderDetail inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbOrders on tbOrders.id = tbOrderDetail.order_id inner join tbFile on tbFile.id = tbOrders.file_id inner join tbAccount on tbAccount.id = tbFile.user_id where tbOrderDoctor.start_date = ? ";
         Cursor cs = db.rawQuery(select, whereArgs);
         if (cs.moveToFirst()) {
             while (!cs.isAfterLast()) {
@@ -149,7 +149,7 @@ public class OrderDetailDAO {
     public StatisticalDTO getStatisticalDTOByStartToDay(String toDay) {
         StatisticalDTO statisticalDTO = new StatisticalDTO();
         String[] whereArgs = {toDay.trim()};
-        String select = "select count(tbOrders.id),sum(tbOrderDoctor.total) from tbOrderDetail inner join tbOrders on tbOrderDetail.order_id = tbOrders.id inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id where tbOrderDoctor.start_date = ? and tbOrderDoctor.status ='Đã khám xong'";
+        String select = "select count(tbOrders.id),sum(tbOrderDoctor.total) from tbOrderDetail inner join tbOrders on tbOrderDetail.order_id = tbOrders.id inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id where tbOrderDoctor.start_date = ? ";
         Cursor cs = db.rawQuery(select, whereArgs);
         if (cs.moveToFirst()) {
             statisticalDTO.setNumberOrder(cs.getInt(0));
@@ -161,7 +161,7 @@ public class OrderDetailDAO {
     public StatisticalDTO getStatisticalDTOByOrderToDay(String OrderToDay) {
         StatisticalDTO statisticalDTO = new StatisticalDTO();
         String[] whereArgs = {OrderToDay.trim()};
-        String select = "select count(tbOrders.id),sum(tbOrderDoctor.total) from tbOrderDetail inner join tbOrders on tbOrderDetail.order_id = tbOrders.id inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id where tbOrders.order_date = ? and tbOrderDoctor.status ='Đã khám xong'";
+        String select = "select count(tbOrders.id),sum(tbOrderDoctor.total) from tbOrderDetail inner join tbOrders on tbOrderDetail.order_id = tbOrders.id inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id where tbOrders.order_date = ? ";
         Cursor cs = db.rawQuery(select, whereArgs);
         if (cs.moveToFirst()) {
             statisticalDTO.setNumberOrder(cs.getInt(0));
@@ -173,7 +173,7 @@ public class OrderDetailDAO {
     public StatisticalDTO getStatisticalDTOByToMonth(String month1, String month2) {
         StatisticalDTO statisticalDTO = new StatisticalDTO();
         String[] whereArgs = {month1.trim(), month2.trim()};
-        String select = "select count(tbOrders.id),sum(tbOrderDoctor.total) from tbOrderDetail inner join tbOrders on tbOrderDetail.order_id = tbOrders.id inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id where tbOrderDoctor.start_date > ?  and tbOrderDoctor.start_date <? and tbOrderDoctor.status ='Đã khám xong'";
+        String select = "select count(tbOrders.id),sum(tbOrderDoctor.total) from tbOrderDetail inner join tbOrders on tbOrderDetail.order_id = tbOrders.id inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id where tbOrderDoctor.start_date > ?  and tbOrderDoctor.start_date <? ";
         Cursor cs = db.rawQuery(select, whereArgs);
         if (cs.moveToFirst()) {
             statisticalDTO.setNumberOrder(cs.getInt(0));
@@ -185,7 +185,7 @@ public class OrderDetailDAO {
     public StatisticalDTO getStatisticalDTOByOrderMonth(String month1, String month2) {
         StatisticalDTO statisticalDTO = new StatisticalDTO();
         String[] whereArgs = {month1.trim(), month2.trim()};
-        String select = "select count(tbOrders.id),sum(tbOrderDoctor.total) from tbOrderDetail inner join tbOrders on tbOrderDetail.order_id = tbOrders.id inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id where tbOrders.order_date > ?  and tbOrders.order_date <? and tbOrderDoctor.status ='Đã khám xong'";
+        String select = "select count(tbOrders.id),sum(tbOrderDoctor.total) from tbOrderDetail inner join tbOrders on tbOrderDetail.order_id = tbOrders.id inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id where tbOrders.order_date > ?  and tbOrders.order_date <? ";
         Cursor cs = db.rawQuery(select, whereArgs);
         if (cs.moveToFirst()) {
             statisticalDTO.setNumberOrder(cs.getInt(0));
@@ -197,7 +197,7 @@ public class OrderDetailDAO {
     public ArrayList<DoctorDTO> getListSumPriceByOrderMonth(String month1, String month2) {
         ArrayList<DoctorDTO> list = new ArrayList<>();
         String[] whereArds = {month1.trim(), month2.trim()};
-        String select="select tbOrderDoctor.doctor_id ,sum(tbOrderDoctor.total) from tbOrderDetail inner join tbOrders on tbOrderDetail.order_id = tbOrders.id inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbDoctor on tbOrderDoctor.doctor_id = tbDoctor.id   where tbOrderDoctor.start_date >=? and  tbOrderDoctor.start_date<= ? and tbOrderDoctor.status ='Đã khám xong' group by tbDoctor.id order by sum(tbOrderDoctor.total) desc";
+        String select="select tbOrderDoctor.doctor_id ,sum(tbOrderDoctor.total) from tbOrderDetail inner join tbOrders on tbOrderDetail.order_id = tbOrders.id inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbDoctor on tbOrderDoctor.doctor_id = tbDoctor.id   where tbOrderDoctor.start_date >=? and  tbOrderDoctor.start_date<= ?  group by tbDoctor.id order by sum(tbOrderDoctor.total) desc";
         Cursor cs = db.rawQuery(select, whereArds);
         if (cs.moveToFirst()) {
             while (!cs.isAfterLast()) {
