@@ -77,7 +77,7 @@ public class FragmentStatisticalDoctor extends Fragment {
                 listPrice = orderDetailDAO.getListPriceByMonthDoctor(startDate, endDate, doctorDTO.getId());
                 AdapterStatisticalDoctor adapterStatisticalDoctor = new AdapterStatisticalDoctor(listPrice, "month");
                 rcvStatisticalDoctor.setAdapter(adapterStatisticalDoctor);
-                tvSumPrice.setText("Tổng tiền: "+orderDetailDAO.getSumPriceByMonthDoctor(startDate, endDate, doctorDTO.getId()) + "đ");
+                tvSumPrice.setText("Tổng tiền: "+orderDetailDAO.getSumPriceByMonthDoctor(startDate, endDate, doctorDTO.getId()) + " vnđ");
             }
         });
 

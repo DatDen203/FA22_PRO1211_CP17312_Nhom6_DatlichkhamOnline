@@ -37,7 +37,7 @@ public class AdapterStatisticalDoctor extends RecyclerView.Adapter<AdapterStatis
     public void onBindViewHolder(@NonNull ViewHoderItemStatisticalDoctor holder, int position) {
         final int index =position;
         AllDTO allDTO =list.get(index);
-        holder.tvTotal.setText(allDTO.getTotal()+"đ");
+        holder.tvTotal.setText(allDTO.getTotal()+" vnđ");
         if(check.equalsIgnoreCase("month")){
             holder.tvTime.setText(allDTO.getDay());
         }else if(check.equalsIgnoreCase("day")){
