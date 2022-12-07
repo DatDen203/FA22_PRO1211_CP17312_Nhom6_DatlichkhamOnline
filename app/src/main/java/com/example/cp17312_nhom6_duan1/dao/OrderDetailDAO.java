@@ -113,7 +113,7 @@ public class OrderDetailDAO {
     public ArrayList<OrderDetailDTO> getListOrderToDay(String today) {
         ArrayList<OrderDetailDTO> list = new ArrayList<>();
         String[] whereArgs = {today.trim()};
-        String select = "select tbOrders.id,tbOrderDoctor.id from tbOrderDetail inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbOrders on tbOrders.id = tbOrderDetail.order_id inner join tbFile on tbFile.id = tbOrders.file_id inner join tbAccount on tbAccount.id = tbFile.user_id where tbOrders.order_date = ? and tbOrders.status = 'Chờ ngày khám'";
+        String select = "select tbOrders.id,tbOrderDoctor.id from tbOrderDetail inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbOrders on tbOrders.id = tbOrderDetail.order_id inner join tbFile on tbFile.id = tbOrders.file_id inner join tbAccount on tbAccount.id = tbFile.user_id where tbOrders.order_date = ? ";
         Cursor cs = db.rawQuery(select, whereArgs);
         if (cs.moveToFirst()) {
             while (!cs.isAfterLast()) {
@@ -130,7 +130,7 @@ public class OrderDetailDAO {
     public ArrayList<OrderDetailDTO> getListExaminationToDay(String today) {
         ArrayList<OrderDetailDTO> list = new ArrayList<>();
         String[] whereArgs = {today.trim()};
-        String select = "select tbOrders.id,tbOrderDoctor.id from tbOrderDetail inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbOrders on tbOrders.id = tbOrderDetail.order_id inner join tbFile on tbFile.id = tbOrders.file_id inner join tbAccount on tbAccount.id = tbFile.user_id where tbOrderDoctor.start_date = ? and tbOrders.status = 'Chờ ngày khám'";
+        String select = "select tbOrders.id,tbOrderDoctor.id from tbOrderDetail inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbOrders on tbOrders.id = tbOrderDetail.order_id inner join tbFile on tbFile.id = tbOrders.file_id inner join tbAccount on tbAccount.id = tbFile.user_id where tbOrderDoctor.start_date = ? ";
         Cursor cs = db.rawQuery(select, whereArgs);
         if (cs.moveToFirst()) {
             while (!cs.isAfterLast()) {
