@@ -5,6 +5,16 @@
         <item android:title="Quản lí">
             <menu>
                 <item
+                    android:id="@+id/list_order_today"
+                    android:title="Danh sách đặt lịch hôm nay"
+                    app:showAsAction="always"
+                    android:icon="@drawable/list_order_today"/>
+                <item
+                    android:id="@+id/list_examination_today"
+                    android:title="Danh sách lịch khám hôm nay"
+                    app:showAsAction="always"
+                    android:icon="@drawable/listorder"/>
+                <item
                     android:id="@+id/m_managerDoctor"
                     android:title="Quản lí bác sĩ"
                     android:icon="@drawable/medical_team"
@@ -39,16 +49,7 @@
                     android:title="Thống kê"
                     android:icon="@drawable/statistical"
                     app:showAsAction="always"/>
-                <item
-                    android:id="@+id/list_order_today"
-                    android:title="Danh sách đặt lịch hôm nay"
-                    app:showAsAction="always"
-                    android:icon="@drawable/list_order_today"/>
-                <item
-                    android:id="@+id/list_examination_today"
-                    android:title="Danh sách lịch khám hôm nay"
-                    app:showAsAction="always"
-                    android:icon="@drawable/listorder"/>
+
             </menu>
         </item>
     </group>

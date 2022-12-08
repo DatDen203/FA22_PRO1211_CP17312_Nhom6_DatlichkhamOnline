@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -84,6 +85,8 @@ public class UpdateOrderActivity extends AppCompatActivity {
         FileDTO fileDTO = fileDAO.getFileDToById(orderDoctorDTO.getFile_id());
         tvNamefile.setText(fileDTO.getFullname());
 
+
+
         tvStartDate.setText(orderDoctorDTO.getStart_date());
         tvStartTime.setText(orderDoctorDTO.getStart_time());
 
@@ -152,6 +155,15 @@ public class UpdateOrderActivity extends AppCompatActivity {
                     Toast.makeText(UpdateOrderActivity.this, "Sửa thành công", Toast.LENGTH_SHORT).show();
                     onBackPressed();
                 }
+            }
+        });
+
+        String phone = accountDTO.getPhoneNumber();
+        tvCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(Intent.ACTION_CALL, Uri.parse("tel: "+phone));
+                startActivity(intent1);
             }
         });
 

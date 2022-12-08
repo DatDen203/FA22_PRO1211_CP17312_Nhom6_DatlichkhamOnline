@@ -21,7 +21,6 @@ public class OrderDoctorDTO {
     public static final String colStatus ="status";
     public OrderDoctorDTO() {
     }
-
     public OrderDoctorDTO(int id, int file_id, int doctor_id, String start_time, String start_date, float total) {
         this.id = id;
         this.file_id = file_id;
