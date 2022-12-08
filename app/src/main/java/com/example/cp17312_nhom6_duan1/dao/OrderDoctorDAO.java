@@ -26,7 +26,6 @@ public class OrderDoctorDAO {
         val.put(OrderDoctorDTO.colStartTime,orderDoctorDTO.getStart_time());
         val.put(OrderDoctorDTO.colStartDate,orderDoctorDTO.getStart_date());
         val.put(OrderDoctorDTO.colTotal,orderDoctorDTO.getTotal());
-        val.put(OrderDoctorDTO.colStatus, orderDoctorDTO.getStatus());
         long res =db.insert(OrderDoctorDTO.nameTable,null,val);
         return res;
     }
@@ -37,7 +36,6 @@ public class OrderDoctorDAO {
         val.put(OrderDoctorDTO.colStartTime,orderDoctorDTO.getStart_time());
         val.put(OrderDoctorDTO.colStartDate,orderDoctorDTO.getStart_date());
         val.put(OrderDoctorDTO.colTotal,orderDoctorDTO.getTotal());
-        val.put(OrderDoctorDTO.colStatus, orderDoctorDTO.getStatus());
         int res = db.update(OrderDoctorDTO.nameTable,val,"id=?",new String[]{orderDoctorDTO.getId()+""});
         return res;
     }
@@ -59,7 +57,7 @@ public class OrderDoctorDAO {
                 orderDoctorDTO.setStart_time(cs.getString(3));
                 orderDoctorDTO.setStart_date(cs.getString(4));
                 orderDoctorDTO.setTotal(cs.getFloat(5));
-                orderDoctorDTO.setStatus(cs.getString(6));
+
                 list.add(orderDoctorDTO);
                 cs.moveToNext();
             }
@@ -77,7 +75,6 @@ public class OrderDoctorDAO {
             orderDoctorDTO.setStart_time(cs.getString(3));
             orderDoctorDTO.setStart_date(cs.getString(4));
             orderDoctorDTO.setTotal(cs.getFloat(5));
-            orderDoctorDTO.setStatus(cs.getString(6));
         }
         return orderDoctorDTO;
     }
@@ -94,7 +91,6 @@ public class OrderDoctorDAO {
             orderDoctorDTO.setStart_time(cs.getString(3));
             orderDoctorDTO.setStart_date(cs.getString(4));
             orderDoctorDTO.setTotal(cs.getFloat(5));
-            orderDoctorDTO.setStatus(cs.getString(6));
         }
         return orderDoctorDTO;
     }
