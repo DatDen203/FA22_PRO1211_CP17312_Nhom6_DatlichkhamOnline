@@ -27,10 +27,11 @@ public class Fragment_list_order_to_day extends Fragment {
     private RecyclerView rcv_list_order_today;
     private TextView tvSumNumberOrderToDay;
     private OrderDetailDAO orderDetailDAO;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_list_order_to_day,container,false);
+        return inflater.inflate(R.layout.fragment_list_order_to_day, container, false);
     }
 
     @Override
@@ -44,17 +45,22 @@ public class Fragment_list_order_to_day extends Fragment {
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-
-        String today = year+"/"+(month+1)+"/"+day;
+        String today;
+        if (day >= 10) {
+            today = year + "/" + (month + 1) + "/" + day;
+        } else {
+            today = year + "/" + (month + 1) + "/0" + day;
+        }
 
         orderDetailDAO = new OrderDetailDAO(getContext());
         ArrayList<OrderDetailDTO> listOrderDetail = orderDetailDAO.getListOrderToDay(today);
-        AdapterUpdateOrder adapterOrder = new AdapterUpdateOrder(listOrderDetail,getContext());
-        LinearLayoutManager manager  =new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+
+        AdapterUpdateOrder adapterOrder = new AdapterUpdateOrder(listOrderDetail, getContext());
+        LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         rcv_list_order_today.setLayoutManager(manager);
         rcv_list_order_today.setAdapter(adapterOrder);
 
-        tvSumNumberOrderToDay.setText("Tổng đơn đặt: "+listOrderDetail.size());
+        tvSumNumberOrderToDay.setText("Tổng đơn đặt: " + listOrderDetail.size());
     }
 
     @Override
@@ -66,13 +72,18 @@ public class Fragment_list_order_to_day extends Fragment {
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
 
-        String today = year+"/"+(month+1)+"/"+day;
+        String today;
+        if (day >= 10) {
+            today = year + "/" + (month + 1) + "/" + day;
+        } else {
+            today = year + "/" + (month + 1) + "/0" + day;
+        }
         ArrayList<OrderDetailDTO> listOrderDetail = orderDetailDAO.getListOrderToDay(today);
-        AdapterUpdateOrder adapterOrder = new AdapterUpdateOrder(listOrderDetail,getContext());
-        LinearLayoutManager manager  =new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+        AdapterUpdateOrder adapterOrder = new AdapterUpdateOrder(listOrderDetail, getContext());
+        LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         rcv_list_order_today.setLayoutManager(manager);
         rcv_list_order_today.setAdapter(adapterOrder);
-        tvSumNumberOrderToDay.setText("Tổng đơn đặt: "+listOrderDetail.size());
+        tvSumNumberOrderToDay.setText("Tổng đơn đặt: " + listOrderDetail.size());
 
     }
 }

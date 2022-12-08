@@ -53,10 +53,12 @@ public class Fragment_Statistical_month_doctor extends Fragment {
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-        if(day<10){
-            endDate = year + "/" + (month + 1) + "/" +"0"+ day;
+        if(month==2){
+            endDate = year + "/" + (month + 1) + "/" +"28";
+        }else if(month%2==0){
+            endDate = year + "/" + (month + 1) + "/" + "31";
         }else{
-            endDate = year + "/" + (month + 1) + "/" + day;
+            endDate = year + "/" + (month + 1) + "/" + "30";
         }
         startDate = year + "/" + (month+1) + "/" + "01";
         Log.e("TAG", "onViewCreated: "+startDate);

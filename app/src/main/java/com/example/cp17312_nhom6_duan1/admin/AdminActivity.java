@@ -45,9 +45,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             drawerLayout.openDrawer(GravityCompat.START);
         });
         navigationAdmin.setNavigationItemSelectedListener(this);
-        replaceFragmet(new Fragment_ManagerDoctor());
-        navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(true);
-        toolBar.setTitle("Quản lí bác sĩ");
+        replaceFragmet(new Fragment_list_order_to_day());
+        navigationAdmin.getMenu().findItem(R.id.list_order_today).setChecked(true);
+        toolBar.setTitle("Danh sách Đặt lịch khám hôm nay");
 
     }
 
