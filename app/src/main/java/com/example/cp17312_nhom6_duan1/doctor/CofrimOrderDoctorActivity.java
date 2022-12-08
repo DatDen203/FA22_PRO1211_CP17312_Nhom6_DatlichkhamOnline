@@ -30,7 +30,6 @@ public class CofrimOrderDoctorActivity extends AppCompatActivity {
     private TextInputLayout tilbhyt;
     private TextInputLayout tilJob;
     private TextInputLayout tilAddress;
-    private TextInputLayout tilDes;
     private MaterialButton btnComfrim;
     private TextInputLayout tilNote;
 
@@ -56,16 +55,15 @@ public class CofrimOrderDoctorActivity extends AppCompatActivity {
         tilAddress.getEditText().setText(intent.getStringExtra("address"));
         tilbhyt.getEditText().setText(intent.getStringExtra("bhyt"));
         tilJob.getEditText().setText(intent.getStringExtra("job"));
-        tilDes.getEditText().setText(intent.getStringExtra("des"));
         btnComfrim.setOnClickListener(view -> {
             OrderDTO orderDTO = orderDAO.getOrderDTOById(intent.getIntExtra("orderID", -1));
             orderDTO.setStatus("Đã khám xong");
             orderDTO.setNote(tilNote.getEditText().getText().toString());
-            orderDoctorDTO = orderDoctorDAO.getOrderDoctorDtoById(intent.getIntExtra("orderID", -1));
-            orderDoctorDTO.setStatus("Đã khám xong");
-            int res2 = orderDoctorDAO.updateRow(orderDoctorDTO);
+//            orderDoctorDTO = orderDoctorDAO.getOrderDoctorDtoById(intent.getIntExtra("orderID", -1));
+//            orderDoctorDTO.setStatus("Đã khám xong");
+//            int res2 = orderDoctorDAO.updateRow(orderDoctorDTO);
             int res = orderDAO.updateRow(orderDTO);
-            if (res > 0 & res2 > 0) {
+            if (res > 0) {
                 Toast.makeText(getApplicationContext(), "Đã xác nhận", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -100,7 +98,6 @@ public class CofrimOrderDoctorActivity extends AppCompatActivity {
         tilbhyt = findViewById(R.id.tilbhyt);
         tilJob = findViewById(R.id.tilJob);
         tilAddress = findViewById(R.id.tilAddress);
-        tilDes = findViewById(R.id.tilDes);
         btnComfrim = findViewById(R.id.btn_comfrim);
         tilNote = findViewById(R.id.tilNote);
 

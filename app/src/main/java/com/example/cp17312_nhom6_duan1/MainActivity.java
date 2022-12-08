@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         } else {
-//            super.onBackPressed();
+            super.onBackPressed();
         }
     }
 

@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class MyDbHelper extends SQLiteOpenHelper {
-    public static final String DB_NAME = "CP17312_Nhom6_Duan1_6";
+    public static final String DB_NAME = "CP17312_Nhom6_Duan1_7";
     public static final int DB_VERSION = 103;
 
     public MyDbHelper(Context context) {
@@ -114,7 +114,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         String sqlOrderDetail = "CREATE TABLE tbOrderDetail (order_id INTEGER NOT NULL REFERENCES tbOrders(id),orderDoctor_id INTEGER NOT NULL REFERENCES tbOrderDoctor(id));";
         sqLiteDatabase.execSQL(sqlOrderDetail);
 
-        String sqlOrderDoctor = "CREATE TABLE tbOrderDoctor (id INTEGER NOT NULL,file_id INTEGER NOT NULL REFERENCES tbFile(id),doctor_id INTEGER NOT NULL REFERENCES tbDoctor(id),start_time TEXT NOT NULL,start_date TEXT NOT NULL,total FLOAT NOT NULL,status TEXT,PRIMARY KEY(id AUTOINCREMENT));";
+        String sqlOrderDoctor = "CREATE TABLE tbOrderDoctor (id INTEGER NOT NULL,file_id INTEGER NOT NULL REFERENCES tbFile(id),doctor_id INTEGER NOT NULL REFERENCES tbDoctor(id),start_time TEXT NOT NULL,start_date TEXT NOT NULL,total FLOAT NOT NUll,PRIMARY KEY(id AUTOINCREMENT));";
         sqLiteDatabase.execSQL(sqlOrderDoctor);
     }
 

@@ -33,10 +33,11 @@ public class Fragment_Statistical_month_doctor extends Fragment {
     String startDate;
     String endDate;
     DoctorDTO doctorDTO;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_statistical_month_by_doctor,container,false);
+        return inflater.inflate(R.layout.fragment_statistical_month_by_doctor, container, false);
     }
 
     @Override
@@ -45,7 +46,7 @@ public class Fragment_Statistical_month_doctor extends Fragment {
         rcvStatisticalDoctorForMonth = view.findViewById(R.id.rcv_StatisticalDoctorForMonth);
         tvSumPrice = view.findViewById(R.id.tv_sumPrice);
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("getIdUser", Context.MODE_PRIVATE);
-        int idUSer = sharedPreferences.getInt("idUser",-1);
+        int idUSer = sharedPreferences.getInt("idUser", -1);
         doctorDAO = new DoctorDAO(getContext());
         doctorDTO = doctorDAO.getDtoDoctorByIdAccount(idUSer);
         orderDetailDAO = new OrderDetailDAO(getContext());
@@ -53,29 +54,29 @@ public class Fragment_Statistical_month_doctor extends Fragment {
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-        if(month==2){
-            endDate = year + "/" + (month + 1) + "/" +"28";
-        }else if(month%2==0){
+        if (month == 2) {
+            endDate = year + "/" + (month + 1) + "/" + "28";
+        } else if (month % 2 == 0) {
             endDate = year + "/" + (month + 1) + "/" + "31";
-        }else{
+        } else {
             endDate = year + "/" + (month + 1) + "/" + "30";
         }
-        startDate = year + "/" + (month+1) + "/" + "01";
-        Log.e("TAG", "onViewCreated: "+startDate);
-        Log.e("TAG", "onViewCreated: "+endDate);
-        listPriceMonth = orderDetailDAO.getListPriceByMonthDoctor(startDate, endDate,doctorDTO.getId());
-        Log.e("TAG", "onViewCreated: list.size="+listPriceMonth.size());
-        AdapterStatisticalDoctor adapterStatisticalDoctor = new AdapterStatisticalDoctor(listPriceMonth,"month");
+        startDate = year + "/" + (month + 1) + "/" + "01";
+        Log.e("TAG", "onViewCreated: " + startDate);
+        Log.e("TAG", "onViewCreated: " + endDate);
+        listPriceMonth = orderDetailDAO.getListPriceByMonthDoctor(startDate, endDate, doctorDTO.getId());
+        Log.e("TAG", "onViewCreated: list.size=" + listPriceMonth.size());
+        AdapterStatisticalDoctor adapterStatisticalDoctor = new AdapterStatisticalDoctor(listPriceMonth, "month");
         rcvStatisticalDoctorForMonth.setAdapter(adapterStatisticalDoctor);
-        tvSumPrice.setText("Tổng tiền: "+orderDetailDAO.getSumPriceByMonthDoctor(startDate, endDate, doctorDTO.getId())+" đ");
+        tvSumPrice.setText("Tổng tiền: " + orderDetailDAO.getSumPriceByMonthDoctor(startDate, endDate, doctorDTO.getId()) + " vnđ");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        listPriceMonth = orderDetailDAO.getListPriceByMonthDoctor(startDate, endDate,doctorDTO.getId());
-        AdapterStatisticalDoctor adapterStatisticalDoctor = new AdapterStatisticalDoctor(listPriceMonth,"month");
+        listPriceMonth = orderDetailDAO.getListPriceByMonthDoctor(startDate, endDate, doctorDTO.getId());
+        AdapterStatisticalDoctor adapterStatisticalDoctor = new AdapterStatisticalDoctor(listPriceMonth, "month");
         rcvStatisticalDoctorForMonth.setAdapter(adapterStatisticalDoctor);
-        tvSumPrice.setText(orderDetailDAO.getSumPriceByMonthDoctor(startDate, endDate, doctorDTO.getId())+" đ");
+        tvSumPrice.setText("Tổng tiền: " + orderDetailDAO.getSumPriceByMonthDoctor(startDate, endDate, doctorDTO.getId()) + " vnđ");
     }
 }
