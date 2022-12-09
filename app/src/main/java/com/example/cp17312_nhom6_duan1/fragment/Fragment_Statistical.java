@@ -85,7 +85,7 @@ public class Fragment_Statistical extends Fragment {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         String today;
-                        if (day > 10) {
+                        if (day >=10) {
                             today = year + "/" + (month + 1) + "/" + day;
                         } else {
                             today = year + "/" + (month + 1) + "/0" + day;

@@ -87,14 +87,17 @@ public class AdapterUpdateDoctorInOrder extends RecyclerView.Adapter<AdapterUpda
         listDoctor = doctorDAO.getListDoctorByTimeWord(allDTO.getStartTime(), doctorDTO.getService_id(), doctorDTO.getTimework_id(), allDTO.getStartDate());
         spinnerDoctorAdapter = new SpinnerDoctorAdapter(listDoctor, context);
         holder.tvfullName.setText(allDTO.getFullameUser());
-        listDoctor.add(0, doctorDTO);
+        listDoctor.add(0,doctorDTO);
         for (int i = 0; i < listDoctor.size(); i++) {
             if (allDTO.getIdDoctor() == listDoctor.get(i).getId()) {
                 holder.spNameDoctor.setSelected(true);
                 holder.spNameDoctor.setSelection(i);
             }
         }
-        orderDoctorDTO = orderDoctorDAO.getOrderDoctorDtoById(doctorDTO.getId());
+        orderDoctorDTO = orderDoctorDAO.getOrderDoctorDtoById1(doctorDTO.getId());
+        Log.e(TAG, "onBindViewHolder: "+doctorDTO.getId() );
+        Log.e(TAG, "onBindViewHolder: "+orderDoctorDTO.getDoctor_id() );
+
         servicesDTO = servicesDAO.getDtoServiceByIdByService(doctorDTO.getService_id());
         roomsDTO = roomsDAO.getDtoRoomByIdRoom(doctorDTO.getRoom_id());
         holder.tvNameService.setText(servicesDTO.getServicesName());
@@ -102,6 +105,17 @@ public class AdapterUpdateDoctorInOrder extends RecyclerView.Adapter<AdapterUpda
         holder.spNameDoctor.setAdapter(spinnerDoctorAdapter);
         holder.tvStartDate.setText(formatDate(allDTO.getStartDate()));
         holder.tvStartTime.setText(allDTO.getStartTime());
+        holder.spNameDoctor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         if (check.equalsIgnoreCase("nocomfrim")) {
             holder.btnUpdate.setOnClickListener(new View.OnClickListener() {
                 @Override
