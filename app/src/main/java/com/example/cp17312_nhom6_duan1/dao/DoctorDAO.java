@@ -231,7 +231,7 @@ public class DoctorDAO {
                 " join tbServices on tbDoctor.service_id =  tbServices.id where tbDoctor.service_id= "+idService+" and tbDoctor.id\n" +
                 " not in (select tbDoctor.id  from tbDoctor join tbTimeWork on tbDoctor.timework_id = tbTimeWork.id\n" +
                 " join tbTimeWorkDetail on tbTimeWork.id = tbTimeWorkDetail.timework_id \n" +
-                " join tbServices on tbDoctor.service_id =  tbServices.id join tbOrderDoctor on tbDoctor.id=tbOrderDoctor.doctor_id where tbOrderDoctor.start_time='"+time+"' and tbOrderDoctor.start_date='"+dateNow+"' and tbOrderDoctor.status='Chờ ngày khám') group by tbDoctor.id";
+                " join tbServices on tbDoctor.service_id =  tbServices.id join tbOrderDoctor on tbDoctor.id=tbOrderDoctor.doctor_id join tbOrderDetail on tbOrderDoctor.id = tbOrderDetail.orderDoctor_id join tbOrders on tbOrderDetail.order_id = tbOrders.id where tbOrderDoctor.start_time='"+time+"' and tbOrderDoctor.start_date='"+dateNow+"' and tbOrders.status='Chờ ngày khám') group by tbDoctor.id";
         Cursor cursor = db.rawQuery(select,null);
         if(cursor!=null){
             cursor.moveToFirst();
@@ -251,11 +251,11 @@ public class DoctorDAO {
         }
         return list;
     }
-    public ArrayList<DoctorDTO> getListDoctorByIdService(int idService,int idTimeWork){
+    public ArrayList<DoctorDTO> getListDoctorByIdService(int idService,int idTimeWork,int idService1){
         ArrayList<DoctorDTO> list = new ArrayList<>();
-        String where = "service_id = ? and timework_id = ? or timework_id = ? and service_id = ?";
-        String[] whereArgs = new String[]{idService+"",3+"",idTimeWork+"",idService+""};
-        Cursor cursor = db.query(DoctorDTO.nameTable,null,where,whereArgs,null,null,null);
+        String[] whereArgs = new String[]{idService+"",idTimeWork+"",idService+""};
+        String selecdt = "select * from tbDoctor where service_id = ? and timework_id =3 or timework_id = ? and service_id = ?";
+        Cursor cursor = db.rawQuery(selecdt,whereArgs);
         if(cursor.moveToFirst()){
             while(!cursor.isAfterLast()){
                 DoctorDTO obj = new DoctorDTO();

@@ -94,6 +94,22 @@ public class OrderDoctorDAO {
         }
         return orderDoctorDTO;
     }
+
+    public OrderDoctorDTO getOrderDoctorDtoById1(int idOrderDoctor){
+        OrderDoctorDTO orderDoctorDTO = new OrderDoctorDTO();
+        String where = "doctor_id = ?";
+        String[] whereArgs = {idOrderDoctor+""};
+        Cursor cs = db.query(OrderDoctorDTO.nameTable,null,where,whereArgs,null,null,null);
+        if(cs.moveToFirst()){
+            orderDoctorDTO.setId(cs.getInt(0));
+            orderDoctorDTO.setFile_id(cs.getInt(1));
+            orderDoctorDTO.setDoctor_id(cs.getInt(2));
+            orderDoctorDTO.setStart_time(cs.getString(3));
+            orderDoctorDTO.setStart_date(cs.getString(4));
+            orderDoctorDTO.setTotal(cs.getFloat(5));
+        }
+        return orderDoctorDTO;
+    }
     public ArrayList<OrderDoctorDTO> listOrderDoctorByDateToDayByDoctor(String dateToDay,int idDoctor){
         ArrayList<OrderDoctorDTO> list = new ArrayList<>();
         String[] whereArgs = {dateToDay.trim(),idDoctor+""};

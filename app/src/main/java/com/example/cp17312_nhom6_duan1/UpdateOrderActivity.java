@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -32,6 +33,7 @@ import com.example.cp17312_nhom6_duan1.dto.OrderDetailDTO;
 import com.example.cp17312_nhom6_duan1.dto.OrderDoctorDTO;
 import com.example.cp17312_nhom6_duan1.dto.RoomsDTO;
 import com.example.cp17312_nhom6_duan1.dto.ServicesDTO;
+import com.example.cp17312_nhom6_duan1.dto.TimeWorkDTO;
 import com.example.cp17312_nhom6_duan1.dto.TimeWorkDetailDTO;
 
 import java.util.ArrayList;
@@ -110,8 +112,25 @@ public class UpdateOrderActivity extends AppCompatActivity {
         AccountDTO accountDTO1 = accountDAO.getDtoAccount(fileDTO.getUser_id());
         tvPhoneNumeber.setText(accountDTO1.getPhoneNumber());
 
-        ArrayList<DoctorDTO> ListDoctorByIdService = doctorDAO.getListDoctorByIdService(doctorDTO.getService_id(), doctorDTO.getTimework_id());
+        TimeWorkDetailDAO timeWorkDetailDAO = new TimeWorkDetailDAO(this);
+        timeWorkDetailDAO.open();
+
+        ArrayList<TimeWorkDTO> list = timeWorkDetailDAO.listTimeWork(orderDoctorDTO.getStart_time());
+        Toast.makeText(this, list.get(0).getId()+"", Toast.LENGTH_SHORT).show();
+        ArrayList<DoctorDTO> ListDoctorByIdService = doctorDAO.getListDoctorByIdService(doctorDTO.getService_id(), list.get(0).getId(),doctorDTO.getService_id());
+        Toast.makeText(this, ListDoctorByIdService.size()+"", Toast.LENGTH_SHORT).show();
+        String TAG = "zzzzzzzzzzzzzzzzzzzzzzz";
+        for(int i=0;i<ListDoctorByIdService.size();i++){
+            Log.d(TAG, "onCreate: List1: "+ListDoctorByIdService.get(i).getId());
+        }
+        Log.d(TAG, "onCreate: -----------------------------------");
         ArrayList<DoctorDTO> listDoctorbyIdTimeWorkDetail = doctorDAO.listDoctorbyIdTimeWorkDetail(orderDoctorDTO.getStart_time(), orderDoctorDTO.getStart_date(), doctorDTO.getService_id());
+        Log.d(TAG, "onCreate: Start_time: "+orderDoctorDTO.getStart_time());
+        Log.d(TAG, "onCreate: Start_date: "+orderDoctorDTO.getStart_date());
+        for(int i=0;i<listDoctorbyIdTimeWorkDetail.size();i++){
+            Log.d(TAG, "onCreate: List2: "+listDoctorbyIdTimeWorkDetail.get(i).getId());
+        }
+        Toast.makeText(this, listDoctorbyIdTimeWorkDetail.size()+"", Toast.LENGTH_SHORT).show();
         for (int i = 0; i < ListDoctorByIdService.size(); i++) {
             for (int j = 0; j < listDoctorbyIdTimeWorkDetail.size(); j++) {
                 if (ListDoctorByIdService.get(i).getId() == listDoctorbyIdTimeWorkDetail.get(j).getId()) {
@@ -119,15 +138,14 @@ public class UpdateOrderActivity extends AppCompatActivity {
                 }
             }
         }
-        ListDoctorByIdService.add(doctorDTO);
+
+        Log.d(TAG, "onCreate: -------------------------------");
+        for(int i=0;i<ListDoctorByIdService.size();i++){
+            Log.d(TAG, "onCreate: List1: "+ListDoctorByIdService.get(i).getId());
+        }
+        ListDoctorByIdService.add(0,doctorDTO);
         SpinnerDoctorAdapter adapterListDoctor = new SpinnerDoctorAdapter(ListDoctorByIdService, UpdateOrderActivity.this);
         spDoctor.setAdapter(adapterListDoctor);
-        for(int i=0;i<ListDoctorByIdService.size();i++){
-            if(ListDoctorByIdService.get(i).getId() == doctorDTO.getId()){
-                spDoctor.setSelection(i);
-                spDoctor.setSelected(true);
-            }
-        }
         spDoctor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -153,7 +171,9 @@ public class UpdateOrderActivity extends AppCompatActivity {
                 long res = orderDoctorDAO.updateRow(orderDoctorDTO);
                 if(res>0){
                     Toast.makeText(UpdateOrderActivity.this, "Sửa thành công", Toast.LENGTH_SHORT).show();
+                    ListDoctorByIdService.add(0,doctorDTO);
                     onBackPressed();
+
                 }
             }
         });

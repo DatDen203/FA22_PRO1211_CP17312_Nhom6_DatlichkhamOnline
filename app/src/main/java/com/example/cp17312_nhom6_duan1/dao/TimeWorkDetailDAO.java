@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.cp17312_nhom6_duan1.database.MyDbHelper;
+import com.example.cp17312_nhom6_duan1.dto.TimeWorkDTO;
 import com.example.cp17312_nhom6_duan1.dto.TimeWorkDetailDTO;
 
 import java.util.ArrayList;
@@ -94,6 +95,23 @@ public class TimeWorkDetailDAO {
         }
         return listTimeWorkDetail;
     }
+
+   public ArrayList<TimeWorkDTO> listTimeWork(String time){
+        ArrayList<TimeWorkDTO> list = new ArrayList<>();
+        String[] whereArgs = {time};
+        String select = "select  tbTimeWork.id  from tbTimeWorkDetail inner join tbTimeWork on tbTimeWorkDetail.timework_id = tbTimeWork.id where time = ?";
+        Cursor cs = db.rawQuery(select,whereArgs);
+        if(cs.moveToFirst()){
+            while(!cs.isAfterLast()){
+                TimeWorkDTO timeWorkDTO = new TimeWorkDTO();
+                timeWorkDTO.setId(cs.getInt(0));
+                list.add(timeWorkDTO);
+                cs.moveToNext();
+            }
+        }
+        cs.close();
+        return list;
+   }
 
     public TimeWorkDetailDTO getTimeWorkDetail (String timeWorkDetail){
         TimeWorkDetailDTO timeWorkDetailDTO  = new TimeWorkDetailDTO();
