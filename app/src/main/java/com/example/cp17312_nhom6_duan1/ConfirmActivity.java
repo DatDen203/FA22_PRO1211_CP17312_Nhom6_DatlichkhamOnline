@@ -110,7 +110,8 @@ public class ConfirmActivity extends AppCompatActivity {
                     OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
                     orderDetailDTO.setOrder_id(orderDTO.getId());
                     orderDetailDTO.setOrderDoctor_id(orderDoctorDTO.getId());
-
+                    Log.e("TAG", "onClick: item:"+i+" order id: "+orderDTO.getId() );
+                    Log.e("TAG", "onClick: item:"+i+" orderDoctor id: "+orderDoctorDTO.getId() );
                     long res = orderDetailDAO.innsertRow(orderDetailDTO);
 
 

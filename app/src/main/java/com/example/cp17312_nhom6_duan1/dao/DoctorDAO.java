@@ -231,7 +231,7 @@ public class DoctorDAO {
                 " join tbServices on tbDoctor.service_id =  tbServices.id where tbDoctor.service_id= "+idService+" and tbDoctor.id\n" +
                 " not in (select tbDoctor.id  from tbDoctor join tbTimeWork on tbDoctor.timework_id = tbTimeWork.id\n" +
                 " join tbTimeWorkDetail on tbTimeWork.id = tbTimeWorkDetail.timework_id \n" +
-                " join tbServices on tbDoctor.service_id =  tbServices.id join tbOrderDoctor on tbDoctor.id=tbOrderDoctor.doctor_id join tbOrderDetail on tbOrderDoctor.id = tbOrderDetail.orderDoctor_id join tbOrders on tbOrderDetail.order_id = tbOrders.id where tbOrderDoctor.start_time='"+time+"' and tbOrderDoctor.start_date='"+dateNow+"' and tbOrders.status='Chờ ngày khám') group by tbDoctor.id";
+                " join tbServices on tbDoctor.service_id =  tbServices.id join tbOrderDoctor on tbDoctor.id=tbOrderDoctor.doctor_id join tbOrderDetail on tbOrderDoctor.id = tbOrderDetail.orderDoctor_id join tbOrders on tbOrderDetail.order_id = tbOrders.id where tbOrderDoctor.start_time='"+time+"' and tbOrderDoctor.start_date='"+dateNow+"' and tbOrders.status='Chờ ngày khám') and tbTimeWorkDetail.time = '"+time+"' group by tbDoctor.id";
         Cursor cursor = db.rawQuery(select,null);
         if(cursor!=null){
             cursor.moveToFirst();
