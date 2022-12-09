@@ -30,6 +30,7 @@ import com.example.cp17312_nhom6_duan1.dao.RoomsDAO;
 import com.example.cp17312_nhom6_duan1.dao.ServicesDAO;
 import com.example.cp17312_nhom6_duan1.dto.AllDTO;
 import com.example.cp17312_nhom6_duan1.dto.DoctorDTO;
+import com.example.cp17312_nhom6_duan1.dto.OrderDetailDTO;
 import com.example.cp17312_nhom6_duan1.dto.OrderDoctorDTO;
 import com.example.cp17312_nhom6_duan1.dto.RoomsDTO;
 import com.example.cp17312_nhom6_duan1.dto.ServicesDTO;
@@ -75,7 +76,6 @@ public class AdapterUpdateDoctorInOrder extends RecyclerView.Adapter<AdapterUpda
         roomsDAO = new RoomsDAO(context);
         servicesDAO = new ServicesDAO(context);
         orderDoctorDAO = new OrderDoctorDAO(context);
-
         return new ViewHoderItemUpdateDoctorInOrder(view);
     }
 
@@ -85,24 +85,24 @@ public class AdapterUpdateDoctorInOrder extends RecyclerView.Adapter<AdapterUpda
         allDTO = listOrder.get(index);
         DoctorDTO doctorDTO = doctorDAO.getDtoDoctorByIdDoctor(allDTO.getIdDoctor());
         listDoctor = doctorDAO.getListDoctorByTimeWord(allDTO.getStartTime(), doctorDTO.getService_id(), doctorDTO.getTimework_id(), allDTO.getStartDate());
+        listDoctor.add(doctorDTO);
         spinnerDoctorAdapter = new SpinnerDoctorAdapter(listDoctor, context);
         holder.tvfullName.setText(allDTO.getFullameUser());
-        listDoctor.add(0,doctorDTO);
+        holder.spNameDoctor.setAdapter(spinnerDoctorAdapter);
         for (int i = 0; i < listDoctor.size(); i++) {
             if (allDTO.getIdDoctor() == listDoctor.get(i).getId()) {
                 holder.spNameDoctor.setSelected(true);
                 holder.spNameDoctor.setSelection(i);
             }
         }
-        orderDoctorDTO = orderDoctorDAO.getOrderDoctorDtoById1(doctorDTO.getId());
-        Log.e(TAG, "onBindViewHolder: "+doctorDTO.getId() );
-        Log.e(TAG, "onBindViewHolder: "+orderDoctorDTO.getDoctor_id() );
-
+        Log.e(TAG, "onBindViewHolder: order_id:"+allDTO.getOrder_id() );
+        Log.e(TAG, "onBindViewHolder: orderDoctor_id:"+allDTO.getOrderDoctor_id() );
         servicesDTO = servicesDAO.getDtoServiceByIdByService(doctorDTO.getService_id());
         roomsDTO = roomsDAO.getDtoRoomByIdRoom(doctorDTO.getRoom_id());
         holder.tvNameService.setText(servicesDTO.getServicesName());
         holder.tvNameRooms.setText(roomsDTO.getName());
-        holder.spNameDoctor.setAdapter(spinnerDoctorAdapter);
+        holder.tv_Id.setText("Mã lịch khám: "+allDTO.getOrder_id()+"");
+
         holder.tvStartDate.setText(formatDate(allDTO.getStartDate()));
         holder.tvStartTime.setText(allDTO.getStartTime());
         holder.spNameDoctor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -120,7 +120,10 @@ public class AdapterUpdateDoctorInOrder extends RecyclerView.Adapter<AdapterUpda
             holder.btnUpdate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    dialogupdate2(holder.spNameDoctor);
+                    orderDoctorDTO = orderDoctorDAO.getOrderDoctorDtoById(listOrder.get(index).getOrderDoctor_id());
+                    dialogupdate2(holder.spNameDoctor, index, orderDoctorDTO);
+
+                    
 
                 }
             });
@@ -155,7 +158,7 @@ public class AdapterUpdateDoctorInOrder extends RecyclerView.Adapter<AdapterUpda
         return newDate;
     }
 
-    public void dialogupdate2(Spinner spinner) {
+    public void dialogupdate2(Spinner spinner, int index, OrderDoctorDTO obj) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Cập nhật");
         builder.setMessage("Cập nhật thành công ");
@@ -164,13 +167,17 @@ public class AdapterUpdateDoctorInOrder extends RecyclerView.Adapter<AdapterUpda
             public void onClick(DialogInterface dialog, int which) {
                 DoctorDTO doctorDTO = (DoctorDTO) spinner.getSelectedItem();
                 Log.e(TAG, "onClick: " + doctorDTO.getId());
-                orderDoctorDTO.setDoctor_id(doctorDTO.getId());
-                int res = orderDoctorDAO.updateRow(orderDoctorDTO);
+                Toast.makeText(context, "idOrderDoctor"+listOrder.get(index).getOrderDoctor_id() , Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "idOrderDoctor"+obj.getId() , Toast.LENGTH_SHORT).show();
+                obj.setDoctor_id(doctorDTO.getId());
+                int res = orderDoctorDAO.updateRow(obj);
                 if (res > 0) {
+                    notifyDataSetChanged();
                     listOrder.clear();
+                    listDoctor.clear();
                     orderDetailDAO = new OrderDetailDAO(context);
                     listOrder = orderDetailDAO.getListOrderByIdFile(idFile);
-                    notifyDataSetChanged();
+                    listDoctor = doctorDAO.getListDoctorByTimeWord(allDTO.getStartTime(), doctorDTO.getService_id(), doctorDTO.getTimework_id(), allDTO.getStartDate());
                     dialog.dismiss();
                 }
             }
@@ -190,6 +197,7 @@ public class AdapterUpdateDoctorInOrder extends RecyclerView.Adapter<AdapterUpda
         private MaterialButton btnUpdate;
         private LinearLayout llNote;
         private TextView tvNote;
+        private TextView tv_Id;
 
         public ViewHoderItemUpdateDoctorInOrder(@NonNull View itemView) {
             super(itemView);
@@ -202,6 +210,7 @@ public class AdapterUpdateDoctorInOrder extends RecyclerView.Adapter<AdapterUpda
             btnUpdate = itemView.findViewById(R.id.btn_update);
             llNote = itemView.findViewById(R.id.ll_note);
             tvNote = itemView.findViewById(R.id.tvNote);
+            tv_Id = itemView.findViewById(R.id.tv_id);
         }
     }
 }

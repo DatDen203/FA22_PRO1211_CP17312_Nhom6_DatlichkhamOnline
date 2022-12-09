@@ -288,7 +288,7 @@ public class OrderDetailDAO {
     }
     public ArrayList<AllDTO> getListOrderByIdFile(int id){
         ArrayList<AllDTO> list = new ArrayList<>();
-        String select ="select tbFile.fullname, tbOrderDoctor.doctor_id,tbOrderDoctor.start_date,tbOrderDoctor.start_time from tbOrders join tbFile on tbOrders.file_id=tbFile.id join tbOrderDetail on tbOrders.id=tbOrderDetail.order_id join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id where tbOrderDoctor.file_id= "+id+" and tbOrders.status='Chờ ngày khám' ";
+        String select ="select tbFile.fullname, tbOrderDoctor.doctor_id,tbOrderDoctor.start_date,tbOrderDoctor.start_time,tbOrderDetail.orderDoctor_id,tbOrderDetail.order_id  from tbOrders join tbFile on tbOrders.file_id=tbFile.id join tbOrderDetail on tbOrders.id=tbOrderDetail.order_id join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id where tbOrderDoctor.file_id= "+id+" and tbOrders.status='Chờ ngày khám' ";
         Cursor cursor = db.rawQuery(select,null);
         if(cursor!=null){
             cursor.moveToFirst();
@@ -298,6 +298,8 @@ public class OrderDetailDAO {
                 obj.setIdDoctor(cursor.getInt(1));
                 obj.setStartDate(cursor.getString(2));
                 obj.setStartTime(cursor.getString(3));
+                obj.setOrderDoctor_id(cursor.getInt(4));
+                obj.setOrder_id(cursor.getInt(5));
                 list.add(obj);
                 cursor.moveToNext();
             }

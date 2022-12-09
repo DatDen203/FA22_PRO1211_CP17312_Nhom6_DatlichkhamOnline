@@ -79,7 +79,6 @@ public class UpdateOrderActivity extends AppCompatActivity {
         tvOrderTime.setText("Thời gian đặt lịch: " + orderDTO.getOrder_time());
 
         tvIdOrder.setText("Mã lịch khám: " + orderDetailDTO.getOrder_id());
-
         OrderDoctorDAO orderDoctorDAO = new OrderDoctorDAO(this);
         OrderDoctorDTO orderDoctorDTO = orderDoctorDAO.getOrderDoctorDtoById(orderDetailDTO.getOrderDoctor_id());
 

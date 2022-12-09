@@ -21,12 +21,28 @@ public class AllDTO {
     private String time;
     private double total;
     //===================
-
+    private int orderDoctor_id, order_id;
     public AllDTO() {
     }
 
     public String getNote() {
         return note;
+    }
+
+    public int getOrderDoctor_id() {
+        return orderDoctor_id;
+    }
+
+    public void setOrderDoctor_id(int orderDoctor_id) {
+        this.orderDoctor_id = orderDoctor_id;
+    }
+
+    public int getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
     }
 
     public void setNote(String note) {

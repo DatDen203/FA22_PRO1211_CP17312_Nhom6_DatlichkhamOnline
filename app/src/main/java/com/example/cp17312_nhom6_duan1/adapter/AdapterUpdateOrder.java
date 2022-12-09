@@ -50,7 +50,7 @@ public class AdapterUpdateOrder extends RecyclerView.Adapter<UpdateOrderViewHold
     public void onBindViewHolder(@NonNull UpdateOrderViewHolder holder, int position) {
         OrderDetailDTO orderDetailDTO = listUpdateOrder.get(position);
         final int index = position;
-        holder.tvOrderId.setText("Mã đặt hàng: "+orderDetailDTO.getOrder_id());
+        holder.tvOrderId.setText("Mã đặt lịch: "+orderDetailDTO.getOrder_id());
 
         OrderDAO orderDAO = new OrderDAO(context);
         OrderDTO orderDTO = orderDAO.getOrderDTOById(orderDetailDTO.getOrder_id());
