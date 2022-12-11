@@ -22,6 +22,7 @@ public class SearchActivity extends AppCompatActivity {
     private TextView tvSearch;
     private Button btnSearch;
     private RecyclerView rcv_list_services;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,14 +42,13 @@ public class SearchActivity extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ServicesDAO servicesDAO  =new ServicesDAO(SearchActivity.this);
+                ServicesDAO servicesDAO = new ServicesDAO(SearchActivity.this);
                 ArrayList<ServicesDTO> list = servicesDAO.getDtoServiceByIdByNameService(tvSearch.getText().toString());
-                if(list.size()<0){
+                if (list.size() <= 0) {
                     Toast.makeText(SearchActivity.this, "Không có kết quả tìm kiếm", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    AdapterListService2 listService = new AdapterListService2(list,SearchActivity.this);
-                    LinearLayoutManager manager = new LinearLayoutManager(SearchActivity.this,RecyclerView.VERTICAL,false);
+                } else {
+                    AdapterListService2 listService = new AdapterListService2(list, SearchActivity.this);
+                    LinearLayoutManager manager = new LinearLayoutManager(SearchActivity.this, RecyclerView.VERTICAL, false);
                     rcv_list_services.setLayoutManager(manager);
                     rcv_list_services.setAdapter(listService);
                 }

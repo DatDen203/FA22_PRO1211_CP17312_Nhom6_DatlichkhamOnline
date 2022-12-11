@@ -167,8 +167,8 @@ public class AdapterUpdateDoctorInOrder extends RecyclerView.Adapter<AdapterUpda
             public void onClick(DialogInterface dialog, int which) {
                 DoctorDTO doctorDTO = (DoctorDTO) spinner.getSelectedItem();
                 Log.e(TAG, "onClick: " + doctorDTO.getId());
-                Toast.makeText(context, "idOrderDoctor"+listOrder.get(index).getOrderDoctor_id() , Toast.LENGTH_SHORT).show();
-                Toast.makeText(context, "idOrderDoctor"+obj.getId() , Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "idOrderDoctor"+listOrder.get(index).getOrderDoctor_id() , Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "idOrderDoctor"+obj.getId() , Toast.LENGTH_SHORT).show();
                 obj.setDoctor_id(doctorDTO.getId());
                 int res = orderDoctorDAO.updateRow(obj);
                 if (res > 0) {

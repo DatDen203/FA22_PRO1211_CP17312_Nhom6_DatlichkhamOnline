@@ -14,7 +14,9 @@
         android:id="@+id/tv_nameDoctor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="3dp"
-        android:text="dsfsdfsa"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:paddingStart="10dp"
+        android:text="Ten bac si"
         android:textSize="14dp" />
 </LinearLayout>

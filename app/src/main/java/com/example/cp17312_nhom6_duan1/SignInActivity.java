@@ -94,16 +94,13 @@ public class SignInActivity extends AppCompatActivity {
                         tilPassword.setError("");
                         String checkRole = sharedPreferences.getString("role", "");
                         if (checkRole.equalsIgnoreCase("Admin")) {
-                            Toast.makeText(SignInActivity.this, "Man admin", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(SignInActivity.this, AdminActivity.class);
                             startActivity(intent);
                         } else if (checkRole.equalsIgnoreCase("User")) {
-                            Toast.makeText(SignInActivity.this, "Man user", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                             intent.putExtra("fullname", fullname);
                             startActivity(intent);
                         } else if (checkRole.equalsIgnoreCase("Doctor")) {
-                            Toast.makeText(SignInActivity.this, "Man doctor", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(SignInActivity.this, DoctorActivity.class);
                             intent.putExtra("fullname", fullname);
                             startActivity(intent);

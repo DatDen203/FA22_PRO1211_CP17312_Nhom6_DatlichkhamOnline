@@ -33,7 +33,7 @@ import java.util.Calendar;
 public class ConfirmActivity extends AppCompatActivity {
     private RecyclerView rcv_list_order;
     private OrderDoctorDAO orderDoctorDAO;
-    private TextView tvSumPrice;
+    public TextView tvSumPrice;
     private float sumPrice = 0;
     private Button btnOrder, btnAddOrder;
     private ArrayList<OrderDoctorDTO> list = OrderDoctorActivity.listOrderDoctor;
@@ -59,7 +59,7 @@ public class ConfirmActivity extends AppCompatActivity {
 
         orderDoctorDAO = new OrderDoctorDAO(this);
 
-        AdapterOrder adapterOrder = new AdapterOrder(list, this);
+        AdapterOrder adapterOrder = new AdapterOrder(list, this, this);
         LinearLayoutManager manager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         rcv_list_order.setLayoutManager(manager);
         rcv_list_order.setAdapter(adapterOrder);
@@ -155,7 +155,7 @@ public class ConfirmActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         orderDoctorDAO = new OrderDoctorDAO(this);
-        AdapterOrder adapterOrder = new AdapterOrder(list, this);
+        AdapterOrder adapterOrder = new AdapterOrder(list, this, this);
         LinearLayoutManager manager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         rcv_list_order.setLayoutManager(manager);
         rcv_list_order.setAdapter(adapterOrder);

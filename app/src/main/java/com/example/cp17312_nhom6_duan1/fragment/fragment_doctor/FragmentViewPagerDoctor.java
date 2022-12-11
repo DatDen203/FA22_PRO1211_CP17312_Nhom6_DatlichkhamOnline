@@ -22,7 +22,6 @@ public class FragmentViewPagerDoctor extends Fragment {
     private ViewPager2 vpStatisticalDoctor;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,11 +39,11 @@ public class FragmentViewPagerDoctor extends Fragment {
         TabLayoutMediator m = new TabLayoutMediator(tabVpStatisticalDoctor, vpStatisticalDoctor, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                if(position==0){
-                    tab.setText("Thống kê theo tháng");
-                }else if(position==1){
-                    tab.setText("Thống kê theo ngày");
-                } else if(position==2){
+                if (position == 0) {
+                    tab.setText("Thống kê tháng này");
+                } else if (position == 1) {
+                    tab.setText("Thống kê hôm nay");
+                } else if (position == 2) {
                     tab.setText("Thống kê");
                 }
             }
