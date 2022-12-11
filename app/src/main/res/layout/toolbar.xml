@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toEndOf="@id/img_logo"
-                android:text="BookingCare"
+                android:text="PolyCare"
                 android:textColor="@color/green"
                 android:textSize="20dp"
                 android:textStyle="bold" />

@@ -9,6 +9,7 @@ import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cp17312_nhom6_duan1.ConfirmActivity;
 import com.example.cp17312_nhom6_duan1.OrderDoctorActivity;
 import com.example.cp17312_nhom6_duan1.R;
 import com.example.cp17312_nhom6_duan1.adapter.ViewHolder.OrderViewHolder;
@@ -30,10 +31,19 @@ import java.util.ArrayList;
 public class AdapterOrder extends RecyclerView.Adapter<OrderViewHolder> {
     private ArrayList<OrderDoctorDTO> listOrderDoctor = new ArrayList<>();
     private Context context;
+    private float sumPrice = 0;
+    public ConfirmActivity confirmActivity;
 
-    public AdapterOrder(ArrayList<OrderDoctorDTO> listOrderDoctor, Context context) {
+//    public AdapterOrder(ArrayList<OrderDoctorDTO> listOrderDoctor, Context context) {
+//        this.listOrderDoctor = listOrderDoctor;
+//        this.context = context;
+//    }
+
+
+    public AdapterOrder(ArrayList<OrderDoctorDTO> listOrderDoctor, Context context, ConfirmActivity confirmActivity) {
         this.listOrderDoctor = listOrderDoctor;
         this.context = context;
+        this.confirmActivity = confirmActivity;
     }
 
     @NonNull
@@ -75,6 +85,10 @@ public class AdapterOrder extends RecyclerView.Adapter<OrderViewHolder> {
                 OrderDoctorDAO orderDoctorDAO =new OrderDoctorDAO(context);
                 int res = orderDoctorDAO.deleteRow(orderDoctorDTO);
                 OrderDoctorActivity.listOrderDoctor.remove(vitri);
+                for (int i = 0; i < listOrderDoctor.size(); i++) {
+                    sumPrice += listOrderDoctor.get(i).getTotal();
+                }
+                confirmActivity.tvSumPrice.setText("Thành tiền : " + sumPrice + "đ");
                 notifyDataSetChanged();
             }
         });

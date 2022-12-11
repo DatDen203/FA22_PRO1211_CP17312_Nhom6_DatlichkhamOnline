@@ -60,7 +60,6 @@ public class UpdateDoctorActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         int idDoctor = intent.getIntExtra("idDoctor",-1);
-        Toast.makeText(this, idDoctor+"", Toast.LENGTH_SHORT).show();
 
         //Gắn dữ
         DoctorDTO doctorDTO = doctorDAO.getDtoDoctorByIdDoctor(idDoctor);

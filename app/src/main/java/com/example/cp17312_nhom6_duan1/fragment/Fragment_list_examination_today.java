@@ -49,7 +49,6 @@ public class Fragment_list_examination_today extends Fragment {
         else{
              today = year+"/"+(month+1)+"/0"+day;
         }
-        Toast.makeText(getContext(), today+"", Toast.LENGTH_SHORT).show();
 
         orderDetailDAO = new OrderDetailDAO(getContext());
         ArrayList<OrderDetailDTO> listOrderDetail = orderDetailDAO.getListExaminationToDay(today);
@@ -66,7 +65,7 @@ public class Fragment_list_examination_today extends Fragment {
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-        if(day>10){
+        if(day>=10){
             today = year+"/"+(month+1)+"/"+day;
         }
         else{

@@ -115,9 +115,9 @@ public class UpdateOrderActivity extends AppCompatActivity {
         timeWorkDetailDAO.open();
 
         ArrayList<TimeWorkDTO> list = timeWorkDetailDAO.listTimeWork(orderDoctorDTO.getStart_time());
-        Toast.makeText(this, list.get(0).getId()+"", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, list.get(0).getId()+"", Toast.LENGTH_SHORT).show();
         ArrayList<DoctorDTO> ListDoctorByIdService = doctorDAO.getListDoctorByIdService(doctorDTO.getService_id(), list.get(0).getId(),doctorDTO.getService_id());
-        Toast.makeText(this, ListDoctorByIdService.size()+"", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, ListDoctorByIdService.size()+"", Toast.LENGTH_SHORT).show();
         String TAG = "zzzzzzzzzzzzzzzzzzzzzzz";
         for(int i=0;i<ListDoctorByIdService.size();i++){
             Log.d(TAG, "onCreate: List1: "+ListDoctorByIdService.get(i).getId());
@@ -129,7 +129,7 @@ public class UpdateOrderActivity extends AppCompatActivity {
         for(int i=0;i<listDoctorbyIdTimeWorkDetail.size();i++){
             Log.d(TAG, "onCreate: List2: "+listDoctorbyIdTimeWorkDetail.get(i).getId());
         }
-        Toast.makeText(this, listDoctorbyIdTimeWorkDetail.size()+"", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, listDoctorbyIdTimeWorkDetail.size()+"", Toast.LENGTH_SHORT).show();
         for (int i = 0; i < ListDoctorByIdService.size(); i++) {
             for (int j = 0; j < listDoctorbyIdTimeWorkDetail.size(); j++) {
                 if (ListDoctorByIdService.get(i).getId() == listDoctorbyIdTimeWorkDetail.get(j).getId()) {
