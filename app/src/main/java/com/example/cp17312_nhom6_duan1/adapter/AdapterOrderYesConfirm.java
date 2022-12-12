@@ -54,7 +54,7 @@ public class AdapterOrderYesConfirm extends RecyclerView.Adapter<ItemOrderYesCof
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Thông tin chi tiết bệnh nhân");
-                builder.setMessage("Tên bệnh nhân: "+fileDTO.getFullname()+"\nNgày sinh: "+fileDTO.getBirthday()+"\nCăn cước công dân: "+fileDTO.getCccd()+"\nQuốc tịch: "+fileDTO.getCountry()+"\nBảo hiểm y tế : "+fileDTO.getBhyt()+"\nCông việc :"+fileDTO.getJob()+"\nĐịa chỉ nơi ở : "+fileDTO.getAddress()+"\nLí do khám : "+fileDTO.getDes()+"\nGhi chú: "+orderDTO.getNote());
+                builder.setMessage("Tên bệnh nhân: "+fileDTO.getFullname()+"\nNgày sinh: "+fileDTO.getBirthday()+"\nCăn cước công dân: "+fileDTO.getCccd()+"\nQuốc tịch: "+fileDTO.getCountry()+"\nBảo hiểm y tế : "+fileDTO.getBhyt()+"\nCông việc :"+fileDTO.getJob()+"\nĐịa chỉ nơi ở : "+fileDTO.getAddress()+"\nGhi chú: "+orderDTO.getNote());
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }

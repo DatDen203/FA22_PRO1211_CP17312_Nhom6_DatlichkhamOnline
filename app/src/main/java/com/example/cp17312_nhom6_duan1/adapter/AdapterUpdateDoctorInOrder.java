@@ -101,7 +101,8 @@ public class AdapterUpdateDoctorInOrder extends RecyclerView.Adapter<AdapterUpda
         roomsDTO = roomsDAO.getDtoRoomByIdRoom(doctorDTO.getRoom_id());
         holder.tvNameService.setText(servicesDTO.getServicesName());
         holder.tvNameRooms.setText(roomsDTO.getName());
-        holder.tv_Id.setText("Mã lịch khám: "+allDTO.getOrder_id()+"");
+        holder.tv_Id.setText("Mã lịch khám: "+listOrder.get(index).getOrder_id()+"");
+        holder.tv_Id.setVisibility(View.GONE);
 
         holder.tvStartDate.setText(formatDate(allDTO.getStartDate()));
         holder.tvStartTime.setText(allDTO.getStartTime());
