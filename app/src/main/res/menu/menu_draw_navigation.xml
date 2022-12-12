@@ -55,16 +55,16 @@
     </group>
 
     <group>
-        <item android:title="Quản lí tài khoản">
+        <item android:title="Tài khoản">
             <menu>
                 <item android:id="@+id/m_AccountDoctor"
                     app:showAsAction="always"
                     android:icon="@drawable/icon_doctor"
-                    android:title="Quản lí tài khoản bác sĩ"/>
+                    android:title="Danh sách tài khoản bác sĩ"/>
                 <item android:id="@+id/m_AccountUser"
                     app:showAsAction="always"
                     android:icon="@drawable/ac_m"
-                    android:title="Quản lí tài khoản người dùng"/>
+                    android:title="Danh sách tài khoản người dùng"/>
                 <item android:id="@+id/m_logOut"
                     android:icon="@drawable/ic_logout"
                     app:showAsAction="always"

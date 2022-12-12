@@ -90,7 +90,6 @@ public class Fragment_Statistical extends Fragment {
                         } else {
                             today = year + "/" + (month + 1) + "/0" + day;
                         }
-
                         tvDay.setText(today);
                     }
                 }, year, month, day);
@@ -144,10 +143,10 @@ public class Fragment_Statistical extends Fragment {
                         yearTest = year;
                         String today;
                         if(day>=10){
-                            today = year + "/" + (month + 1) + "/" + day;
+                            today = year + "/" + (month + 1);
                         }
                         else{
-                            today = year + "/" + (month + 1) + "/0" + day;
+                            today = year + "/" + (month + 1);
                         }
 
                         tvStartMonth.setText(today);
@@ -179,10 +178,10 @@ public class Fragment_Statistical extends Fragment {
                         yearTest = year;
                         String today;
                         if(day>=10){
-                            today = year + "/" + (month + 1) + "/" + day;
+                            today = year + "/" + (month + 1);
                         }
                         else{
-                            today = year + "/" + (month + 1) + "/0" + day;
+                            today = year + "/" + (month + 1);
                         }
 
                         tvOrderMonth.setText(today);
@@ -213,10 +212,10 @@ public class Fragment_Statistical extends Fragment {
                         yearTest = year;
                         String today;
                         if(day>=10){
-                            today = year + "/" + (month + 1) + "/" + day;
+                            today = year + "/" + (month + 1);
                         }
                         else{
-                            today = year + "/" + (month + 1) + "/0" + day;
+                            today = year + "/" + (month + 1);
                         }
 
                         tvListDoctoOrderMonth.setText(today);

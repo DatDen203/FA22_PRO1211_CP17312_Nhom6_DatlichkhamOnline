@@ -132,7 +132,7 @@ public class OrderDoctorDAO {
     public ArrayList<OrderDoctorDTO> listOrderDoctorByDateToDayByDoctorAllNoConfirm(int idDoctor){
         ArrayList<OrderDoctorDTO> list = new ArrayList<>();
         String[] whereArgs = {idDoctor+""};
-        String select = "select tbOrders.id,tbOrderDoctor.id from tbOrderDetail inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbOrders on tbOrders.id = tbOrderDetail.order_id where tbOrders.status ='Chờ ngày khám'and tbOrderDoctor.doctor_id =?";
+        String select = "select tbOrders.id,tbOrderDoctor.id from tbOrderDetail inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbOrders on tbOrders.id = tbOrderDetail.order_id where tbOrders.status ='Chờ ngày khám'and tbOrderDoctor.doctor_id =? order by tbOrderDoctor.start_date";
         Cursor cs = db.rawQuery(select,whereArgs);
         if(cs.moveToFirst()){
             while(!cs.isAfterLast()){
@@ -150,7 +150,7 @@ public class OrderDoctorDAO {
     public ArrayList<OrderDoctorDTO> listOrderDoctorByDateToDayByDoctorAllYesConfirm(int idDoctor){
         ArrayList<OrderDoctorDTO> list = new ArrayList<>();
         String[] whereArgs = {idDoctor+""};
-        String select = "select tbOrders.id,tbOrderDoctor.id from tbOrderDetail inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbOrders on tbOrders.id = tbOrderDetail.order_id where tbOrders.status ='Đã khám xong'and tbOrderDoctor.doctor_id =?";
+        String select = "select tbOrders.id,tbOrderDoctor.id from tbOrderDetail inner join tbOrderDoctor on tbOrderDetail.orderDoctor_id = tbOrderDoctor.id inner join tbOrders on tbOrders.id = tbOrderDetail.order_id where tbOrders.status ='Đã khám xong'and tbOrderDoctor.doctor_id =? order by tbOrderDoctor.start_date";
         Cursor cs = db.rawQuery(select,whereArgs);
         if(cs.moveToFirst()){
             while(!cs.isAfterLast()){

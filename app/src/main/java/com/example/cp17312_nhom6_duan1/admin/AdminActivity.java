@@ -156,7 +156,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 break;
             case R.id.m_AccountDoctor:
                 replaceFragmet(new Fragment_ManagerAccountDoctor());
-                toolBar.setTitle("Quản lí tài khoản bác sĩ ");
+                toolBar.setTitle("Danh sách tài khoản bác sĩ ");
                 navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerCategory).setChecked(false);
@@ -171,7 +171,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 break;
             case R.id.m_AccountUser:
                 replaceFragmet( new Fragment_ManagerAccountUser());
-                toolBar.setTitle("Quản lí tài khoản người dùng");
+                toolBar.setTitle("Danh sách tài khoản người dùng");
                 navigationAdmin.getMenu().findItem(R.id.m_managerDoctor).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerFile).setChecked(false);
                 navigationAdmin.getMenu().findItem(R.id.m_managerCategory).setChecked(false);
